@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  text-align: center;
-  color: black;
+  font-family: 'Open Sans', sans-serif !important;
+  background-color: #2e2b3d !important;
+  font-size: 16px !important;
+  color: #dedce6 !important;
 }

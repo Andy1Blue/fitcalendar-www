@@ -13,6 +13,8 @@ export const responseGoogle = async (response: any) => {
     localStorage.setItem('token', response.tokenId);
   }
 
+  window.location.reload();
+
   return {
     tokenId: response.tokenId,
     profile: response.profileObj,
