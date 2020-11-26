@@ -26,6 +26,7 @@ const GoogleLogin = ({ isAuthorized }: any) => {
   return (
     <div className="googleLogin">
       <GoogleAuth
+      className="googleLogin__loginButton"
         clientId={process.env.GOOGLE_ID}
         buttonText="Sign in with Google"
         onSuccess={responseGoogle}

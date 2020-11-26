@@ -3,9 +3,10 @@ import './App.scss';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import Footer from '../Footer/Footer';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GoogleLogout } from 'react-google-login';
 import { verifyToken } from '../../Services/OAuthService';
+import Header from '../Header/Header';
 
 export interface Props {
   appName: string;
@@ -14,6 +15,8 @@ export interface Props {
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
+  const [userName, setUserName] = useState(null);
+  const [userLogoUrl, setUserLogoUrl] = useState(null);
 
   const isAuthorized = (auth: any) => {
     setAuthorized(auth);
@@ -24,11 +27,14 @@ export const App = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const result = await verifyToken({
+      const response = await verifyToken({
         token: token,
       });
 
-      setAuthorized(result.data.isVerified);
+      setAuthorized(response.data.isVerified);
+      setUserName(response.data.payload.given_name);
+      setUserLogoUrl(response.data.payload.picture);
+      console.log(response.data);
     } catch (e) {
       setAuthorized(false);
       isAuthorized(false);
@@ -39,6 +45,10 @@ export const App = () => {
     localStorage.setItem('token', '');
     checkToken();
   };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   const logoutFailure = () => {
     logoutLogic();
@@ -55,16 +65,17 @@ export const App = () => {
           <GoogleLogin isAuthorized={(authorized: boolean) => isAuthorized(authorized)} />
         </WelcomePage>
       )}
+
       {authorized && (
-        <div>
-          <span>zalogowany</span>
+        <Header userName={userName} userLogoUrl={userLogoUrl}>
           <GoogleLogout
+            className="header__logoutButton"
             clientId={process.env.GOOGLE_ID}
             buttonText="Logout"
             onLogoutSuccess={logoutSuccess}
             onFailure={logoutFailure}
           />
-        </div>
+        </Header>
       )}
       <Footer />
     </div>
