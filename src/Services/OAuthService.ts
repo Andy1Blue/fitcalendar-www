@@ -1,4 +1,5 @@
 import http from '../http';
+import { ApiResponse } from '../Types/ApiResponse';
 
 export const responseGoogle = async (response: any) => {
   delete response.accessToken;
@@ -19,6 +20,26 @@ export const responseGoogle = async (response: any) => {
     tokenId: response.tokenId,
     profile: response.profileObj,
   };
+};
+
+export const checkToken = async (setIsVerifiedCallback: any, setGiveNameCallback?: any, setPictureCallback?: any) => {
+  const token = localStorage.getItem('token');
+
+  try {
+    const response: ApiResponse = await verifyToken({token});
+
+    setIsVerifiedCallback(response.data.isVerified);
+
+    if (setGiveNameCallback) {
+      setGiveNameCallback(response.data.payload.given_name);
+    }
+
+    if (setPictureCallback) {
+      setPictureCallback(response.data.payload.picture);
+    }
+  } catch (e) {
+    setIsVerifiedCallback(false);
+  }
 };
 
 interface TokenBodyData {

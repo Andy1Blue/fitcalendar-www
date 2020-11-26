@@ -1,8 +1,11 @@
 import * as React from 'react';
 import './WelcomePage.scss';
-import { useLayoutEffect, useEffect, useState } from 'react';
 
-const WelcomePage = ({ children }: any) => {
+interface WelcomePageProps {
+  children: any;
+}
+
+const WelcomePage = ({ children }: WelcomePageProps) => {
   const logoSrc = '../../Assets/logo-calendar.png';
 
   return (

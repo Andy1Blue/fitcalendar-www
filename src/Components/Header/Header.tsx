@@ -1,7 +1,13 @@
 import * as React from 'react';
 import './Header.scss';
 
-const Header = ({ children, userName, userLogoUrl }: any) => {
+interface HeaderProps {
+  children: any;
+  userName: string;
+  userLogoUrl: string;
+}
+
+const Header = ({ children, userName, userLogoUrl }: HeaderProps) => {
   const logoSrc = '../../Assets/logo-calendar.png';
 
   return (

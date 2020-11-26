@@ -5,49 +5,28 @@ import Footer from '../Footer/Footer';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { useEffect, useState } from 'react';
 import { GoogleLogout } from 'react-google-login';
-import { verifyToken } from '../../Services/OAuthService';
+import { checkToken } from '../../Services/OAuthService';
 import Header from '../Header/Header';
-
-export interface Props {
-  appName: string;
-  appLang: string;
-}
+import Calendar from '../Calendar/Calendar';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
   const [userName, setUserName] = useState(null);
   const [userLogoUrl, setUserLogoUrl] = useState(null);
 
-  const isAuthorized = (auth: any) => {
+  const isAuthorized = (auth: boolean) => {
     setAuthorized(auth);
+
     return auth;
-  };
-
-  const checkToken = async () => {
-    const token = localStorage.getItem('token');
-
-    try {
-      const response = await verifyToken({
-        token: token,
-      });
-
-      setAuthorized(response.data.isVerified);
-      setUserName(response.data.payload.given_name);
-      setUserLogoUrl(response.data.payload.picture);
-      console.log(response.data);
-    } catch (e) {
-      setAuthorized(false);
-      isAuthorized(false);
-    }
   };
 
   const logoutLogic = () => {
     localStorage.setItem('token', '');
-    checkToken();
+    checkToken(setAuthorized, setUserName, setUserLogoUrl);
   };
 
   useEffect(() => {
-    checkToken();
+    checkToken(setAuthorized, setUserName, setUserLogoUrl);
   }, []);
 
   const logoutFailure = () => {
@@ -67,15 +46,18 @@ export const App = () => {
       )}
 
       {authorized && (
-        <Header userName={userName} userLogoUrl={userLogoUrl}>
-          <GoogleLogout
-            className="header__logoutButton"
-            clientId={process.env.GOOGLE_ID}
-            buttonText="Logout"
-            onLogoutSuccess={logoutSuccess}
-            onFailure={logoutFailure}
-          />
-        </Header>
+        <div>
+          <Header userName={userName} userLogoUrl={userLogoUrl}>
+            <GoogleLogout
+              className="header__logoutButton"
+              clientId={process.env.GOOGLE_ID}
+              buttonText="Logout"
+              onLogoutSuccess={logoutSuccess}
+              onFailure={logoutFailure}
+            />
+          </Header>
+          <Calendar isAuthorized={authorized}></Calendar>
+        </div>
       )}
       <Footer />
     </div>

@@ -1,32 +1,23 @@
 import * as React from 'react';
 import './GoogleLogin.scss';
 import GoogleAuth, { GoogleLogout } from 'react-google-login';
-import { responseGoogle, verifyToken } from '../../Services/OAuthService';
+import { checkToken, responseGoogle, verifyToken } from '../../Services/OAuthService';
 import { useEffect, useState } from 'react';
+import { ApiResponse } from '../../Types/ApiResponse';
 
-const GoogleLogin = ({ isAuthorized }: any) => {
-  const checkToken = async () => {
-    const token = localStorage.getItem('token');
+interface GoogleLoginProps {
+  isAuthorized: any;
+}
 
-    try {
-      const result = await verifyToken({
-        token: token,
-      });
-
-      isAuthorized(result.data.isVerified);
-    } catch (e) {
-      isAuthorized(false);
-    }
-  };
-
+const GoogleLogin = ({ isAuthorized }: GoogleLoginProps) => {
   useEffect(() => {
-    checkToken();
+    checkToken(isAuthorized);
   }, []);
 
   return (
     <div className="googleLogin">
       <GoogleAuth
-      className="googleLogin__loginButton"
+        className="googleLogin__loginButton"
         clientId={process.env.GOOGLE_ID}
         buttonText="Sign in with Google"
         onSuccess={responseGoogle}
