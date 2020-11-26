@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  fitcalendar_www:
+    container_name: fitcalendar_www
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - '9000:80'
