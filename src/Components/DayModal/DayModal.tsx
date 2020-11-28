@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './DayModal.scss';
 
 interface DayModalProps {
   isDayModalVisible: any;
   training: any;
+  trainingDate: string;
 }
 
-const DayModal = ({ isDayModalVisible, training }: DayModalProps) => {
+const DayModal = ({ isDayModalVisible, training, trainingDate }: DayModalProps) => {
+  const [isTrainingDay, setIsTrainingDay] = useState(false);
+
   const closeDayModal = () => {
+    setIsTrainingDay(false);
     isDayModalVisible(false);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (training?.createdDate.slice(0, 10) === trainingDate) {
+      setIsTrainingDay(true);
+    }
+  }, [training]);
 
   return (
     <div className="dayModal">
@@ -22,15 +30,19 @@ const DayModal = ({ isDayModalVisible, training }: DayModalProps) => {
         </button>
 
         <div className="dayModal__content">
-          <div className="dayModal__title">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
-          <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+          <div className="dayModal__title">{trainingDate}</div>
+          {isTrainingDay && (
+            <>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+              <div className="dayModal__stat">{training.createdDate.slice(0, 10)}</div>
+            </>
+          )}
         </div>
       </div>
     </div>

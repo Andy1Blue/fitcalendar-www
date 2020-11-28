@@ -26,7 +26,7 @@ export const checkToken = async (setIsVerifiedCallback: any, setGiveNameCallback
   const token = localStorage.getItem('token');
 
   try {
-    const response: ApiResponse = await verifyToken({token});
+    const response: ApiResponse = await verifyToken({ token });
 
     setIsVerifiedCallback(response.data.isVerified);
 

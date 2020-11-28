@@ -7,9 +7,7 @@ export const getAllTrainings = async () => {
     const response = await get({ headers: { token } });
 
     return response;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 interface TokenHeaderData {
