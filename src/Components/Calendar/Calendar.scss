@@ -1,8 +1,8 @@
-.footer {
-  position: absolute;
-  bottom: 10px;
-  font-size: 10px;
-  left: 40%;
-  right: 40%;
-  text-align: center;
+.calendar {
+  padding: 50px;
+
+  .calendar__tilesContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }

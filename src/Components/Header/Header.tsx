@@ -17,8 +17,7 @@ const Header = ({ children, userName, userLogoUrl }: HeaderProps) => {
       </div>
       <div className="header__menuList">
         <div className="header__menuItem">
-          Hello {userName}!
-          <img src={userLogoUrl} alt="user logo" className="header__userLogo" />
+          Hello <img src={userLogoUrl} alt="user logo" className="header__userLogo" /> {userName}!
         </div>
         <div className="header__menuItem">Show training calendar</div>
         <div className="header__menuItem">{children}</div>

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import './GoogleLogin.scss';
-import GoogleAuth, { GoogleLogout } from 'react-google-login';
-import { checkToken, responseGoogle, verifyToken } from '../../Services/OAuthService';
+import GoogleAuth from 'react-google-login';
+import { checkToken, responseGoogle } from '../../Services/OAuthService';
 import { useEffect, useState } from 'react';
-import { ApiResponse } from '../../Types/ApiResponse';
 
 interface GoogleLoginProps {
   isAuthorized: any;
