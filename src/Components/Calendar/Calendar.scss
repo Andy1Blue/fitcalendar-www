@@ -1,6 +1,47 @@
 .calendar {
   padding: 50px;
 
+  .calendar__switchYear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .calendar__year {
+      margin-top: 5px;
+      color: #e2e2e2;
+    }
+
+    .calendar__actualYear {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      font-size: 3vh;
+      margin-bottom: 9px;
+      padding: 0;
+      transform: rotate(180deg);
+      color: #e2e2e2;
+    }
+
+    .calendar__subtractYear {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      font-size: 2vh;
+      margin-bottom: 9px;
+      transform: rotate(180deg);
+      color: #e2e2e2;
+    }
+
+    .calendar__addYear {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      font-size: 2vh;
+      margin-bottom: 12px;
+      color: #e2e2e2;
+    }
+  }
+
   .calendar__tilesContainer {
     display: flex;
     flex-direction: column;

@@ -1,4 +1,14 @@
 .calendarTiles {
+  .today {
+    color: #fff !important;
+    border-bottom: 5px solid #c03e86;
+  }
+
+  .workout {
+    color: #fff !important;
+    background-color: #de49ba !important;
+  }
+
   .day {
     background-color: #6e2364;
     font-family: 'Open Sans', sans-serif;
@@ -10,5 +20,19 @@
     color: #7c838c;
     font-size: 8px;
     padding: 0px 0px 7px 7px;
+
+    &:hover:after {
+      z-index: 999;
+      content: attr(description);
+      position: absolute;
+      text-align: center;
+      width: 150px;
+      margin: 20px;
+      padding: 5px;
+      font-size: 12px;
+      border: 1px solid black;
+      background: white;
+      color: black;
+    }
   }
 }
