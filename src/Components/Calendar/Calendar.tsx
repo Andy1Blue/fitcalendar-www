@@ -5,6 +5,7 @@ import { getAllTrainings } from '../../Services/TrainingsService';
 import Loader from '../Loader/Loader';
 import CalendarTiles from '../CalendarTiles/CalendarTiles';
 import TodayCard from '../TodayCard/TodayCard';
+import { isToday } from '../../helpers';
 
 interface CalendarProps {
   isAuthorized: any;
@@ -30,26 +31,11 @@ const Calendar = ({ isAuthorized }: CalendarProps) => {
         if (response?.data) {
           setTrainings(response.data);
 
-          ///////// TODO: test
-
-          const today = new Date();
-          let day: string | number = today.getDate();
-          day = day >= 10 ? day : `0${day}`;
-
-          let month: string | number = today.getMonth() + 1;
-          month = month >= 10 ? month : `0${month}`;
-
-          let year: number = today.getFullYear();
-
-          const todayTrainings = response.data.filter(
-            (training: any) => training.createdDate.slice(0, 10) === `2020-01-01`
-          );
+          const todayTrainings = response.data.filter((training: any) => isToday(training.createdDate.slice(0, 10)));
 
           if (todayTrainings[0]) {
             setTodayTraining(todayTrainings[0]);
           }
-
-          ////////////////
 
           setIsLoading(false);
         }

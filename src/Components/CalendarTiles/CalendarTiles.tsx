@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './CalendarTiles.scss';
 import DayModal from '../DayModal/DayModal';
+import { isToday } from '../../helpers';
 
 interface CalendarTilesProps {
   className: string;
@@ -15,19 +16,6 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
   const [isDayModalVisible, setIsShowDayModal] = useState(false);
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
-
-  const isToday = (parsedDate: string) => {
-    const today = new Date();
-    let day: string | number = today.getDate();
-    day = day >= 10 ? day : `0${day}`;
-
-    let month: string | number = today.getMonth() + 1;
-    month = month >= 10 ? month : `0${month}`;
-
-    let year: number = today.getFullYear();
-
-    return parsedDate === `${year}-${month}-${day}`;
-  };
 
   const openDayModal = (training: any | null, parsedDate?: string) => (event: any) => {
     setDayModalTraining(training);
