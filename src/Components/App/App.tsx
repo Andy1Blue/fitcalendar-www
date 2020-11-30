@@ -8,16 +8,25 @@ import { GoogleLogout } from 'react-google-login';
 import { checkToken } from '../../Services/OAuthService';
 import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
+import TodayCard from '../TodayCard/TodayCard';
+import { Training } from '../../Types/Training';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
   const [userName, setUserName] = useState(null);
   const [userLogoUrl, setUserLogoUrl] = useState(null);
+  const [todayTraining, setTodayTraining] = useState(null);
 
   const isAuthorized = (auth: boolean) => {
     setAuthorized(auth);
 
     return auth;
+  };
+
+  const getTodayTraining = (training: Training) => {
+    console.log(training);
+    setTodayTraining(training);
+    return training;
   };
 
   const logoutLogic = () => {
@@ -38,7 +47,7 @@ export const App = () => {
   };
 
   return (
-    <div>
+    <div className="fitCalendar">
       {!authorized && (
         <WelcomePage>
           <GoogleLogin isAuthorized={(authorized: boolean) => isAuthorized(authorized)} />
@@ -56,7 +65,14 @@ export const App = () => {
               onFailure={logoutFailure}
             />
           </Header>
-          <Calendar isAuthorized={authorized}></Calendar>
+          <div className="fitCalendar__contentContainer">
+            <div className="fitCalendar__leftContainer">
+              <TodayCard training={todayTraining} />
+            </div>
+            <div className="fitCalendar__rightContainer">
+              <Calendar isAuthorized={authorized} todayTraining={(training: any) => getTodayTraining(training)} />
+            </div>
+          </div>
         </div>
       )}
       <Footer />

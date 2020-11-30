@@ -1,6 +1,6 @@
 import http from '../http';
 
-export const getAllTrainings = async () => {
+export const getUserTrainings = async () => {
   const token = localStorage.getItem('token');
 
   try {
@@ -17,5 +17,5 @@ interface TokenHeaderData {
 }
 
 export const get = (tokenHeaderData: TokenHeaderData) => {
-  return http.get('/trainings', tokenHeaderData);
+  return http.get('/trainings/user', tokenHeaderData);
 };

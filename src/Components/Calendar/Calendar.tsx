@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './Calendar.scss';
-import { getAllTrainings } from '../../Services/TrainingsService';
+import { getUserTrainings } from '../../Services/TrainingsService';
 import Loader from '../Loader/Loader';
 import CalendarTiles from '../CalendarTiles/CalendarTiles';
-import TodayCard from '../TodayCard/TodayCard';
 import { isToday } from '../../helpers';
+import { Training } from '../../Types/Training';
 
 interface CalendarProps {
-  isAuthorized: any;
+  isAuthorized: boolean;
+  todayTraining: any;
 }
 
-const Calendar = ({ isAuthorized }: CalendarProps) => {
+const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
   const actualYear = () => new Date().getFullYear();
 
   const [trainings, setTrainings] = useState(null);
-  const [todayTraining, setTodayTraining] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentYear, setCurrentYear] = useState(actualYear);
 
@@ -26,16 +26,16 @@ const Calendar = ({ isAuthorized }: CalendarProps) => {
   useEffect(() => {
     if (isAuthorized === true) {
       const fetchTranings = async () => {
-        let response: any = await getAllTrainings();
+        let response: any = await getUserTrainings();
 
         if (response?.data) {
           setTrainings(response.data);
 
-          const todayTrainings = response.data.filter((training: any) => isToday(training.createdDate.slice(0, 10)));
+          const todayTrainings = response.data.filter((training: Training) =>
+            isToday(training.start_time.slice(0, 10))
+          );
 
-          if (todayTrainings[0]) {
-            setTodayTraining(todayTrainings[0]);
-          }
+          todayTraining(todayTrainings[0] || null);
 
           setIsLoading(false);
         }
@@ -50,33 +50,30 @@ const Calendar = ({ isAuthorized }: CalendarProps) => {
       {isLoading && <Loader />}
       {!isLoading && (
         <>
-          <TodayCard training={todayTraining} />
-          <>
-            <div className="calendar__switchYear">
-              <button className="calendar__subtractYear" type="submit" onClick={subtractYear}>
-                &#10148;
-              </button>
-              <button className="calendar__actualYear" type="submit" onClick={todayYear}>
-                &#x2738;
-              </button>
-              <h2 className="calendar__year">{currentYear}</h2>
-              <button className="calendar__addYear" type="submit" onClick={addYear}>
-                &#10148;
-              </button>
-            </div>
+          <div className="calendar__switchYear">
+            <button className="calendar__subtractYear" type="submit" onClick={subtractYear}>
+              &#10148;
+            </button>
+            <button className="calendar__actualYear" type="submit" onClick={todayYear}>
+              &#x2738;
+            </button>
+            <h2 className="calendar__year">{currentYear}</h2>
+            <button className="calendar__addYear" type="submit" onClick={addYear}>
+              &#10148;
+            </button>
+          </div>
 
-            <div className="calendar__tilesContainer">
-              {[...Array(12)].map((_, i) => (
-                <CalendarTiles
-                  key={i}
-                  className={`month${i + 1}`}
-                  month={i + 1}
-                  year={currentYear}
-                  trainings={trainings}
-                />
-              ))}
-            </div>
-          </>
+          <div className="calendar__tilesContainer">
+            {[...Array(12)].map((_, i) => (
+              <CalendarTiles
+                key={i}
+                className={`month${i + 1}`}
+                month={i + 1}
+                year={currentYear}
+                trainings={trainings}
+              />
+            ))}
+          </div>
         </>
       )}
     </div>

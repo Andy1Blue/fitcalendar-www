@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './CalendarTiles.scss';
 import DayModal from '../DayModal/DayModal';
 import { isToday } from '../../helpers';
+import { Training } from '../../Types/Training';
 
 interface CalendarTilesProps {
   className: string;
@@ -17,13 +18,13 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
 
-  const openDayModal = (training: any | null, parsedDate?: string) => (event: any) => {
+  const openDayModal = (training: Training | null, parsedDate?: string) => (event: any) => {
     setDayModalTraining(training);
     setDayModalTrainingDate(parsedDate);
     setIsShowDayModal(true);
   };
 
-  const addTile = (day: number, month: number, year: number, training: any | null, parsedDate: string) => {
+  const addTile = (day: number, month: number, year: number, training: Training | null, parsedDate: string) => {
     const innerDay = day >= 10 ? day : `0${day}`;
     const rectElement = document.createElement('div');
     rectElement.className = 'day';
@@ -36,12 +37,12 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
       rectElement.classList.add('today');
     }
 
-    if (training?.createdDate.slice(0, 10) === parsedDate) {
+    if (training?.start_time.slice(0, 10) === parsedDate) {
       rectElement.onclick = openDayModal(training, parsedDate);
       rectElement.classList.add('workout');
     }
 
-    if (training?.createdDate.slice(0, 10) !== parsedDate) {
+    if (training?.start_time.slice(0, 10) !== parsedDate) {
       rectElement.onclick = openDayModal(null, parsedDate);
     }
 
@@ -57,15 +58,15 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
       const innerMonth = month >= 10 ? month : `0${month}`;
       const parsedDate = `${year}-${innerMonth}-${innerDay}`;
 
-      const training = monthTrainings.filter((training: any) => training.createdDate.slice(0, 10) === parsedDate);
+      const training = monthTrainings.filter((training: Training) => training.start_time.slice(0, 10) === parsedDate);
       addTile(day, month, year, training[0], parsedDate);
     }
   };
 
   useEffect(() => {
     const monthTrainings = trainings
-      .map((training: any) => training)
-      .filter((training: any) => training.createdDate.slice(5, 7) == month);
+      .map((training: Training) => training)
+      .filter((training: Training) => parseInt(training.start_time.slice(5, 7)) === month);
 
     generateTiles(monthTrainings);
   }, [year]);

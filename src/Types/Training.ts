@@ -24,14 +24,16 @@ export const enum Sport {
 }
 
 export interface Training {
-  userId: string;
+  userEmail: string;
   sport: Sport;
+  created_date: string;
+  update_date: string;
+  tagColor?: string;
   source?: Source;
-  created_date: string; // format 0000-00-00 00:00:00
-  update_date: string; // format 0000-00-00 00:00:00
-  start_time: string; // format 0000-00-00 00:00:00
-  end_time: string; // format 0000-00-00 00:00:00
-  duration_sec: number;
+  description?: string;
+  start_time?: string;
+  end_time?: string;
+  duration_sec?: number;
   distance_km?: number;
   calories_kcal?: number;
   heart_rate_avg_bpm?: number;
