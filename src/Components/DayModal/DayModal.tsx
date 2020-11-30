@@ -23,8 +23,6 @@ const DayModal = ({ isDayModalVisible, training, trainingDate }: DayModalProps) 
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-
-    alert(sport);
   };
 
   const closeDayModal = () => {
