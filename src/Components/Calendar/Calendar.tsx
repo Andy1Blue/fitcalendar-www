@@ -15,6 +15,7 @@ interface CalendarProps {
 const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
   const actualYear = () => new Date().getFullYear();
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [trainings, setTrainings] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentYear, setCurrentYear] = useState(actualYear);
@@ -38,17 +39,18 @@ const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
           todayTraining(todayTrainings[0] || null);
 
           setIsLoading(false);
+          setIsRefreshing(false)
         }
       };
 
       fetchTranings();
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, isRefreshing]);
 
   return (
     <div className="calendar">
-      {isLoading && <Loader />}
-      {!isLoading && (
+      {isLoading || isRefreshing  && <Loader />}
+      {!isLoading && !isRefreshing && (
         <>
           <div className="calendar__switchYear">
             <button className="calendar__subtractYear" type="submit" onClick={subtractYear}>
@@ -71,6 +73,7 @@ const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
                 month={i + 1}
                 year={currentYear}
                 trainings={trainings}
+                isRefreshing={(isRefreshing: boolean) => setIsRefreshing(isRefreshing)}
               />
             ))}
           </div>

@@ -1,6 +1,8 @@
 import http from '../http';
 import { ApiResponse } from '../Types/ApiResponse';
 
+const token = localStorage.getItem('token');
+
 export const responseGoogle = async (response: any) => {
   delete response.accessToken;
   delete response.tokenObj;
@@ -23,8 +25,6 @@ export const responseGoogle = async (response: any) => {
 };
 
 export const checkToken = async (setIsVerifiedCallback: any, setGiveNameCallback?: any, setPictureCallback?: any) => {
-  const token = localStorage.getItem('token');
-
   try {
     const response: ApiResponse = await verifyToken({ token });
 

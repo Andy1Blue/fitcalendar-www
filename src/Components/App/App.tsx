@@ -24,7 +24,6 @@ export const App = () => {
   };
 
   const getTodayTraining = (training: Training) => {
-    console.log(training);
     setTodayTraining(training);
     return training;
   };

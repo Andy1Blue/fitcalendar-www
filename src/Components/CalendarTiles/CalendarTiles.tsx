@@ -10,11 +10,13 @@ interface CalendarTilesProps {
   month: number;
   year: number;
   trainings: any;
+  isRefreshing: any;
 }
 
-const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps) => {
+const CalendarTiles = ({ className, month, year, trainings, isRefreshing }: CalendarTilesProps) => {
   const daysInMonth = (month: number, year: number) => new Date(year, month, 0).getDate();
   const [isDayModalVisible, setIsShowDayModal] = useState(false);
+  const [isPosting, setIsPosting] = useState(false);
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
 
@@ -68,8 +70,12 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
       .map((training: Training) => training)
       .filter((training: Training) => parseInt(training.start_time.slice(5, 7)) === month);
 
+    if (isPosting) {
+      isRefreshing(true);
+    }
+
     generateTiles(monthTrainings);
-  }, [year]);
+  }, [year, isDayModalVisible]);
 
   return (
     <div className="calendarTiles">
@@ -77,6 +83,7 @@ const CalendarTiles = ({ className, month, year, trainings }: CalendarTilesProps
       {isDayModalVisible && (
         <DayModal
           isDayModalVisible={(isVisible: boolean) => setIsShowDayModal(isVisible)}
+          isPosted={(isPosted: boolean) => setIsPosting(isPosted)}
           training={dayModalTraining}
           trainingDate={dayModalTrainingDate}
         />

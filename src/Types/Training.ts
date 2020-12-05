@@ -24,6 +24,7 @@ export const enum Sport {
 }
 
 export interface Training {
+  _id: string,
   userEmail: string;
   sport: Sport;
   created_date: string;
