@@ -10,18 +10,8 @@
   background-color: rgba(0, 0, 0, 0.4);
   transition: visibility 1s;
 
-  @keyframes dayModal__container--show {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
   .dayModal__container {
-    animation-name: dayModal__container--show;
-    animation-duration: 0.4s;
+    animation: showAnimation 0.4s;
     border-radius: 10px;
     margin: 5% auto;
     background-color: #17151e;

@@ -1,5 +1,6 @@
 .calendar {
   padding: 5px;
+  animation: showAnimation 0.4s;
 
   .calendar__switchYear {
     display: flex;

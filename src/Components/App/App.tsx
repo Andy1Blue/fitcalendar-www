@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.scss';
+import './Animation.scss';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import Footer from '../Footer/Footer';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';

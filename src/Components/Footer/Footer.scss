@@ -1,7 +1,11 @@
 .footer {
-  position: absolute;
-  bottom: 10px;
   font-size: 10px;
-  bottom: 10px;
-  left: 50%;
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  background-color: #3d3a4e;
+  padding: 10px;
 }

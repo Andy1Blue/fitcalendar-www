@@ -17,21 +17,21 @@ body {
 
 .fitCalendar {
   .fitCalendar__contentContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 20px;
-}
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+  }
 
-.fitCalendar__leftContainer {
-  display: flex;
-  flex-direction: column;
-  width: 355px;
-}
+  .fitCalendar__leftContainer {
+    display: flex;
+    flex-direction: column;
+    width: 355px;
+  }
 
-.fitCalendar__rightContainer {
-  display: flex;
-  flex-direction: column;
-  width: 950px;
-}
+  .fitCalendar__rightContainer {
+    display: flex;
+    flex-direction: column;
+    width: 950px;
+  }
 }
