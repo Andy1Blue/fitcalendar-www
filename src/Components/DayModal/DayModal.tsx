@@ -5,7 +5,7 @@ import './DayModal.scss';
 import { Source, Sport, Training } from '../../Types/Training';
 import { sportsInput, sportIconMapping } from '../../SportsConfig/Input';
 import { delayAction, hmsToSeconds, secondsToHms } from '../../helpers';
-import { addUserTraining, deleteUserTraining, PostBodyData } from '../../Services/TrainingsService';
+import { addUserTraining, updateUserTraining, deleteUserTraining, PostBodyData } from '../../Services/TrainingsService';
 import Spinner from '../Loader/Spinner';
 
 interface DayModalProps {
@@ -60,6 +60,49 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
           setLoaded({ isLoading: false, loadingText: null });
           closeDayModal();
         });
+      } else {
+        setLoaded({ isLoading: false, loadingText: null });
+        closeDayModal();
+        alert('Error, try again!');
+      }
+    }
+  };
+
+  const updateSubmit = async (event: any) => {
+    event.preventDefault();
+
+    const data: PostBodyData = {
+      userEmail,
+      sport,
+      tagColor: '#6e2364',
+      source: Source.Manual,
+      startTime: trainingDate,
+      endTime: trainingDate,
+      durationSec: hmsToSeconds(time),
+      distanceKm: distance,
+      caloriesKcal: calories,
+      description: description,
+      heartRateAvgBpm: avgHeartRate,
+      heartRateMaxBpm: maxHeartRate,
+      speedAvgKmh: avgSpeed,
+      speedMaxKmh: maxSpeed,
+      points: null,
+    };
+
+    if (data?.userEmail !== null) {
+      const response = await updateUserTraining(training._id, data);
+
+      setLoaded({ isLoading: true, loadingText: 'Updating training' });
+
+      if (response?.status === 200) {
+        delayAction(() => {
+          setLoaded({ isLoading: false, loadingText: null });
+          closeDayModal();
+        });
+      } else {
+        setLoaded({ isLoading: false, loadingText: null });
+        closeDayModal();
+        alert('Error, try again!');
       }
     }
   };
@@ -77,6 +120,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
           setLoaded({ isLoading: false, loadingText: null });
           closeDayModal();
         });
+      } else {
+        setLoaded({ isLoading: false, loadingText: null });
+        closeDayModal();
+        alert('Error, try again!');
       }
     }
   };
@@ -222,8 +269,8 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                     )}
                     {isTrainingDay && (
                       <>
-                        <button className="input__button" onClick={handleSubmit}>
-                          Edit training
+                        <button className="input__button" onClick={updateSubmit}>
+                          Update training
                         </button>
                         <button className="input__button" onClick={handleDelete}>
                           Delete training

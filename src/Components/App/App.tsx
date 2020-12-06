@@ -30,9 +30,11 @@ export const App = () => {
     return training;
   };
 
-  const logoutLogic = () => {
+  const logout = () => {
     localStorage.setItem('token', '');
-    checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
+    setAuthorized(false);
+    isAuthorized(false);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -40,43 +42,49 @@ export const App = () => {
   }, []);
 
   const logoutFailure = () => {
-    logoutLogic();
+    logout();
   };
 
   const logoutSuccess = () => {
-    logoutLogic();
+    logout();
   };
 
-  return (<>
-    <div className="fitCalendar">
-      {!authorized && (
-        <WelcomePage>
-          <GoogleLogin isAuthorized={(authorized: boolean) => isAuthorized(authorized)} />
-        </WelcomePage>
-      )}
+  return (
+    <>
+      <div className="fitCalendar">
+        {!authorized && (
+          <WelcomePage>
+            <GoogleLogin isAuthorized={(authorized: boolean) => isAuthorized(authorized)} />
+          </WelcomePage>
+        )}
 
-      {authorized && (
-        <div>
-          <Header userName={userName} userLogoUrl={userLogoUrl}>
-            <GoogleLogout
-              className="header__logoutButton"
-              clientId={process.env.GOOGLE_ID}
-              buttonText="Logout"
-              onLogoutSuccess={logoutSuccess}
-              onFailure={logoutFailure}
-            />
-          </Header>
-          <div className="fitCalendar__contentContainer">
-            <div className="fitCalendar__leftContainer">
-              <TodayCard training={todayTraining} />
-            </div>
-            <div className="fitCalendar__rightContainer">
-              <Calendar isAuthorized={authorized} userEmail={userEmail} todayTraining={(training: any) => getTodayTraining(training)} />
+        {authorized && (
+          <div>
+            <Header userName={userName} userLogoUrl={userLogoUrl}>
+              <GoogleLogout
+                className="header__logoutButton"
+                clientId={process.env.GOOGLE_ID}
+                buttonText="Logout"
+                onLogoutSuccess={logoutSuccess}
+                onFailure={logoutFailure}
+              />
+            </Header>
+            <div className="fitCalendar__contentContainer">
+              <div className="fitCalendar__leftContainer">
+                <TodayCard training={todayTraining} />
+              </div>
+              <div className="fitCalendar__rightContainer">
+                <Calendar
+                  isAuthorized={authorized}
+                  userEmail={userEmail}
+                  todayTraining={(training: any) => getTodayTraining(training)}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-    </div><Footer /></>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };

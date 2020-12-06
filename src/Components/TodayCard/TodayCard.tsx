@@ -67,7 +67,7 @@ const TodayCard = ({ training }: TodayCardProps) => {
           <hr className="todayCard__hr" />
           <div className="todayCard__contentDetails">
             {detailsToShow.map((detail, index) =>
-              detail.value !== null ? (
+              detail.value !== null && detail.value !== 0 ? (
                 <span key={index}>
                   <span className="icon">{detail.icon}</span> {detail.value} {detail.unit}
                 </span>

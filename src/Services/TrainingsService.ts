@@ -45,6 +45,16 @@ export const addUserTraining = async (data: PostBodyData) => {
   } catch (e) {}
 };
 
+export const updateUserTraining = async (trainingId: string, data: PostBodyData) => {
+  try {
+    const response = await put(trainingId, data, {
+      headers: { token },
+    });
+
+    return response;
+  } catch (e) {}
+};
+
 export const deleteUserTraining = async (trainingId: string) => {
   try {
     const response = await remove(trainingId, {
@@ -61,6 +71,10 @@ export const get = (tokenHeaderData: TokenHeaderData) => {
 
 export const post = (postBodyData: PostBodyData, tokenHeaderData: TokenHeaderData) => {
   return http.post('/trainings/user', postBodyData, tokenHeaderData);
+};
+
+export const put = (trainingId: string, postBodyData: PostBodyData, tokenHeaderData: TokenHeaderData) => {
+  return http.put(`/trainings/user/id/${trainingId}`, postBodyData, tokenHeaderData);
 };
 
 export const remove = (trainingId: string, tokenHeaderData: TokenHeaderData) => {
