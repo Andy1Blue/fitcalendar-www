@@ -46,7 +46,7 @@ export const App = () => {
     logoutLogic();
   };
 
-  return (
+  return (<>
     <div className="fitCalendar">
       {!authorized && (
         <WelcomePage>
@@ -75,7 +75,7 @@ export const App = () => {
           </div>
         </div>
       )}
-      <Footer />
-    </div>
+
+    </div><Footer /></>
   );
 };

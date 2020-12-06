@@ -1,11 +1,15 @@
 .footer {
-  font-size: 10px;
-  position: relative;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
   background-color: #3d3a4e;
-  padding: 10px;
+  .footer__content {
+    font-size: 10px;
+    position: relative;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+
+    padding: 10px;
+    height: 50px;
+  }
 }

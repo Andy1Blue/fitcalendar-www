@@ -46,5 +46,6 @@
   .calendar__tilesContainer {
     display: flex;
     flex-direction: column;
+    min-width: 935px;
   }
 }

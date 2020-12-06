@@ -9,6 +9,7 @@
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
   transition: visibility 1s;
+  overflow: auto;
 
   .dayModal__container {
     animation: showAnimation 0.4s;

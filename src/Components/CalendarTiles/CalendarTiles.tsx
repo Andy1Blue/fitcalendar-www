@@ -20,7 +20,7 @@ const CalendarTiles = ({ className, month, year, trainings, isRefreshing }: Cale
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
 
-  const openDayModal = (training: Training | null, parsedDate?: string) => (event: any) => {
+   const openDayModal = (training: Training | null, parsedDate?: string) => (event: any) => {
     setDayModalTraining(training);
     setDayModalTrainingDate(parsedDate);
     setIsShowDayModal(true);
