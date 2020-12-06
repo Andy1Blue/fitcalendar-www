@@ -45,3 +45,5 @@ export const hmsToSeconds = (hms: string): number => {
 export const delayAction = (callback: any) => {
   setTimeout(callback, 1000);
 };
+
+export const actualYear = () => new Date().getFullYear();

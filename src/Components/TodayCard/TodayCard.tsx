@@ -13,6 +13,10 @@ const TodayCard = ({ training }: TodayCardProps) => {
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [isTodayWorkout, setIsTodayWorkout] = useState(false);
 
+  useEffect(() => {
+    setIsTodayWorkout(training !== null);
+  }, [training]);
+
   const detailsToShow = [
     {
       value: training?.duration_sec / 60,
@@ -40,10 +44,6 @@ const TodayCard = ({ training }: TodayCardProps) => {
       unit: 'bpm',
     },
   ];
-
-  useEffect(() => {
-    setIsTodayWorkout(training !== null);
-  }, [training]);
 
   return (
     <div className="todayCard">

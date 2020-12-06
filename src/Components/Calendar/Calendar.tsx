@@ -4,26 +4,34 @@ import './Calendar.scss';
 import { getUserTrainings } from '../../Services/TrainingsService';
 import Loader from '../Loader/Loader';
 import CalendarTiles from '../CalendarTiles/CalendarTiles';
-import { isToday } from '../../helpers';
+import { actualYear, isToday } from '../../helpers';
 import { Training } from '../../Types/Training';
 
 interface CalendarProps {
   isAuthorized: boolean;
   userEmail: string;
   todayTraining: any;
+  year: any;
 }
 
-const Calendar = ({ isAuthorized, userEmail, todayTraining }: CalendarProps) => {
-  const actualYear = () => new Date().getFullYear();
-
+const Calendar = ({ isAuthorized, userEmail, todayTraining, year }: CalendarProps) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [trainings, setTrainings] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentYear, setCurrentYear] = useState(actualYear);
 
-  const todayYear = () => setCurrentYear(actualYear);
-  const addYear = () => setCurrentYear(currentYear + 1);
-  const subtractYear = () => setCurrentYear(currentYear - 1);
+  const todayYear = () => {
+    setCurrentYear(actualYear);
+    year(actualYear);
+  };
+  const addYear = () => {
+    setCurrentYear(currentYear + 1);
+    year(currentYear + 1);
+  };
+  const subtractYear = () => {
+    setCurrentYear(currentYear - 1);
+    year(currentYear - 1);
+  };
 
   useEffect(() => {
     if (isAuthorized === true) {
@@ -40,7 +48,7 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining }: CalendarProps) => 
           todayTraining(todayTrainings[0] || null);
 
           setIsLoading(false);
-          setIsRefreshing(false)
+          setIsRefreshing(false);
         }
       };
 
@@ -50,7 +58,7 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining }: CalendarProps) => 
 
   return (
     <div className="calendar">
-      {isLoading || isRefreshing  && <Loader />}
+      {isLoading || (isRefreshing && <Loader />)}
       {!isLoading && !isRefreshing && (
         <>
           <div className="calendar__switchYear">

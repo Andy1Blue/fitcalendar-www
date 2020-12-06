@@ -19,3 +19,9 @@ interface Response {
 export interface ApiResponse {
   data: Response;
 }
+
+export interface TokenHeaderData {
+  headers: {
+    token: string;
+  };
+}

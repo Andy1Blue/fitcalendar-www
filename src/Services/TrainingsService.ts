@@ -1,11 +1,6 @@
 import http from '../http';
+import { TokenHeaderData } from '../Types/ApiResponse';
 import { Points, Source, Sport, Training } from '../Types/Training';
-
-interface TokenHeaderData {
-  headers: {
-    token: string;
-  };
-}
 
 export interface PostBodyData {
   userEmail: string;
