@@ -16,6 +16,7 @@ export const App = () => {
   const [authorized, setAuthorized] = useState(false);
   const [userName, setUserName] = useState(null);
   const [userLogoUrl, setUserLogoUrl] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [todayTraining, setTodayTraining] = useState(null);
 
   const isAuthorized = (auth: boolean) => {
@@ -31,11 +32,11 @@ export const App = () => {
 
   const logoutLogic = () => {
     localStorage.setItem('token', '');
-    checkToken(setAuthorized, setUserName, setUserLogoUrl);
+    checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
   };
 
   useEffect(() => {
-    checkToken(setAuthorized, setUserName, setUserLogoUrl);
+    checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
   }, []);
 
   const logoutFailure = () => {
@@ -70,7 +71,7 @@ export const App = () => {
               <TodayCard training={todayTraining} />
             </div>
             <div className="fitCalendar__rightContainer">
-              <Calendar isAuthorized={authorized} todayTraining={(training: any) => getTodayTraining(training)} />
+              <Calendar isAuthorized={authorized} userEmail={userEmail} todayTraining={(training: any) => getTodayTraining(training)} />
             </div>
           </div>
         </div>

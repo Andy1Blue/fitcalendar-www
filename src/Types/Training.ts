@@ -20,6 +20,7 @@ export const enum Sport {
   Spinning = 'Spinning',
   Run = 'Run',
   Bike = 'Bike',
+  Hiking = 'Hiking',
   Other = 'Other',
 }
 

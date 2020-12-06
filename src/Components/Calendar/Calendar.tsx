@@ -9,10 +9,11 @@ import { Training } from '../../Types/Training';
 
 interface CalendarProps {
   isAuthorized: boolean;
+  userEmail: string;
   todayTraining: any;
 }
 
-const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
+const Calendar = ({ isAuthorized, userEmail, todayTraining }: CalendarProps) => {
   const actualYear = () => new Date().getFullYear();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -71,6 +72,7 @@ const Calendar = ({ isAuthorized, todayTraining }: CalendarProps) => {
                 key={i}
                 className={`month${i + 1}`}
                 month={i + 1}
+                userEmail={userEmail}
                 year={currentYear}
                 trainings={trainings}
                 isRefreshing={(isRefreshing: boolean) => setIsRefreshing(isRefreshing)}

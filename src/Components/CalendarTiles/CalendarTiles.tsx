@@ -7,13 +7,14 @@ import { Training } from '../../Types/Training';
 
 interface CalendarTilesProps {
   className: string;
+  userEmail: string;
   month: number;
   year: number;
   trainings: any;
   isRefreshing: any;
 }
 
-const CalendarTiles = ({ className, month, year, trainings, isRefreshing }: CalendarTilesProps) => {
+const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefreshing }: CalendarTilesProps) => {
   const daysInMonth = (month: number, year: number) => new Date(year, month, 0).getDate();
   const [isDayModalVisible, setIsShowDayModal] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
@@ -86,6 +87,7 @@ const CalendarTiles = ({ className, month, year, trainings, isRefreshing }: Cale
           isPosted={(isPosted: boolean) => setIsPosting(isPosted)}
           training={dayModalTraining}
           trainingDate={dayModalTrainingDate}
+          userEmail={userEmail}
         />
       )}
     </div>

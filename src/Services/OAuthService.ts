@@ -24,7 +24,12 @@ export const responseGoogle = async (response: any) => {
   };
 };
 
-export const checkToken = async (setIsVerifiedCallback: any, setGiveNameCallback?: any, setPictureCallback?: any) => {
+export const checkToken = async (
+  setIsVerifiedCallback: any,
+  setGiveNameCallback?: any,
+  setPictureCallback?: any,
+  setEmailCallback?: any
+) => {
   try {
     const response: ApiResponse = await verifyToken({ token });
 
@@ -36,6 +41,10 @@ export const checkToken = async (setIsVerifiedCallback: any, setGiveNameCallback
 
     if (setPictureCallback) {
       setPictureCallback(response.data.payload.picture);
+    }
+
+    if (setEmailCallback) {
+      setEmailCallback(response.data.payload.email);
     }
   } catch (e) {
     setIsVerifiedCallback(false);
