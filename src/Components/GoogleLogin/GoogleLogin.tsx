@@ -17,7 +17,7 @@ const GoogleLogin = ({ isAuthorized }: GoogleLoginProps) => {
     <div className="googleLogin">
       <GoogleAuth
         className="googleLogin__loginButton"
-        clientId={process.env.GOOGLE_ID}
+        clientId={process.env.REACT_APP_GOOGLE_ID}
         buttonText="Sign in with Google"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
