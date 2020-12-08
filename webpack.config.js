@@ -45,8 +45,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './src/styles.css',
     }),
-    new Dotenv({
-      path: envPath,
-    }),
+    // new Dotenv({
+    //   path: envPath,
+    // }),
   ],
 };
