@@ -1,7 +1,21 @@
 const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
+const webpack = require('webpack');
+
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce(
+  (prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+
+    return prev;
+  },
+  {
+    API_URL: JSON.stringify(process.env.API_URL),
+    GOOGLE_ID: JSON.stringify(process.env.GOOGLE_ID),
+  }
+);
 
 module.exports = {
   entry: join(__dirname, './src', 'main.tsx'),
@@ -44,6 +58,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './src/styles.css',
     }),
-    new Dotenv(),
+    new webpack.DefinePlugin(envKeys),
   ],
 };

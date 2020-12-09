@@ -82,7 +82,7 @@ export const App = () => {
             <Header userName={userName} userLogoUrl={userLogoUrl}>
               <GoogleLogout
                 className="header__logoutButton"
-                clientId={process.env.REACT_APP_GOOGLE_ID}
+                clientId={GOOGLE_ID}
                 buttonText="Logout"
                 onLogoutSuccess={logoutSuccess}
                 onFailure={logoutFailure}
