@@ -17,6 +17,7 @@ const GoogleLogin = ({ isAuthorized }: GoogleLoginProps) => {
     <div className="googleLogin">
       <GoogleAuth
         className="googleLogin__loginButton"
+        // @ts-ignore
         clientId={GOOGLE_ID}
         buttonText="Sign in with Google"
         onSuccess={responseGoogle}

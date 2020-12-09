@@ -8,7 +8,8 @@
   "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --config webpack.config.js",
+    "create-env": "node ./scripts/create-env.js",
+    "build": "npm run create-env && webpack --config webpack.config.js",
     "lint": "eslint ./src/**/**.tsx",
     "lint:fix": "eslint ./src/**/**.tsx --fix",
     "test": "cypress run --config-file cypress.json"
