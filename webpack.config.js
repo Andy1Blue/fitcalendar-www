@@ -2,7 +2,6 @@ const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-const envPath = '.env';
 
 module.exports = {
   entry: join(__dirname, './src', 'main.tsx'),
@@ -45,8 +44,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './src/styles.css',
     }),
-    new Dotenv({
-      path: envPath,
-    }),
+    new Dotenv(),
   ],
 };
