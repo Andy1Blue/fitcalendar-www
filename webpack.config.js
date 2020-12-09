@@ -7,7 +7,7 @@ const envPath = '.env';
 module.exports = {
   entry: join(__dirname, './src', 'main.tsx'),
   target: 'web',
-  mode: 'development',
+  mode: 'production',
   output: {
     path: resolve(__dirname, 'build'),
     filename: 'bundle.js',
