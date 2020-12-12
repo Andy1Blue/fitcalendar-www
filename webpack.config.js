@@ -23,7 +23,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: resolve(__dirname, 'build'),
-    filename: './js/bundle.js',
+    filename: 'js/bundle.js',
   },
   devServer: {
     inline: true,
