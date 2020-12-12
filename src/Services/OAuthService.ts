@@ -30,9 +30,10 @@ export const checkToken = async (
   setPictureCallback?: any,
   setEmailCallback?: any
 ) => {
+  console.log(token)
   try {
     const response: ApiResponse = await verifyToken({ token });
-console.log(token, response)
+
     setIsVerifiedCallback(response.data.isVerified);
 
     if (setGiveNameCallback) {
