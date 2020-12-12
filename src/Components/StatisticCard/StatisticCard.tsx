@@ -23,7 +23,7 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
     {
       type: StatisticTypes.Time,
       icon: '🕐',
-      title: 'Time',
+      title: 'Sum of trainings time',
       stat: data?.duration_sec,
       unit: 'sec',
       start_time: data?.start_time,
@@ -31,7 +31,7 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
     {
       type: StatisticTypes.Distance,
       icon: '👣',
-      title: 'Distance',
+      title: 'Sum of trainings distance',
       unit: 'km',
       stat: data?.distance_km,
       start_time: data?.start_time,
@@ -39,7 +39,7 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
     {
       type: StatisticTypes.Calories,
       icon: '🔥',
-      title: 'Calories',
+      title: 'Sum of trainings calories',
       unit: 'kcal',
       stat: data?.calories_kcal,
       start_time: data?.start_time,
