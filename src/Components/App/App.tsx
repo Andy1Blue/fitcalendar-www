@@ -141,7 +141,7 @@ export const App = () => {
                 <TodayCard training={todayTraining} />
                 <h2>Records</h2>
 
-                {sumTrainingInYear !== null && <div>No records</div>}
+                {sumTrainingInYear === null && <div>No records</div>}
 
                 {sumTrainingInMonth !== null && (
                   <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />

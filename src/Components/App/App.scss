@@ -19,7 +19,7 @@ body {
 .icon {
   font-size: 16px !important;
   vertical-align: middle;
-  padding: 3px;
+  padding: 0 6px;
 }
 
 .fitCalendar {
@@ -35,6 +35,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 20px;
     width: 355px;
   }
 
@@ -44,3 +45,5 @@ body {
     width: 950px;
   }
 }
+
+@import './App-mobile.scss';

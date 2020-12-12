@@ -45,6 +45,15 @@
 
         &--column {
           flex-direction: column;
+
+          span:not(.icon) {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            min-width: 100px;
+            justify-content: center;
+            padding: 3px;
+          }
         }
 
         &--center {

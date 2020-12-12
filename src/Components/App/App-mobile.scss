@@ -1,0 +1,17 @@
+@media only screen and (max-width: 1280px) {
+  .fitCalendar {
+    .fitCalendar__contentContainer {
+      flex-direction: column;
+    }
+
+    .fitCalendar__contentContainer {
+      margin: unset;
+    }
+
+    .fitCalendar__rightContainer {
+      width: calc(100% - 15px);
+      overflow: scroll;
+      margin-bottom: 10px;
+    }
+  }
+}

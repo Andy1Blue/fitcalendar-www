@@ -18,8 +18,11 @@ export const enum Source {
 
 export const enum Sport {
   Spinning = 'Spinning',
+  ExerciseBike = 'Exercise Bike',
+  Tabata = 'Tabata',
   Run = 'Run',
   Bike = 'Bike',
+  Walk = 'Walk',
   Hiking = 'Hiking',
   Other = 'Other',
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { secondsToHms } from '../../helpers';
 import { Training } from '../../Types/Training';
 import './StatisticCard.scss';
 
@@ -24,8 +25,8 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
       type: StatisticTypes.Time,
       icon: '🕐',
       title: 'The biggest duartion',
-      statValue: data?.duration_sec,
-      unit: 'sec',
+      statValue: secondsToHms(data?.duration_sec),
+      unit: '(hh:mm:ss)',
       startTime: data?.start_time,
     },
     {
@@ -71,13 +72,13 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
           <div className="statisticCard__header">{mappedStatistic.title}</div>
           <div className="statisticCard__contentDetails">
             {mappedStatistic.startTime !== '' && (
-              <div>
+              <span>
                 <span className="icon">🗓</span> {mappedStatistic.startTime}
-              </div>
+              </span>
             )}
-            <div>
+            <span>
               <span className="icon">{mappedStatistic.icon}</span> {mappedStatistic.statValue} {mappedStatistic.unit}
-            </div>
+            </span>
           </div>
         </div>
       )}
