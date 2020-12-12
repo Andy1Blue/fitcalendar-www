@@ -23,40 +23,40 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
     {
       type: StatisticTypes.Time,
       icon: '🕐',
-      title: 'Sum of trainings time',
-      stat: data?.duration_sec,
+      title: 'The biggest duartion',
+      statValue: data?.duration_sec,
       unit: 'sec',
-      start_time: data?.start_time,
+      startTime: data?.start_time,
     },
     {
       type: StatisticTypes.Distance,
       icon: '👣',
-      title: 'Sum of trainings distance',
+      title: 'The biggest distance',
       unit: 'km',
-      stat: data?.distance_km,
-      start_time: data?.start_time,
+      statValue: data?.distance_km,
+      startTime: data?.start_time,
     },
     {
       type: StatisticTypes.Calories,
       icon: '🔥',
-      title: 'Sum of trainings calories',
+      title: 'The biggest calories burn',
       unit: 'kcal',
-      stat: data?.calories_kcal,
-      start_time: data?.start_time,
+      statValue: data?.calories_kcal,
+      startTime: data?.start_time,
     },
     {
       type: StatisticTypes.SumTrainingsInYear,
       icon: '💪',
       title: 'Trainings in this year',
-      stat: data?.count,
-      start_time: '',
+      statValue: data?.count,
+      startTime: '',
     },
     {
       type: StatisticTypes.SumTrainingsInMonth,
       icon: '💪',
       title: 'Trainings in this month',
-      stat: data?.count,
-      start_time: '',
+      statValue: data?.count,
+      startTime: '',
     },
   ];
 
@@ -66,23 +66,21 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
 
   return (
     <>
-      {data && mappedStatistic && (
+      {data && mappedStatistic && mappedStatistic.statValue !== 0 && (
         <div className="statisticCard">
           <div className="statisticCard__header">{mappedStatistic.title}</div>
           <div className="statisticCard__contentDetails">
-            {mappedStatistic.start_time !== '' && (
+            {mappedStatistic.startTime !== '' && (
               <div>
-                <span className="icon">🗓</span> {mappedStatistic.start_time}
+                <span className="icon">🗓</span> {mappedStatistic.startTime}
               </div>
             )}
             <div>
-              <span className="icon">{mappedStatistic.icon}</span> {mappedStatistic.stat} {mappedStatistic.unit}
+              <span className="icon">{mappedStatistic.icon}</span> {mappedStatistic.statValue} {mappedStatistic.unit}
             </div>
           </div>
         </div>
       )}
-
-      {!data && !mappedStatistic && <h5>No records</h5>}
     </>
   );
 };
