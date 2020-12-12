@@ -13,7 +13,6 @@ const envKeys = Object.keys(env).reduce(
   },
   {
     'API_URL': JSON.stringify(process.env.API_URL),
-    'SECRET_KEY': JSON.stringify(process.env.SECRET_KEY),
     'GOOGLE_ID': JSON.stringify(process.env.GOOGLE_ID),
   }
 );

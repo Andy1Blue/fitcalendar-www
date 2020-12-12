@@ -9,16 +9,22 @@ interface StatisticCardProps {
 
 const StatisticCard = ({ title, training }: StatisticCardProps) => {
   return (
-    <div className="statisticCard">
-      <h4>
-        {title} ({training?.start_time})
-      </h4>
-      <div className="todayCard__contentDetails">
-        <span>
-          <span className="icon">👣</span> {training.calories_kcal}
-        </span>
-      </div>
-    </div>
+    <>
+      {training && (
+        <div className="statisticCard">
+          <h4>
+            {title} ({training?.start_time})
+          </h4>
+          <div className="todayCard__contentDetails">
+            <span>
+              <span className="icon">👣</span> {training.calories_kcal}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {!training && <h5>No records</h5>}
+    </>
   );
 };
 export default StatisticCard;
