@@ -47,7 +47,6 @@ export const checkToken = async (
       setEmailCallback(response.data.payload.email);
     }
   } catch (e) {
-    console.log('error', e)
     setIsVerifiedCallback(false);
   }
 };
