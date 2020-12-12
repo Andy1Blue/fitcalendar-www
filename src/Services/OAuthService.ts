@@ -32,7 +32,7 @@ export const checkToken = async (
 ) => {
   try {
     const response: ApiResponse = await verifyToken({ token });
-
+console.log(token, response)
     setIsVerifiedCallback(response.data.isVerified);
 
     if (setGiveNameCallback) {
@@ -47,6 +47,7 @@ export const checkToken = async (
       setEmailCallback(response.data.payload.email);
     }
   } catch (e) {
+    console.log('error', e)
     setIsVerifiedCallback(false);
   }
 };
