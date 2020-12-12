@@ -4,6 +4,6 @@ export default axios.create({
   // @ts-ignore
   baseURL: API_URL,
   headers: {
-    'Content-type': 'application/x-www-form-urlencoded',
+    'Content-type': 'application/json',
   },
 });
