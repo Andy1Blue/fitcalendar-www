@@ -4,11 +4,16 @@
   width: 300px;
   margin: 10px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   background-color: #1d1b29;
   display: flex;
   justify-content: center;
   flex-direction: column;
+
+  .statisticCard__header {
+    margin: 5px;
+    font-weight: bold;
+  }
 
   .statisticCard__date {
     text-align: center;
@@ -17,10 +22,9 @@
 
   .statisticCard__contentDetails {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
   }
-
 
   .statisticCard__content {
     display: flex;

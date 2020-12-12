@@ -1,29 +1,88 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Training } from '../../Types/Training';
 import './StatisticCard.scss';
 
-interface StatisticCardProps {
-  title: string;
-  training: Training;
+export const enum StatisticTypes {
+  Time = 'Time',
+  Distance = 'Distance',
+  Calories = 'Calories',
+  SumTrainingsInYear = 'SumTrainingsInYear',
+  SumTrainingsInMonth = 'SumTrainingsInMonth',
 }
 
-const StatisticCard = ({ title, training }: StatisticCardProps) => {
+interface StatisticCardProps {
+  type: StatisticTypes;
+  data: Training | any;
+}
+
+const StatisticCard = ({ type, data }: StatisticCardProps) => {
+  const [mappedStatistic, setMappedStatistic] = useState(null);
+
+  const StatisticTypesMapping = [
+    {
+      type: StatisticTypes.Time,
+      icon: '🕐',
+      title: 'Time',
+      stat: data?.duration_sec,
+      unit: 'sec',
+      start_time: data?.start_time,
+    },
+    {
+      type: StatisticTypes.Distance,
+      icon: '👣',
+      title: 'Distance',
+      unit: 'km',
+      stat: data?.distance_km,
+      start_time: data?.start_time,
+    },
+    {
+      type: StatisticTypes.Calories,
+      icon: '🔥',
+      title: 'Calories',
+      unit: 'kcal',
+      stat: data?.calories_kcal,
+      start_time: data?.start_time,
+    },
+    {
+      type: StatisticTypes.SumTrainingsInYear,
+      icon: '💪',
+      title: 'Trainings in this year',
+      stat: data?.count,
+      start_time: '',
+    },
+    {
+      type: StatisticTypes.SumTrainingsInMonth,
+      icon: '💪',
+      title: 'Trainings in this month',
+      stat: data?.count,
+      start_time: '',
+    },
+  ];
+
+  useEffect(() => {
+    setMappedStatistic(StatisticTypesMapping.find((mappedStatistic) => mappedStatistic.type === type));
+  }, [data]);
+
   return (
     <>
-      {training && (
+      {data && mappedStatistic && (
         <div className="statisticCard">
-          <h4>
-            {title} ({training?.start_time})
-          </h4>
-          <div className="todayCard__contentDetails">
-            <span>
-              <span className="icon">👣</span> {training.calories_kcal}
-            </span>
+          <div className="statisticCard__header">{mappedStatistic.title}</div>
+          <div className="statisticCard__contentDetails">
+            {mappedStatistic.start_time !== '' && (
+              <div>
+                <span className="icon">🗓</span> {mappedStatistic.start_time}
+              </div>
+            )}
+            <div>
+              <span className="icon">{mappedStatistic.icon}</span> {mappedStatistic.stat} {mappedStatistic.unit}
+            </div>
           </div>
         </div>
       )}
 
-      {!training && <h5>No records</h5>}
+      {!data && !mappedStatistic && <h5>No records</h5>}
     </>
   );
 };

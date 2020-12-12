@@ -10,10 +10,16 @@ import { checkToken } from '../../Services/OAuthService';
 import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
 import TodayCard from '../TodayCard/TodayCard';
-import StatisticCard from '../StatisticCard/StatisticCard';
+import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
 import { Training } from '../../Types/Training';
-import { getUserTheLargestAmountOfCalories } from '../../Services/TrainingsStatisticsService';
-import { actualYear } from '../../helpers';
+import {
+  getUserSumTrainingInMonth,
+  getUserSumTrainingInYear,
+  getUserTheLargestAmountOfCalories,
+  getUserTheLargestAmountOfDistances,
+  getUserTheLargestAmountOfTimes,
+} from '../../Services/TrainingsStatisticsService';
+import { actualMonth, actualYear } from '../../helpers';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
@@ -22,7 +28,12 @@ export const App = () => {
   const [userEmail, setUserEmail] = useState(null);
   const [todayTraining, setTodayTraining] = useState(null);
   const [currentYear, setCurrentYear] = useState(actualYear);
+  const [currentMonth, setCurrentMonth] = useState(actualMonth);
   const [theLargestAmountOfCalories, setTheLargestAmountOfCalories] = useState(null);
+  const [theLargestAmountOfTimes, setTheLargestAmountOfTimes] = useState(null);
+  const [theLargestAmountOfDistances, setTheLargestAmountOfDistances] = useState(null);
+  const [sumTrainingInYear, setSumTrainingInYear] = useState(null);
+  const [sumTrainingInMonth, setSumTrainingInMonth] = useState(null);
 
   const isAuthorized = (auth: boolean) => {
     setAuthorized(auth);
@@ -48,6 +59,38 @@ export const App = () => {
     }
   };
 
+  const userTheLargestAmountOfTimes = async () => {
+    const userTheLargestAmountOfTimes = await getUserTheLargestAmountOfTimes(currentYear.toString());
+
+    if (userTheLargestAmountOfTimes.status === 200) {
+      setTheLargestAmountOfTimes(userTheLargestAmountOfTimes.data[0]);
+    }
+  };
+
+  const userTheLargestAmountOfDistances = async () => {
+    const userTheLargestAmountOfDistances = await getUserTheLargestAmountOfDistances(currentYear.toString());
+
+    if (userTheLargestAmountOfDistances.status === 200) {
+      setTheLargestAmountOfDistances(userTheLargestAmountOfDistances.data[0]);
+    }
+  };
+
+  const userSumTrainingInYear = async () => {
+    const userSumTrainingInYear = await getUserSumTrainingInYear(currentYear.toString());
+
+    if (userSumTrainingInYear.status === 200) {
+      setSumTrainingInYear(userSumTrainingInYear.data);
+    }
+  };
+
+  const userSumTrainingInMonth = async () => {
+    const userSumTrainingInMonth = await getUserSumTrainingInMonth(currentYear.toString(), currentMonth.toString());
+
+    if (userSumTrainingInMonth.status === 200) {
+      setSumTrainingInMonth(userSumTrainingInMonth.data);
+    }
+  };
+
   const logout = () => {
     localStorage.setItem('token', '');
     setAuthorized(false);
@@ -58,6 +101,10 @@ export const App = () => {
   useEffect(() => {
     checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
     userTheLargestAmountOfCalories();
+    userTheLargestAmountOfDistances();
+    userTheLargestAmountOfTimes();
+    userSumTrainingInYear();
+    userSumTrainingInMonth();
   }, [currentYear]);
 
   const logoutFailure = () => {
@@ -93,8 +140,25 @@ export const App = () => {
               <div className="fitCalendar__leftContainer">
                 <TodayCard training={todayTraining} />
                 <h2>Records</h2>
+
+                {sumTrainingInMonth !== null && (
+                  <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />
+                )}
+
+                {sumTrainingInYear !== null && (
+                  <StatisticCard type={StatisticTypes.SumTrainingsInYear} data={sumTrainingInYear} />
+                )}
+
+                {theLargestAmountOfTimes !== null && (
+                  <StatisticCard type={StatisticTypes.Time} data={theLargestAmountOfTimes} />
+                )}
+
+                {theLargestAmountOfDistances !== null && (
+                  <StatisticCard type={StatisticTypes.Distance} data={theLargestAmountOfDistances} />
+                )}
+
                 {theLargestAmountOfCalories !== null && (
-                  <StatisticCard title="Calories" training={theLargestAmountOfCalories} />
+                  <StatisticCard type={StatisticTypes.Calories} data={theLargestAmountOfCalories} />
                 )}
               </div>
               <div className="fitCalendar__rightContainer">

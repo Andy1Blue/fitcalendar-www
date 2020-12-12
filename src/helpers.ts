@@ -47,3 +47,10 @@ export const delayAction = (callback: any) => {
 };
 
 export const actualYear = () => new Date().getFullYear();
+
+export const actualMonth = () => {
+  let month: string | number = new Date().getMonth() + 1;
+  month = month >= 10 ? month : `0${month}`;
+
+  return month;
+};
