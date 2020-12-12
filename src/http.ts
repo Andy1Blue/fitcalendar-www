@@ -5,6 +5,7 @@ export default axios.create({
   baseURL: API_URL,
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json',
+    'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+    // 'Content-type': 'application/json',
   },
 });
