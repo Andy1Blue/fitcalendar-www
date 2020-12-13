@@ -9,10 +9,6 @@ interface GoogleLoginProps {
 }
 
 const GoogleLogin = ({ isAuthorized }: GoogleLoginProps) => {
-  useEffect(() => {
-    checkToken(isAuthorized);
-  }, []);
-
   return (
     <div className="googleLogin">
       <GoogleAuth

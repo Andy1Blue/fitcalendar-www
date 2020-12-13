@@ -20,9 +20,13 @@ import {
   getUserTheLargestAmountOfTimes,
 } from '../../Services/TrainingsStatisticsService';
 import { actualMonth, actualYear } from '../../helpers';
+import Loader from '../Loader/Loader';
+import Spinner from '../Loader/Spinner';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
+  const [loaded, setLoaded] = useState(true);
+  const [isRecords, setIsRecords] = useState(false);
   const [userName, setUserName] = useState(null);
   const [userLogoUrl, setUserLogoUrl] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
@@ -56,6 +60,7 @@ export const App = () => {
 
     if (userTheLargestAmountOfCalories.status === 200) {
       setTheLargestAmountOfCalories(userTheLargestAmountOfCalories.data[0]);
+      setLoaded(false);
     }
   };
 
@@ -64,6 +69,7 @@ export const App = () => {
 
     if (userTheLargestAmountOfTimes.status === 200) {
       setTheLargestAmountOfTimes(userTheLargestAmountOfTimes.data[0]);
+      setLoaded(false);
     }
   };
 
@@ -72,6 +78,7 @@ export const App = () => {
 
     if (userTheLargestAmountOfDistances.status === 200) {
       setTheLargestAmountOfDistances(userTheLargestAmountOfDistances.data[0]);
+      setLoaded(false);
     }
   };
 
@@ -80,6 +87,8 @@ export const App = () => {
 
     if (userSumTrainingInYear.status === 200) {
       setSumTrainingInYear(userSumTrainingInYear.data);
+      setIsRecords(userSumTrainingInYear?.data?.count === 0);
+      setLoaded(false);
     }
   };
 
@@ -88,6 +97,7 @@ export const App = () => {
 
     if (userSumTrainingInMonth.status === 200) {
       setSumTrainingInMonth(userSumTrainingInMonth.data);
+      setLoaded(false);
     }
   };
 
@@ -95,17 +105,38 @@ export const App = () => {
     localStorage.setItem('token', '');
     setAuthorized(false);
     isAuthorized(false);
-    window.location.reload();
+
+    const openLogoutPopup = () => {
+      const logoutPopup = window.open(
+        'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
+        'Disconnect from Google',
+        'width=100,height=50,menubar=no,status=no,location=no,toolbar=no,scrollbars=no,top=200,left=200'
+      );
+
+      const closeLogoutPopup = (logoutPopup: any) => {
+        setTimeout(() => {
+          logoutPopup.close();
+          window.location.reload();
+        }, 1000);
+      };
+
+      closeLogoutPopup(logoutPopup);
+    };
+
+    setTimeout(openLogoutPopup, 500);
   };
 
   useEffect(() => {
     checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
-    userTheLargestAmountOfCalories();
-    userTheLargestAmountOfDistances();
-    userTheLargestAmountOfTimes();
-    userSumTrainingInYear();
-    userSumTrainingInMonth();
-  }, [currentYear]);
+
+    if (authorized) {
+      userTheLargestAmountOfCalories();
+      userTheLargestAmountOfDistances();
+      userTheLargestAmountOfTimes();
+      userSumTrainingInYear();
+      userSumTrainingInMonth();
+    }
+  }, [currentYear, authorized]);
 
   const logoutFailure = () => {
     logout();
@@ -141,7 +172,11 @@ export const App = () => {
                 <TodayCard training={todayTraining} />
                 <h2>Records</h2>
 
-                {sumTrainingInYear === null && <div>No records</div>}
+                {isRecords && <div>No records</div>}
+
+                {loaded && (
+                    <Spinner />
+                )}
 
                 {sumTrainingInMonth !== null && (
                   <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />

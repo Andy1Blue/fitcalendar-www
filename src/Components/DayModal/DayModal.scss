@@ -92,6 +92,10 @@
           color: #fff;
           border-radius: 50px;
           font-size: 14px;
+
+          &--delete {
+            background-color: #6e2323;
+          }
         }
       }
     }

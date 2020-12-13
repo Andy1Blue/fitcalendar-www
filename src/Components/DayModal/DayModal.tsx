@@ -269,11 +269,11 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                     )}
                     {isTrainingDay && (
                       <>
+                        <button className="input__button input__button--delete" onClick={handleDelete}>
+                          Delete training
+                        </button>
                         <button className="input__button" onClick={updateSubmit}>
                           Update training
-                        </button>
-                        <button className="input__button" onClick={handleDelete}>
-                          Delete training
                         </button>
                       </>
                     )}
