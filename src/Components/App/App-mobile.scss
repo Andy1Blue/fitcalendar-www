@@ -8,10 +8,14 @@
       margin: unset;
     }
 
+    .fitCalendar__leftContainer {
+      width: 100%;
+    }
+
     .fitCalendar__rightContainer {
       width: calc(100% - 15px);
-      overflow: scroll;
-      margin-bottom: 10px;
+      overflow-x: scroll;
+      margin: 10px;
     }
   }
 }
