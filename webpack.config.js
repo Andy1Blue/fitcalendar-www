@@ -1,8 +1,10 @@
 const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce(
@@ -12,8 +14,8 @@ const envKeys = Object.keys(env).reduce(
     return prev;
   },
   {
-    'API_URL': JSON.stringify(process.env.API_URL),
-    'GOOGLE_ID': JSON.stringify(process.env.GOOGLE_ID),
+    API_URL: JSON.stringify(process.env.API_URL),
+    GOOGLE_ID: JSON.stringify(process.env.GOOGLE_ID),
   }
 );
 
@@ -58,6 +60,14 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: './src/styles.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'Assets'),
+          to: path.resolve(__dirname, 'build', 'Assets'),
+        },
+      ],
     }),
   ],
 };
