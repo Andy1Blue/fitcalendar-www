@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 interface HeaderProps {
@@ -13,13 +14,18 @@ const Header = ({ children, userName, userLogoUrl }: HeaderProps) => {
   return (
     <div className="header">
       <div className="header__title">
-        <img className="header__logo" src={logoSrc} alt="logo" /> FitCalendar
+        <img className="header__logo" src={logoSrc} alt="logo" />{' '}
+        <Link className="header__logo--link" to="/">
+          FitCalendar
+        </Link>
       </div>
       <div className="header__menuList">
-        <div className="header__menuItem">
+        <Link className="header__menuItem--desktop" to="/user">
           Hello <img src={userLogoUrl} alt="user logo" className="header__userLogo" /> {userName}!
-        </div>
-        <div className="header__menuItem">Show training calendar</div>
+        </Link>
+        <Link className="header__menuItem--mobile" to="/user">
+          <img src={userLogoUrl} alt="user logo" className="header__userLogo" />
+        </Link>
         <div className="header__menuItem">{children}</div>
       </div>
     </div>

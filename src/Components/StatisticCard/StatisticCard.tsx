@@ -24,7 +24,7 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
     {
       type: StatisticTypes.Time,
       icon: '🕐',
-      title: 'The biggest duartion',
+      title: 'The biggest duration',
       statValue: secondsToHms(data?.duration_sec),
       unit: '(hh:mm:ss)',
       startTime: data?.start_time,

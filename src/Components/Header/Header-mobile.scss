@@ -1,8 +1,30 @@
 @media only screen and (max-width: 1280px) {
   .header__menuList {
-    .header__menuItem:nth-child(1),
-    .header__menuItem:nth-child(2) {
-      display: none;
+    .header__menuItem {
+      &--desktop {
+        display: none !important;
+      }
+
+      &--mobile {
+        display: flex !important;
+        color: rgba(255, 255, 255, 0.75);
+        align-items: center;
+        list-style: none;
+        margin: 10px 20px 10px 0;;
+        text-decoration: none;
+
+        &:hover {
+          color: rgba(255, 255, 255, 1);
+          cursor: pointer;
+        }
+
+        .header__userLogo {
+          width: 30px;
+          height: 30px;
+          margin: 0 3px;
+          border-radius: 50px;
+        }
+      }
     }
   }
 }

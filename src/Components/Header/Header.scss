@@ -19,6 +19,18 @@
       width: 25px;
       height: 25px;
       margin-right: 5px;
+
+      &--link {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+
+        &:hover {
+          color: rgba(255, 255, 255, 1);
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -30,22 +42,29 @@
     width: 100%;
 
     .header__menuItem {
-      color: rgba(255, 255, 255, 0.75);
-      display: flex;
-      align-items: center;
-      list-style: none;
-      margin: 10px;
+      &--desktop {
+        display: flex;
+        color: rgba(255, 255, 255, 0.75);
+        align-items: center;
+        list-style: none;
+        margin: 10px;
+        text-decoration: none;
 
-      &:hover {
-        color: rgba(255, 255, 255, 1);
-        cursor: pointer;
+        &:hover {
+          color: rgba(255, 255, 255, 1);
+          cursor: pointer;
+        }
+
+        .header__userLogo {
+          width: 30px;
+          height: 30px;
+          margin: 0 3px;
+          border-radius: 50px;
+        }
       }
 
-      .header__userLogo {
-        width: 30px;
-        height: 30px;
-        margin: 0 3px;
-        border-radius: 50px;
+      &--mobile {
+        display: none;
       }
     }
   }

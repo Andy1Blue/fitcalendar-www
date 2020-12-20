@@ -1,0 +1,45 @@
+.userPage {
+  padding: 5px;
+  animation: showAnimation 0.4s;
+  width: 100%;
+
+  .userPage__table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    thead tr {
+      background-color: #6e2364;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody {
+      tr:nth-of-type(even):hover,
+      tr:hover {
+        background-color: #4a475c;
+      }
+
+      tr:nth-of-type(even) {
+        background-color: #3d3a4e;
+      }
+
+      tr:last-of-type {
+        border-bottom: 2px solid #3d3a4e;
+      }
+
+      tr.userPage__table--activeRow {
+        font-weight: bold;
+        color: #3d3a4e;
+      }
+    }
+  }
+}
+
+@import './UserPage-mobile.scss';

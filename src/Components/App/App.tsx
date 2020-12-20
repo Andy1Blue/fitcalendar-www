@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.scss';
 import './Animation.scss';
 import WelcomePage from '../WelcomePage/WelcomePage';
@@ -9,6 +10,7 @@ import { GoogleLogout } from 'react-google-login';
 import { checkToken } from '../../Services/OAuthService';
 import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
+import UserPage from '../UserPage/UserPage';
 import TodayCard from '../TodayCard/TodayCard';
 import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
 import { Training } from '../../Types/Training';
@@ -20,7 +22,6 @@ import {
   getUserTheLargestAmountOfTimes,
 } from '../../Services/TrainingsStatisticsService';
 import { actualMonth, actualYear } from '../../helpers';
-import Loader from '../Loader/Loader';
 import Spinner from '../Loader/Spinner';
 
 export const App = () => {
@@ -32,7 +33,7 @@ export const App = () => {
   const [userEmail, setUserEmail] = useState(null);
   const [todayTraining, setTodayTraining] = useState(null);
   const [currentYear, setCurrentYear] = useState(actualYear);
-  const [currentMonth, setCurrentMonth] = useState(actualMonth);
+  const [currentMonth] = useState(actualMonth);
   const [theLargestAmountOfCalories, setTheLargestAmountOfCalories] = useState(null);
   const [theLargestAmountOfTimes, setTheLargestAmountOfTimes] = useState(null);
   const [theLargestAmountOfDistances, setTheLargestAmountOfDistances] = useState(null);
@@ -157,56 +158,67 @@ export const App = () => {
 
         {authorized && (
           <div>
-            <Header userName={userName} userLogoUrl={userLogoUrl}>
-              <GoogleLogout
-                className="header__logoutButton"
-                // @ts-ignore
-                clientId={GOOGLE_ID}
-                buttonText="Logout"
-                onLogoutSuccess={logoutSuccess}
-                onFailure={logoutFailure}
-              />
-            </Header>
-            <div className="fitCalendar__contentContainer">
-              <div className="fitCalendar__leftContainer">
-                <TodayCard training={todayTraining} />
-                <h2>Records</h2>
-
-                {isRecords && <div>No records</div>}
-
-                {loaded && (
-                    <Spinner />
-                )}
-
-                {sumTrainingInMonth !== null && (
-                  <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />
-                )}
-
-                {sumTrainingInYear !== null && (
-                  <StatisticCard type={StatisticTypes.SumTrainingsInYear} data={sumTrainingInYear} />
-                )}
-
-                {theLargestAmountOfTimes !== null && (
-                  <StatisticCard type={StatisticTypes.Time} data={theLargestAmountOfTimes} />
-                )}
-
-                {theLargestAmountOfDistances !== null && (
-                  <StatisticCard type={StatisticTypes.Distance} data={theLargestAmountOfDistances} />
-                )}
-
-                {theLargestAmountOfCalories !== null && (
-                  <StatisticCard type={StatisticTypes.Calories} data={theLargestAmountOfCalories} />
-                )}
-              </div>
-              <div className="fitCalendar__rightContainer">
-                <Calendar
-                  isAuthorized={authorized}
-                  userEmail={userEmail}
-                  todayTraining={(training: any) => getTodayTraining(training)}
-                  year={(year: any) => getCurrentYear(year)}
+            {' '}
+            <Router>
+              <Header userName={userName} userLogoUrl={userLogoUrl}>
+                <GoogleLogout
+                  className="header__logoutButton"
+                  // @ts-ignore
+                  // eslint-disable-next-line no-undef
+                  clientId={GOOGLE_ID}
+                  buttonText="Logout"
+                  onLogoutSuccess={logoutSuccess}
+                  onFailure={logoutFailure}
                 />
+              </Header>
+              <div className="fitCalendar__contentContainer">
+                <Route exact path="/">
+                  <div className="fitCalendar__leftContainer">
+                    <TodayCard training={todayTraining} />
+                    <h2>Records</h2>
+
+                    {isRecords && <div>No records</div>}
+
+                    {loaded && <Spinner />}
+
+                    {sumTrainingInMonth !== null && (
+                      <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />
+                    )}
+
+                    {sumTrainingInYear !== null && (
+                      <StatisticCard type={StatisticTypes.SumTrainingsInYear} data={sumTrainingInYear} />
+                    )}
+
+                    {theLargestAmountOfTimes !== null && (
+                      <StatisticCard type={StatisticTypes.Time} data={theLargestAmountOfTimes} />
+                    )}
+
+                    {theLargestAmountOfDistances !== null && (
+                      <StatisticCard type={StatisticTypes.Distance} data={theLargestAmountOfDistances} />
+                    )}
+
+                    {theLargestAmountOfCalories !== null && (
+                      <StatisticCard type={StatisticTypes.Calories} data={theLargestAmountOfCalories} />
+                    )}
+                  </div>
+
+                  <div className="fitCalendar__rightContainer">
+                    <Calendar
+                      isAuthorized={authorized}
+                      userEmail={userEmail}
+                      todayTraining={(training: any) => getTodayTraining(training)}
+                      year={(year: any) => getCurrentYear(year)}
+                    />
+                  </div>
+                </Route>
+                <Route exact path="/user">
+                  <UserPage sumTrainingInYear={sumTrainingInYear} sumTrainingInMonth={sumTrainingInMonth}
+                  theLargestAmountOfTimes={theLargestAmountOfTimes}
+                  theLargestAmountOfDistances={theLargestAmountOfDistances}
+                  theLargestAmountOfCalories={theLargestAmountOfCalories} />
+                </Route>
               </div>
-            </div>
+            </Router>
           </div>
         )}
       </div>
