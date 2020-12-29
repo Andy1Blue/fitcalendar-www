@@ -11,7 +11,7 @@ interface CalendarTilesProps {
   month: number;
   year: number;
   trainings: any;
-  isRefreshing: any;
+  isRefreshing: (isRefreshing: boolean) => void;
 }
 
 const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefreshing }: CalendarTilesProps) => {
@@ -21,7 +21,7 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
   const [dayModalTraining, setDayModalTraining] = useState(null);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
 
-   const openDayModal = (training: Training | null, parsedDate?: string) => (event: any) => {
+  const openDayModal = (training: Training | null, parsedDate?: string) => () => {
     setDayModalTraining(training);
     setDayModalTrainingDate(parsedDate);
     setIsShowDayModal(true);

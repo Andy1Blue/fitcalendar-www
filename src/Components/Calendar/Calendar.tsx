@@ -12,9 +12,10 @@ interface CalendarProps {
   userEmail: string;
   todayTraining: any;
   year: any;
+  refreshed: any;
 }
 
-const Calendar = ({ isAuthorized, userEmail, todayTraining, year }: CalendarProps) => {
+const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: CalendarProps) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [trainings, setTrainings] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +84,10 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining, year }: CalendarProp
                 userEmail={userEmail}
                 year={currentYear}
                 trainings={trainings}
-                isRefreshing={(isRefreshing: boolean) => setIsRefreshing(isRefreshing)}
+                isRefreshing={(isRefreshing: boolean) => {
+                  setIsRefreshing(isRefreshing);
+                  refreshed(isRefreshing);
+                }}
               />
             ))}
           </div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 import './Animation.scss';
 import WelcomePage from '../WelcomePage/WelcomePage';
@@ -39,6 +39,7 @@ export const App = () => {
   const [theLargestAmountOfDistances, setTheLargestAmountOfDistances] = useState(null);
   const [sumTrainingInYear, setSumTrainingInYear] = useState(null);
   const [sumTrainingInMonth, setSumTrainingInMonth] = useState(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const isAuthorized = (auth: boolean) => {
     setAuthorized(auth);
@@ -137,7 +138,9 @@ export const App = () => {
       userSumTrainingInYear();
       userSumTrainingInMonth();
     }
-  }, [currentYear, authorized]);
+
+    setIsRefreshing(false);
+  }, [currentYear, authorized, isRefreshing]);
 
   const logoutFailure = () => {
     logout();
@@ -208,14 +211,18 @@ export const App = () => {
                       userEmail={userEmail}
                       todayTraining={(training: any) => getTodayTraining(training)}
                       year={(year: any) => getCurrentYear(year)}
+                      refreshed={(refresh: boolean)=>setIsRefreshing(refresh)}
                     />
                   </div>
                 </Route>
                 <Route exact path="/user">
-                  <UserPage sumTrainingInYear={sumTrainingInYear} sumTrainingInMonth={sumTrainingInMonth}
-                  theLargestAmountOfTimes={theLargestAmountOfTimes}
-                  theLargestAmountOfDistances={theLargestAmountOfDistances}
-                  theLargestAmountOfCalories={theLargestAmountOfCalories} />
+                  <UserPage
+                    sumTrainingInYear={sumTrainingInYear}
+                    sumTrainingInMonth={sumTrainingInMonth}
+                    theLargestAmountOfTimes={theLargestAmountOfTimes}
+                    theLargestAmountOfDistances={theLargestAmountOfDistances}
+                    theLargestAmountOfCalories={theLargestAmountOfCalories}
+                  />
                 </Route>
               </div>
             </Router>
