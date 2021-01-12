@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './CalendarTiles.scss';
 import DayModal from '../DayModal/DayModal';
+import ListTrainingsModal from '../ListTrainingsModal/ListTrainingsModal';
 import { isToday } from '../../helpers';
 import { Training } from '../../Types/Training';
 
@@ -18,16 +19,19 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
   const daysInMonth = (month: number, year: number) => new Date(year, month, 0).getDate();
   const [isDayModalVisible, setIsShowDayModal] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
-  const [dayModalTraining, setDayModalTraining] = useState(null);
+  const [dayModalTraining, setDayModalTraining] = useState([]);
   const [dayModalTrainingDate, setDayModalTrainingDate] = useState(null);
 
-  const openDayModal = (training: Training | null, parsedDate?: string) => () => {
-    setDayModalTraining(training);
+  const openDayModal = (training: Training[] | null, parsedDate?: string) => () => {
+    if (training !== null) {
+      setDayModalTraining(training);
+    }
+
     setDayModalTrainingDate(parsedDate);
     setIsShowDayModal(true);
   };
 
-  const addTile = (day: number, month: number, year: number, training: Training | null, parsedDate: string) => {
+  const addTile = (day: number, month: number, year: number, training: Training[] | null, parsedDate: string) => {
     const innerDay = day >= 10 ? day : `0${day}`;
     const rectElement = document.createElement('div');
     rectElement.className = 'day';
@@ -40,12 +44,12 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
       rectElement.classList.add('today');
     }
 
-    if (training?.start_time.slice(0, 10) === parsedDate) {
+    if (training[0]?.start_time.slice(0, 10) === parsedDate) {
       rectElement.onclick = openDayModal(training, parsedDate);
       rectElement.classList.add('workout');
     }
 
-    if (training?.start_time.slice(0, 10) !== parsedDate) {
+    if (training[0]?.start_time.slice(0, 10) !== parsedDate) {
       rectElement.onclick = openDayModal(null, parsedDate);
     }
 
@@ -62,7 +66,7 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
       const parsedDate = `${year}-${innerMonth}-${innerDay}`;
 
       const training = monthTrainings.filter((training: Training) => training.start_time.slice(0, 10) === parsedDate);
-      addTile(day, month, year, training[0], parsedDate);
+      addTile(day, month, year, training, parsedDate);
     }
   };
 
@@ -82,14 +86,18 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
     <div className="calendarTiles">
       <div className={className}></div>
       {isDayModalVisible && (
-        <DayModal
-          isDayModalVisible={(isVisible: boolean) => setIsShowDayModal(isVisible)}
-          isPosted={(isPosted: boolean) => setIsPosting(isPosted)}
-          training={dayModalTraining}
-          trainingDate={dayModalTrainingDate}
-          userEmail={userEmail}
-        />
+        // <DayModal
+        //   isDayModalVisible={(isVisible: boolean) => setIsShowDayModal(isVisible)}
+        //   isPosted={(isPosted: boolean) => setIsPosting(isPosted)}
+        //   training={dayModalTraining}
+        //   trainingDate={dayModalTrainingDate}
+        //   userEmail={userEmail}
+        // />
+        <ListTrainingsModal
+        trainings={dayModalTraining}
+      />
       )}
+   
     </div>
   );
 };

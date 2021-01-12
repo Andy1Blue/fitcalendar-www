@@ -39,6 +39,7 @@ export const secondsToHms = (seconds: number) => {
 export const hmsToSeconds = (hms: string): number => {
   let splittedHms = hms.split(':');
   let seconds = +splittedHms[0] * 60 * 60 + +splittedHms[1] * 60 + +splittedHms[2];
+
   return seconds;
 };
 

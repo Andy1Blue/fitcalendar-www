@@ -25,10 +25,12 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: C
     setCurrentYear(actualYear);
     year(actualYear);
   };
+
   const addYear = () => {
     setCurrentYear(currentYear + 1);
     year(currentYear + 1);
   };
+
   const subtractYear = () => {
     setCurrentYear(currentYear - 1);
     year(currentYear - 1);

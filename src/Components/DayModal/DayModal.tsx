@@ -12,22 +12,22 @@ interface DayModalProps {
   userEmail: string;
   isDayModalVisible: any;
   isPosted: any;
-  training: Training;
+  training: Training[] | null;
   trainingDate: string;
 }
 
 const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDate }: DayModalProps) => {
   const [loaded, setLoaded] = useState({ isLoading: false, loadingText: null });
   const [isTrainingDay, setIsTrainingDay] = useState(false);
-  const [time, setTime] = useInput(secondsToHms(training?.duration_sec) || '01:00:00');
-  const [sport, setSport] = useInput(training?.sport || Sport.Other);
-  const [description, setDescription] = useInput(training?.description || '');
-  const [distance, setDistance] = useInput(training?.distance_km || 0);
-  const [calories, setCalories] = useInput(training?.calories_kcal || 0);
-  const [maxSpeed, setMaxSpeed] = useInput(training?.speed_max_kmh || 0);
-  const [avgSpeed, setAvgSpeed] = useInput(training?.speed_avg_kmh || 0);
-  const [maxHeartRate, setMaxHeartRate] = useInput(training?.heart_rate_max_bpm || 0);
-  const [avgHeartRate, setAvgHeartRate] = useInput(training?.heart_rate_avg_bpm || 0);
+  const [time, setTime] = useInput(secondsToHms(training[0]?.duration_sec) || '01:00:00');
+  const [sport, setSport] = useInput(training[0]?.sport || Sport.Other);
+  const [description, setDescription] = useInput(training[0]?.description || '');
+  const [distance, setDistance] = useInput(training[0]?.distance_km || 0);
+  const [calories, setCalories] = useInput(training[0]?.calories_kcal || 0);
+  const [maxSpeed, setMaxSpeed] = useInput(training[0]?.speed_max_kmh || 0);
+  const [avgSpeed, setAvgSpeed] = useInput(training[0]?.speed_avg_kmh || 0);
+  const [maxHeartRate, setMaxHeartRate] = useInput(training[0]?.heart_rate_max_bpm || 0);
+  const [avgHeartRate, setAvgHeartRate] = useInput(training[0]?.heart_rate_avg_bpm || 0);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -90,7 +90,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     };
 
     if (data?.userEmail !== null) {
-      const response = await updateUserTraining(training._id, data);
+      const response = await updateUserTraining(training[0]._id, data);
 
       setLoaded({ isLoading: true, loadingText: 'Updating training' });
 
@@ -112,8 +112,8 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
 
     setLoaded({ isLoading: true, loadingText: 'Deleting training' });
 
-    if (training?._id !== null) {
-      const response = await deleteUserTraining(training._id);
+    if (training[0]?._id !== null) {
+      const response = await deleteUserTraining(training[0]._id);
 
       if (response?.status === 200) {
         delayAction(() => {
@@ -140,8 +140,8 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
 
   useEffect(() => {
     isPosted(false);
-
-    if (training?.start_time.slice(0, 10) === trainingDate.slice(0, 10)) {
+    console.log(training);
+    if (training[0]?.start_time.slice(0, 10) === trainingDate.slice(0, 10)) {
       setIsTrainingDay(true);
     }
   }, [training]);
@@ -263,9 +263,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row">
                     {!isTrainingDay && (
-                      <button className="input__button" onClick={handleSubmit}>
-                        Add training
-                      </button>
+                    <button className="input__button" onClick={handleSubmit}>
+                      Add training
+                    </button>
                     )}
                     {isTrainingDay && (
                       <>
