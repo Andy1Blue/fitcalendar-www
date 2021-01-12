@@ -8,7 +8,9 @@ export const getUserTheLargestAmountOfCalories = async (year: string) => {
     const response = await getCaloriesYear(year, { headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get calories by year");
+  }
 };
 
 export const getUserTheLargestAmountOfDistances = async (year: string) => {
@@ -16,7 +18,9 @@ export const getUserTheLargestAmountOfDistances = async (year: string) => {
     const response = await getDistanceYear(year, { headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get distance by year");
+  }
 };
 
 export const getUserTheLargestAmountOfTimes = async (year: string) => {
@@ -24,7 +28,9 @@ export const getUserTheLargestAmountOfTimes = async (year: string) => {
     const response = await getTimeYear(year, { headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get time by year");
+  }
 };
 
 export const getUserSumTrainingInYear = async (year: string) => {
@@ -32,7 +38,9 @@ export const getUserSumTrainingInYear = async (year: string) => {
     const response = await getSumTrainingInYear(year, { headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get sum trainings in year");
+  }
 };
 
 export const getUserSumTrainingInMonth = async (year: string, month: string) => {
@@ -40,7 +48,9 @@ export const getUserSumTrainingInMonth = async (year: string, month: string) => 
     const response = await getSumTrainingInMonth(year, month, { headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get sum trainings in month");
+  }
 };
 
 export const getCaloriesYear = (year: string, tokenHeaderData: TokenHeaderData) => {
