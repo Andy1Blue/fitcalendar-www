@@ -33,12 +33,14 @@ export const secondsToHms = (seconds: number) => {
   const hDisplay: number | string = h > 0 ? (h >= 10 ? h : `0${h}`) : '00';
   const mDisplay: number | string = m > 0 ? (m >= 10 ? m : `0${m}`) : '00';
   const sDisplay: number | string = s > 0 ? (s >= 10 ? s : `0${s}`) : '00';
+
   return `${hDisplay}:${mDisplay}:${sDisplay}`;
 };
 
 export const hmsToSeconds = (hms: string): number => {
   let splittedHms = hms.split(':');
   let seconds = +splittedHms[0] * 60 * 60 + +splittedHms[1] * 60 + +splittedHms[2];
+
   return seconds;
 };
 
