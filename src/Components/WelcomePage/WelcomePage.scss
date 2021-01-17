@@ -1,15 +1,19 @@
 .welcomePage {
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url('https://picsum.photos/1600/900.webp?blur=1&grayscale');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 
   .welcomePage__container {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 50px;
     border-radius: 20px;
   }

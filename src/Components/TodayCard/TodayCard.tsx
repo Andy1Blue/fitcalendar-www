@@ -61,10 +61,9 @@ const TodayCard = ({ training }: TodayCardProps) => {
       )}
       {isTodayWorkout && (
         <div className="todayCard__content">
-          <span>
+          <span className="todayCard__contentHeader">
             Your training: {sportIconMapping[training?.sport]} {training?.sport}
           </span>
-          <hr className="todayCard__hr" />
           <div className="todayCard__contentDetails">
             {detailsToShow.map((detail, index) =>
               detail.value !== null && detail.value !== 0 ? (

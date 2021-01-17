@@ -21,6 +21,8 @@
     color: #7c838c;
     font-size: 8px;
     padding: 0px 0px 7px 7px;
+    -webkit-box-shadow: inset 1px 1px 5px 1px rgba(60, 16, 54, 0.2);
+    box-shadow: inset 1px 1px 5px 1px rgba(60, 16, 54, 0.2);
 
     &:hover:after {
       z-index: 999;

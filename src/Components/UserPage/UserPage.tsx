@@ -25,7 +25,7 @@ const UserPage = ({
     {
       icon: '🕐',
       name: 'The biggest duration',
-      value: `${secondsToHms(theLargestAmountOfTimes?.duration_sec)} (hh:mm:ss)`,
+      value: `${secondsToHms(theLargestAmountOfTimes?.duration_sec)}`,
       date: theLargestAmountOfTimes?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfTimes?.sport]} ${theLargestAmountOfTimes?.sport}`,
     },

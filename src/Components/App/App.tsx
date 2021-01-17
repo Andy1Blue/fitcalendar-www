@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 import './Animation.scss';
 import WelcomePage from '../WelcomePage/WelcomePage';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { useEffect, useState } from 'react';
 import { GoogleLogout } from 'react-google-login';
@@ -211,7 +211,7 @@ export const App = () => {
                       userEmail={userEmail}
                       todayTraining={(training: any) => getTodayTraining(training)}
                       year={(year: any) => getCurrentYear(year)}
-                      refreshed={(refresh: boolean)=>setIsRefreshing(refresh)}
+                      refreshed={(refresh: boolean) => setIsRefreshing(refresh)}
                     />
                   </div>
                 </Route>
@@ -229,7 +229,9 @@ export const App = () => {
           </div>
         )}
       </div>
+      {/* TODO
       <Footer />
+      */}
     </>
   );
 };
