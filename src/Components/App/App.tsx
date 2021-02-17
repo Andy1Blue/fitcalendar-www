@@ -189,20 +189,20 @@ export const App = () => {
                     {sumTrainingInMonth !== null && (
                       <SummaryStatisticCard
                         label="Yearly summary"
-                        sumWorkouts={sumTrainingInMonth.count}
-                        sumDuration={sumTrainingInMonth[0].duration_sec}
-                        sumDistance={sumTrainingInMonth[0].distance_km}
-                        sumCalories={sumTrainingInMonth[0].calories_kcal}
+                        sumWorkouts={sumTrainingInYear.count}
+                        sumDuration={sumTrainingInYear[0].duration_sec}
+                        sumDistance={sumTrainingInYear[0].distance_km}
+                        sumCalories={sumTrainingInYear[0].calories_kcal}
                       />
                     )}
 
                     {sumTrainingInYear !== null && (
                       <SummaryStatisticCard
                         label="Monthly summary"
-                        sumWorkouts={sumTrainingInYear.count}
-                        sumDuration={sumTrainingInYear[0].duration_sec}
-                        sumDistance={sumTrainingInYear[0].distance_km}
-                        sumCalories={sumTrainingInYear[0].calories_kcal}
+                        sumWorkouts={sumTrainingInMonth.count}
+                        sumDuration={sumTrainingInMonth[0].duration_sec}
+                        sumDistance={sumTrainingInMonth[0].distance_km}
+                        sumCalories={sumTrainingInMonth[0].calories_kcal}
                       />
                     )}
 
