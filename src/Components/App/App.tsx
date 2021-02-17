@@ -13,7 +13,7 @@ import Calendar from '../Calendar/Calendar';
 import UserPage from '../UserPage/UserPage';
 import TodayCard from '../TodayCard/TodayCard';
 import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
-import SumStatisticCard from '../SumStatisticCard/SumStatisticCard';
+import SummaryStatisticCard from '../SummaryStatisticCard/SummaryStatisticCard';
 import { Training } from '../../Types/Training';
 import {
   getUserSumTrainingInMonth,
@@ -187,7 +187,7 @@ export const App = () => {
                     {loaded && <Spinner />}
 
                     {sumTrainingInMonth !== null && (
-                      <SumStatisticCard
+                      <SummaryStatisticCard
                         label="Yearly summary"
                         sumWorkouts={sumTrainingInMonth.count}
                         sumDuration={sumTrainingInMonth[0].duration_sec}
@@ -197,7 +197,7 @@ export const App = () => {
                     )}
 
                     {sumTrainingInYear !== null && (
-                      <SumStatisticCard
+                      <SummaryStatisticCard
                         label="Monthly summary"
                         sumWorkouts={sumTrainingInYear.count}
                         sumDuration={sumTrainingInYear[0].duration_sec}

@@ -2,7 +2,9 @@ import * as React from 'react';
 import { secondsToHms } from '../../helpers';
 import { sportIconMapping } from '../../SportsConfig/Input';
 import { Training } from '../../Types/Training';
+import { actualMonth, actualYear } from '../../helpers';
 import './UserPage.scss';
+import { useState } from 'react';
 
 interface UserPageProps {
   sumTrainingInYear?: Training | any;
@@ -19,13 +21,67 @@ const UserPage = ({
   theLargestAmountOfDistances,
   theLargestAmountOfCalories,
 }: UserPageProps) => {
+  const [currentYear] = useState(actualYear);
+  const [currentMonth] = useState(actualMonth);
+
   const userStatistics = [
-    { icon: '💪', name: 'Trainings in this year', value: sumTrainingInYear?.count, date: '-', sport: '-' },
-    { icon: '💪', name: 'Trainings in this month', value: sumTrainingInMonth?.count, date: '-', sport: '-' },
+    { icon: 'label', name: 'Yearly summary' },
+    { icon: '💪', name: 'Trainings in this year', value: sumTrainingInYear?.count, date: currentYear, sport: '-' },
+    {
+      icon: '🕐',
+      name: 'Sum of duration in this year',
+      value: secondsToHms(sumTrainingInYear[0].duration_sec),
+      date: currentYear,
+      sport: '-',
+    },
+    {
+      icon: '👣',
+      name: 'Sum of distance in this year',
+      value: `${sumTrainingInYear[0].distance_km} km`,
+      date: currentYear,
+      sport: '-',
+    },
+    {
+      icon: '🔥',
+      name: 'Sum of calories burn in this year',
+      value: `${sumTrainingInYear[0].calories_kcal} kcal`,
+      date: currentYear,
+      sport: '-',
+    },
+    { icon: 'label', name: 'Monthly summary' },
+    {
+      icon: '💪',
+      name: 'Trainings in this month',
+      value: sumTrainingInMonth?.count,
+      date: `${currentYear}-${currentMonth}`,
+      sport: '-',
+    },
+    {
+      icon: '🕐',
+      name: 'Sum of duration in this month',
+      value: secondsToHms(sumTrainingInMonth[0].duration_sec),
+      date: `${currentYear}-${currentMonth}`,
+      sport: '-',
+    },
+    {
+      icon: '👣',
+      name: 'Sum of distance in this month',
+      value: `${sumTrainingInMonth[0].distance_km} km`,
+      date: `${currentYear}-${currentMonth}`,
+      sport: '-',
+    },
+    {
+      icon: '🔥',
+      name: 'Sum of calories burn in this month',
+      value: `${sumTrainingInMonth[0].calories_kcal} kcal`,
+      date: `${currentYear}-${currentMonth}`,
+      sport: '-',
+    },
+    { icon: 'label', name: 'Records' },
     {
       icon: '🕐',
       name: 'The biggest duration',
-      value: `${secondsToHms(theLargestAmountOfTimes?.duration_sec)}`,
+      value: secondsToHms(theLargestAmountOfTimes?.duration_sec),
       date: theLargestAmountOfTimes?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfTimes?.sport]} ${theLargestAmountOfTimes?.sport}`,
     },
@@ -60,6 +116,13 @@ const UserPage = ({
         <tbody>
           {userStatistics &&
             userStatistics.map((item, index) => {
+              if (item.icon === 'label') {
+                return (
+                  <tr key={index}>
+                    <td colSpan={5}>{item.name}</td>
+                  </tr>
+                );
+              }
               return (
                 <tr key={index}>
                   <td>{item.icon}</td>

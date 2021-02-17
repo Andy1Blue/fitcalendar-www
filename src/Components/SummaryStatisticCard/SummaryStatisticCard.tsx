@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { secondsToHms } from '../../helpers';
-import './SumStatisticCard.scss';
+import './SummaryStatisticCard.scss';
 
-interface SumStatisticCardProps {
+interface SummaryStatisticCardProps {
   label: string;
   sumWorkouts: number;
   sumDuration: number;
@@ -11,12 +11,12 @@ interface SumStatisticCardProps {
   sumCalories: number;
 }
 
-const SumStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, sumCalories }: SumStatisticCardProps) => {
+const SummaryStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, sumCalories }: SummaryStatisticCardProps) => {
   useEffect(() => {}, [sumWorkouts]);
 
   return (
     <>
-      {sumWorkouts && (
+      {sumWorkouts > 0 && (
         <div className="statisticCard">
           <div className="statisticCard__header">{label}</div>
           <div className="statisticCard__contentDetails">
@@ -41,4 +41,4 @@ const SumStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, sumCal
     </>
   );
 };
-export default SumStatisticCard;
+export default SummaryStatisticCard;
