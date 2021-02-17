@@ -13,6 +13,7 @@ import Calendar from '../Calendar/Calendar';
 import UserPage from '../UserPage/UserPage';
 import TodayCard from '../TodayCard/TodayCard';
 import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
+import SumStatisticCard from '../SumStatisticCard/SumStatisticCard';
 import { Training } from '../../Types/Training';
 import {
   getUserSumTrainingInMonth,
@@ -98,6 +99,7 @@ export const App = () => {
     const userSumTrainingInMonth = await getUserSumTrainingInMonth(currentYear.toString(), currentMonth.toString());
 
     if (userSumTrainingInMonth.status === 200) {
+      console.log({ userSumTrainingInMonth });
       setSumTrainingInMonth(userSumTrainingInMonth.data);
       setLoaded(false);
     }
@@ -185,11 +187,23 @@ export const App = () => {
                     {loaded && <Spinner />}
 
                     {sumTrainingInMonth !== null && (
-                      <StatisticCard type={StatisticTypes.SumTrainingsInMonth} data={sumTrainingInMonth} />
+                      <SumStatisticCard
+                        label="Yearly summary"
+                        sumWorkouts={sumTrainingInMonth.count}
+                        sumDuration={sumTrainingInMonth[0].duration_sec}
+                        sumDistance={sumTrainingInMonth[0].distance_km}
+                        sumCalories={sumTrainingInMonth[0].calories_kcal}
+                      />
                     )}
 
                     {sumTrainingInYear !== null && (
-                      <StatisticCard type={StatisticTypes.SumTrainingsInYear} data={sumTrainingInYear} />
+                      <SumStatisticCard
+                        label="Monthly summary"
+                        sumWorkouts={sumTrainingInYear.count}
+                        sumDuration={sumTrainingInYear[0].duration_sec}
+                        sumDistance={sumTrainingInYear[0].distance_km}
+                        sumCalories={sumTrainingInYear[0].calories_kcal}
+                      />
                     )}
 
                     {theLargestAmountOfTimes !== null && (

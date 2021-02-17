@@ -1,0 +1,56 @@
+.sumStatisticCard {
+  animation: showAnimation 0.4s;
+  font-size: 14px;
+  width: 300px;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #1d1b29;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 12px 0px rgba(0, 0, 0, 0.2);
+
+  .sumStatisticCard__header {
+    margin: 5px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .sumStatisticCard__date {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .sumStatisticCard__contentDetails {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-top: 1px solid #2f2d3c;
+    padding-top: 8px;
+
+    span:not(.icon) {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      min-width: 100px;
+      justify-content: center;
+      padding: 3px;
+    }
+  }
+
+  .sumStatisticCard__addWorkoutButton {
+    cursor: pointer;
+    width: 100%;
+    margin: 3px;
+    background-color: #6e2364;
+    height: 30px;
+    border: 0.1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 14px;
+  }
+}
+
+@import './SumStatisticCard-mobile.scss';
