@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './TodayCard.scss';
-import { todayDate } from '../../helpers';
+import { secondsToHms, todayDate } from '../../helpers';
 import { Training } from '../../Types/Training';
 import { sportIconMapping } from '../../SportsConfig/Input';
 
@@ -19,7 +19,7 @@ const TodayCard = ({ training }: TodayCardProps) => {
 
   const detailsToShow = [
     {
-      value: training?.duration_sec / 60,
+      value: secondsToHms(training?.duration_sec),
       icon: '🕐',
       unit: 'min',
     },

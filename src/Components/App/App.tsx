@@ -99,7 +99,6 @@ export const App = () => {
     const userSumTrainingInMonth = await getUserSumTrainingInMonth(currentYear.toString(), currentMonth.toString());
 
     if (userSumTrainingInMonth.status === 200) {
-      console.log({ userSumTrainingInMonth });
       setSumTrainingInMonth(userSumTrainingInMonth.data);
       setLoaded(false);
     }
@@ -186,7 +185,7 @@ export const App = () => {
 
                     {loaded && <Spinner />}
 
-                    {sumTrainingInMonth !== null && (
+                    {sumTrainingInYear && (
                       <SummaryStatisticCard
                         label="Yearly summary"
                         sumWorkouts={sumTrainingInYear.count}
@@ -196,7 +195,7 @@ export const App = () => {
                       />
                     )}
 
-                    {sumTrainingInYear !== null && (
+                    {sumTrainingInMonth && (
                       <SummaryStatisticCard
                         label="Monthly summary"
                         sumWorkouts={sumTrainingInMonth.count}

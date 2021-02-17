@@ -37,14 +37,14 @@ const UserPage = ({
     {
       icon: '👣',
       name: 'Sum of distance in this year',
-      value: `${sumTrainingInYear[0].distance_km} km`,
+      value: `${Math.round(sumTrainingInYear[0].distance_km)} km`,
       date: currentYear,
       sport: '-',
     },
     {
       icon: '🔥',
       name: 'Sum of calories burn in this year',
-      value: `${sumTrainingInYear[0].calories_kcal} kcal`,
+      value: `${Math.round(sumTrainingInYear[0].calories_kcal)} kcal`,
       date: currentYear,
       sport: '-',
     },
@@ -66,14 +66,14 @@ const UserPage = ({
     {
       icon: '👣',
       name: 'Sum of distance in this month',
-      value: `${sumTrainingInMonth[0].distance_km} km`,
+      value: `${Math.round(sumTrainingInMonth[0].distance_km)} km`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
       icon: '🔥',
       name: 'Sum of calories burn in this month',
-      value: `${sumTrainingInMonth[0].calories_kcal} kcal`,
+      value: `${Math.round(sumTrainingInMonth[0].calories_kcal)} kcal`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },

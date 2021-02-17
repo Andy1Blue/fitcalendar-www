@@ -29,11 +29,11 @@ const SummaryStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, su
             </span>
 
             <span>
-              <span className="icon">👣</span> {sumDistance} km
+              <span className="icon">👣</span> {Math.round(sumDistance)} km
             </span>
 
             <span>
-              <span className="icon">🔥</span> {sumCalories} kcal
+              <span className="icon">🔥</span> {Math.round(sumCalories)} kcal
             </span>
           </div>
         </div>
