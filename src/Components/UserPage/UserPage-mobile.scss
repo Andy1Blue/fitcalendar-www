@@ -7,8 +7,13 @@
       width: 100%;
 
       th,
-      td {
-        padding: 6px 7px;
+      .userPage__table--icon,
+      .userPage__table--name,
+      .userPage__table--value,
+      .userPage__table--date,
+      .userPage__table--sport,
+      .userPage__table--label {
+        padding: 6px 5px;
       }
     }
   }

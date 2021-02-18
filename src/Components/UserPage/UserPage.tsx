@@ -26,24 +26,24 @@ const UserPage = ({
 
   const userStatistics = [
     { icon: 'label', name: 'Yearly summary' },
-    { icon: '💪', name: 'Trainings in this year', value: sumTrainingInYear?.count, date: currentYear, sport: '-' },
+    { icon: '💪', name: 'Trainings', value: sumTrainingInYear?.count, date: currentYear, sport: '-' },
     {
       icon: '🕐',
-      name: 'Sum of duration in this year',
+      name: 'Duration',
       value: secondsToHms(sumTrainingInYear[0].duration_sec),
       date: currentYear,
       sport: '-',
     },
     {
       icon: '👣',
-      name: 'Sum of distance in this year',
+      name: 'Distance',
       value: `${Math.round(sumTrainingInYear[0].distance_km)} km`,
       date: currentYear,
       sport: '-',
     },
     {
       icon: '🔥',
-      name: 'Sum of calories burn in this year',
+      name: 'Calories burn',
       value: `${Math.round(sumTrainingInYear[0].calories_kcal)} kcal`,
       date: currentYear,
       sport: '-',
@@ -51,28 +51,28 @@ const UserPage = ({
     { icon: 'label', name: 'Monthly summary' },
     {
       icon: '💪',
-      name: 'Trainings in this month',
+      name: 'Trainings',
       value: sumTrainingInMonth?.count,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
       icon: '🕐',
-      name: 'Sum of duration in this month',
+      name: 'Duration',
       value: secondsToHms(sumTrainingInMonth[0].duration_sec),
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
       icon: '👣',
-      name: 'Sum of distance in this month',
+      name: 'Distance',
       value: `${Math.round(sumTrainingInMonth[0].distance_km)} km`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
       icon: '🔥',
-      name: 'Sum of calories burn in this month',
+      name: 'Calories burn',
       value: `${Math.round(sumTrainingInMonth[0].calories_kcal)} kcal`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
@@ -80,21 +80,21 @@ const UserPage = ({
     { icon: 'label', name: 'Records' },
     {
       icon: '🕐',
-      name: 'The biggest duration',
+      name: 'Duration',
       value: secondsToHms(theLargestAmountOfTimes?.duration_sec),
       date: theLargestAmountOfTimes?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfTimes?.sport]} ${theLargestAmountOfTimes?.sport}`,
     },
     {
       icon: '👣',
-      name: 'The biggest distance',
+      name: 'Distance',
       value: `${theLargestAmountOfDistances?.distance_km} km`,
       date: theLargestAmountOfDistances?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfDistances?.sport]} ${theLargestAmountOfDistances?.sport}`,
     },
     {
       icon: '🔥',
-      name: 'The biggest calories burn',
+      name: 'Calories burn',
       value: `${theLargestAmountOfCalories?.calories_kcal} kcal`,
       date: theLargestAmountOfCalories?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfCalories?.sport]} ${theLargestAmountOfCalories?.sport}`,
@@ -119,17 +119,19 @@ const UserPage = ({
               if (item.icon === 'label') {
                 return (
                   <tr key={index}>
-                    <td colSpan={5}>{item.name}</td>
+                    <td className="userPage__table--label" colSpan={5}>
+                      {item.name}
+                    </td>
                   </tr>
                 );
               }
               return (
                 <tr key={index}>
-                  <td>{item.icon}</td>
-                  <td>{item.name}</td>
-                  <td>{item.value}</td>
-                  <td>{item.date}</td>
-                  <td>{item.sport}</td>
+                  <td className="userPage__table--icon">{item.icon}</td>
+                  <td className="userPage__table--name">{item.name}</td>
+                  <td className="userPage__table--value">{item.value}</td>
+                  <td className="userPage__table--date">{item.date}</td>
+                  <td className="userPage__table--sport">{item.sport}</td>
                 </tr>
               );
             })}

@@ -16,8 +16,36 @@
     }
 
     th,
-    td {
-      padding: 12px 15px;
+    .userPage__table--icon,
+    .userPage__table--name,
+    .userPage__table--value,
+    .userPage__table--date,
+    .userPage__table--sport {
+      padding: 8px 15px;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .userPage__table--label {
+      padding: 8px 15px;
+      white-space: nowrap;
+      text-align: left;
+      background-color: #292635;
+      font-weight: bold;
+    }
+
+    .userPage__table--name {
+      max-width: 80px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .userPage__table--sport {
+      max-width: 50px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     tbody {

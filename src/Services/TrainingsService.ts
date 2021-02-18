@@ -1,6 +1,6 @@
 import http from '../http';
 import { TokenHeaderData } from '../Types/ApiResponse';
-import { Points, Source, Sport, Training } from '../Types/Training';
+import { Points, Source, Sport } from '../Types/Training';
 
 export interface PostBodyData {
   userEmail: string;
@@ -27,7 +27,9 @@ export const getUserTrainings = async () => {
     const response = await get({ headers: { token } });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't get training");
+  }
 };
 
 export const addUserTraining = async (data: PostBodyData) => {
@@ -37,7 +39,9 @@ export const addUserTraining = async (data: PostBodyData) => {
     });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't add training");
+  }
 };
 
 export const updateUserTraining = async (trainingId: string, data: PostBodyData) => {
@@ -47,7 +51,9 @@ export const updateUserTraining = async (trainingId: string, data: PostBodyData)
     });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't update training");
+  }
 };
 
 export const deleteUserTraining = async (trainingId: string) => {
@@ -57,7 +63,9 @@ export const deleteUserTraining = async (trainingId: string) => {
     });
 
     return response;
-  } catch (e) {}
+  } catch (e) {
+    throw new Error("Can't delete training");
+  }
 };
 
 export const get = (tokenHeaderData: TokenHeaderData) => {

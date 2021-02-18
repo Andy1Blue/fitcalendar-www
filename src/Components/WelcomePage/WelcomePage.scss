@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  animation: showBackground 1s linear;
 
   .welcomePage__container {
     font-size: 25px;
@@ -16,5 +17,16 @@
     background-color: rgba(0, 0, 0, 0.7);
     padding: 50px;
     border-radius: 20px;
+    animation: showAnimation 0.4s;
+
+    .welcomePage__footer {
+      font-size: 8px;
+      color: #ffffff;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      opacity: 0.8;
+      text-align: left;
+    }
   }
 }
