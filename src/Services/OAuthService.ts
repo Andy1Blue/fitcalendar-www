@@ -60,7 +60,7 @@ interface TokenBodyData {
 }
 
 export const verifyToken = (tokenBodyData: TokenBodyData) => {
-  return http.post('/oauth', tokenBodyData).catch((e) => {
+  return http.post('/oauth', tokenBodyData).catch(() => {
     throw new Error("Can't authenticate user");
   });
 };
