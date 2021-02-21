@@ -14,9 +14,10 @@ export const responseGoogle = async (response: any) => {
 
   if (response.tokenId) {
     localStorage.setItem('token', response.tokenId);
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
-
-  window.location.reload();
 
   return {
     tokenId: response.tokenId,
@@ -33,7 +34,9 @@ export const checkToken = async (
   try {
     const response: ApiResponse = await verifyToken({ token });
 
-    setIsVerifiedCallback(response.data.isVerified);
+    if (setIsVerifiedCallback) {
+      setIsVerifiedCallback(response.data.isVerified);
+    }
 
     if (setGiveNameCallback) {
       setGiveNameCallback(response.data.payload.given_name);
@@ -48,6 +51,7 @@ export const checkToken = async (
     }
   } catch (e) {
     setIsVerifiedCallback(false);
+    throw new Error("Can't authenticate user");
   }
 };
 
@@ -56,5 +60,7 @@ interface TokenBodyData {
 }
 
 export const verifyToken = (tokenBodyData: TokenBodyData) => {
-  return http.post('/oauth', tokenBodyData);
+  return http.post('/oauth', tokenBodyData).catch((e) => {
+    throw new Error("Can't authenticate user");
+  });
 };

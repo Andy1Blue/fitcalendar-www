@@ -109,24 +109,13 @@ export const App = () => {
     setAuthorized(false);
     isAuthorized(false);
 
-    const openLogoutPopup = () => {
-      const logoutPopup = window.open(
-        'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
-        'Disconnect from Google',
-        'width=100,height=50,menubar=no,status=no,location=no,toolbar=no,scrollbars=no,top=200,left=200'
-      );
-
-      const closeLogoutPopup = (logoutPopup: any) => {
-        setTimeout(() => {
-          logoutPopup.close();
-          window.location.reload();
-        }, 1000);
-      };
-
-      closeLogoutPopup(logoutPopup);
+    const logoutAction = () => {
+      // @ts-ignore
+      // eslint-disable-next-line no-undef
+      document.location.href = `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${SITE_URL}`;
     };
 
-    setTimeout(openLogoutPopup, 500);
+    setTimeout(logoutAction, 500);
   };
 
   useEffect(() => {
@@ -162,7 +151,6 @@ export const App = () => {
 
         {authorized && (
           <div>
-            {' '}
             <Router>
               <Header userName={userName} userLogoUrl={userLogoUrl}>
                 <GoogleLogout
