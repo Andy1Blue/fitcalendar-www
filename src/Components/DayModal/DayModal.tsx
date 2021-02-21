@@ -71,38 +71,42 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
   const updateSubmit = async (event: any) => {
     event.preventDefault();
 
-    const data: PostBodyData = {
-      userEmail,
-      sport,
-      tagColor: '#6e2364',
-      source: Source.Manual,
-      startTime: trainingDate,
-      endTime: trainingDate,
-      durationSec: hmsToSeconds(time),
-      distanceKm: distance,
-      caloriesKcal: calories,
-      description: description,
-      heartRateAvgBpm: avgHeartRate,
-      heartRateMaxBpm: maxHeartRate,
-      speedAvgKmh: avgSpeed,
-      speedMaxKmh: maxSpeed,
-      points: null,
-    };
+    let isConfirmed = confirm('Are you sure?');
 
-    if (data?.userEmail !== null) {
-      const response = await updateUserTraining(training._id, data);
+    if (isConfirmed) {
+      const data: PostBodyData = {
+        userEmail,
+        sport,
+        tagColor: '#6e2364',
+        source: Source.Manual,
+        startTime: trainingDate,
+        endTime: trainingDate,
+        durationSec: hmsToSeconds(time),
+        distanceKm: distance,
+        caloriesKcal: calories,
+        description: description,
+        heartRateAvgBpm: avgHeartRate,
+        heartRateMaxBpm: maxHeartRate,
+        speedAvgKmh: avgSpeed,
+        speedMaxKmh: maxSpeed,
+        points: null,
+      };
 
-      setLoaded({ isLoading: true, loadingText: 'Updating training' });
+      if (data?.userEmail !== null) {
+        const response = await updateUserTraining(training._id, data);
 
-      if (response?.status === 200) {
-        delayAction(() => {
+        setLoaded({ isLoading: true, loadingText: 'Updating training' });
+
+        if (response?.status === 200) {
+          delayAction(() => {
+            setLoaded({ isLoading: false, loadingText: null });
+            closeDayModal();
+          });
+        } else {
           setLoaded({ isLoading: false, loadingText: null });
           closeDayModal();
-        });
-      } else {
-        setLoaded({ isLoading: false, loadingText: null });
-        closeDayModal();
-        alert('Error, try again!');
+          alert('Error, try again!');
+        }
       }
     }
   };
@@ -110,20 +114,24 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
   const handleDelete = async (event: any) => {
     event.preventDefault();
 
-    setLoaded({ isLoading: true, loadingText: 'Deleting training' });
+    let isConfirmed = confirm('Are you sure?');
 
-    if (training?._id !== null) {
-      const response = await deleteUserTraining(training._id);
+    if (isConfirmed) {
+      setLoaded({ isLoading: true, loadingText: 'Deleting training' });
 
-      if (response?.status === 200) {
-        delayAction(() => {
+      if (training?._id !== null) {
+        const response = await deleteUserTraining(training._id);
+
+        if (response?.status === 200) {
+          delayAction(() => {
+            setLoaded({ isLoading: false, loadingText: null });
+            closeDayModal();
+          });
+        } else {
           setLoaded({ isLoading: false, loadingText: null });
           closeDayModal();
-        });
-      } else {
-        setLoaded({ isLoading: false, loadingText: null });
-        closeDayModal();
-        alert('Error, try again!');
+          alert('Error, try again!');
+        }
       }
     }
   };

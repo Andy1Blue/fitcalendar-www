@@ -1,5 +1,5 @@
 .welcomePage {
-  min-height: calc(100vh);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 50px;
     border-radius: 20px;
     animation: showAnimation 0.4s;

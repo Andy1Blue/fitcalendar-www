@@ -119,17 +119,21 @@ export const App = () => {
   };
 
   useEffect(() => {
-    checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
+    const token = localStorage.getItem('token');
 
-    if (authorized) {
-      userTheLargestAmountOfCalories();
-      userTheLargestAmountOfDistances();
-      userTheLargestAmountOfTimes();
-      userSumTrainingInYear();
-      userSumTrainingInMonth();
+    if (token) {
+      checkToken(setAuthorized, setUserName, setUserLogoUrl, setUserEmail);
+
+      if (authorized) {
+        userTheLargestAmountOfCalories();
+        userTheLargestAmountOfDistances();
+        userTheLargestAmountOfTimes();
+        userSumTrainingInYear();
+        userSumTrainingInMonth();
+      }
+
+      setIsRefreshing(false);
     }
-
-    setIsRefreshing(false);
   }, [currentYear, authorized, isRefreshing]);
 
   const logoutFailure = () => {
