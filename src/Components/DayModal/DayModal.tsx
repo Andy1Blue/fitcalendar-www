@@ -19,7 +19,7 @@ interface DayModalProps {
 const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDate }: DayModalProps) => {
   const [loaded, setLoaded] = useState({ isLoading: false, loadingText: null });
   const [isTrainingDay, setIsTrainingDay] = useState(false);
-  const [time, setTime] = useInput(secondsToHms(training?.duration_sec) || '01:00:00');
+  const [time, setTime] = useInput(secondsToHms(training?.duration_sec) || '00:00:00');
   const [sport, setSport] = useInput(training?.sport || Sport.Other);
   const [description, setDescription] = useInput(training?.description || '');
   const [distance, setDistance] = useInput(training?.distance_km || 0);
@@ -179,7 +179,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <span>
                     <span className="icon">&#128336;</span> Duration (hh:mm:ss)
                   </span>
-                  <input className="input__time" type="time" step="2" value={time} onChange={setTime} />
+                  <input className="input__time" type="time" step="1" value={time} onChange={setTime} />
                 </div>
 
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
