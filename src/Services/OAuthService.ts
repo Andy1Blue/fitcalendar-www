@@ -1,5 +1,6 @@
 import http from '../http';
 import { ApiResponse } from '../Types/ApiResponse';
+import { addLog } from './LogsService';
 
 const token = localStorage.getItem('token');
 

@@ -24,6 +24,7 @@ import {
 } from '../../Services/TrainingsStatisticsService';
 import { actualMonth, actualYear } from '../../helpers';
 import Spinner from '../Loader/Spinner';
+import { addLog } from '../../Services/LogsService';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
@@ -42,8 +43,15 @@ export const App = () => {
   const [sumTrainingInMonth, setSumTrainingInMonth] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const isAuthorized = (auth: boolean) => {
+  const isAuthorized = async (auth: boolean) => {
     setAuthorized(auth);
+
+    await addLog({
+      userId: userEmail,
+      createdDate: new Date(),
+      log: 'User has logged in.',
+      category: 'login',
+    });
 
     return auth;
   };
