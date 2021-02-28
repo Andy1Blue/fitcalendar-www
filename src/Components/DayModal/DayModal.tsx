@@ -120,7 +120,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
       setLoaded({ isLoading: true, loadingText: 'Deleting training' });
 
       if (training?._id !== null) {
-        const response = await deleteUserTraining(training._id);
+        const response = await deleteUserTraining(training._id, userEmail);
 
         if (response?.status === 200) {
           delayAction(() => {

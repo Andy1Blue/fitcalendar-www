@@ -1,6 +1,7 @@
 import http from '../http';
 import { TokenHeaderData } from '../Types/ApiResponse';
 import { Points, Source, Sport } from '../Types/Training';
+import { addLog } from './LogsService';
 
 export interface PostBodyData {
   userEmail: string;
@@ -38,6 +39,13 @@ export const addUserTraining = async (data: PostBodyData) => {
       headers: { token },
     });
 
+    await addLog({
+      userId: data.userEmail,
+      createdDate: new Date(),
+      log: `User has added training: ${JSON.stringify(data)}`,
+      category: 'activity (add)',
+    });
+
     return response;
   } catch (e) {
     throw new Error("Can't add training");
@@ -50,16 +58,30 @@ export const updateUserTraining = async (trainingId: string, data: PostBodyData)
       headers: { token },
     });
 
+    await addLog({
+      userId: data.userEmail,
+      createdDate: new Date(),
+      log: `User has updated training: ${JSON.stringify(data)}`,
+      category: 'activity (update)',
+    });
+
     return response;
   } catch (e) {
     throw new Error("Can't update training");
   }
 };
 
-export const deleteUserTraining = async (trainingId: string) => {
+export const deleteUserTraining = async (trainingId: string, userEmail: string) => {
   try {
     const response = await remove(trainingId, {
       headers: { token },
+    });
+
+    await addLog({
+      userId: userEmail,
+      createdDate: new Date(),
+      log: `User has deleted training: ${trainingId}`,
+      category: 'activity (delete)',
     });
 
     return response;
