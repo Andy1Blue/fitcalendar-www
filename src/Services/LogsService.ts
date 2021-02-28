@@ -15,7 +15,7 @@ export const addLog = async (data: PostBodyData) => {
     const response = await post(data, {
       headers: { token },
     });
-console.log(response)
+
     return response;
   } catch (e) {
     throw new Error("Can't add log");
