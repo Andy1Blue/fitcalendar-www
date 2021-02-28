@@ -2,7 +2,7 @@ import * as React from 'react';
 import './WelcomePage.scss';
 
 interface WelcomePageProps {
-  children: any;
+  children: React.ReactNode;
 }
 
 const WelcomePage = ({ children }: WelcomePageProps) => {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 
 interface HeaderProps {
-  children: any;
+  children: React.ReactNode;
   userName: string;
   userLogoUrl: string;
 }

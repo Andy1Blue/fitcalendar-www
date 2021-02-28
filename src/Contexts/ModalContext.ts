@@ -10,7 +10,7 @@ interface ModalDefaultOptionsProps {
   children: ReactNode;
 }
 
-const ModalProvider = ({ children }: ModalDefaultOptionsProps): any => {
+const ModalProvider = ({ children }: ModalDefaultOptionsProps) => {
   const [currentModal, setCurrentModal] = useState(defaultModal);
 
   const saveModal = (values: any) => {

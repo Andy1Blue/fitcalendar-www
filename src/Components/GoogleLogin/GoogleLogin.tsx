@@ -4,7 +4,7 @@ import GoogleAuth from 'react-google-login';
 import { responseGoogle } from '../../Services/OAuthService';
 
 interface GoogleLoginProps {
-  isAuthorized: any;
+  isAuthorized: (authorized: boolean) => Promise<boolean>;
 }
 
 // eslint-disable-next-line no-unused-vars

@@ -10,8 +10,8 @@ import Spinner from '../Loader/Spinner';
 
 interface DayModalProps {
   userEmail: string;
-  isDayModalVisible: any;
-  isPosted: any;
+  isDayModalVisible: Function;
+  isPosted: Function;
   training: Training;
   trainingDate: string;
 }
@@ -29,7 +29,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
   const [maxHeartRate, setMaxHeartRate] = useInput(training?.heart_rate_max_bpm || 0);
   const [avgHeartRate, setAvgHeartRate] = useInput(training?.heart_rate_avg_bpm || 0);
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const data: PostBodyData = {
@@ -68,7 +68,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   };
 
-  const updateSubmit = async (event: any) => {
+  const updateSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     let isConfirmed = confirm('Are you sure?');
@@ -111,7 +111,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   };
 
-  const handleDelete = async (event: any) => {
+  const handleDelete = async (event: React.FormEvent) => {
     event.preventDefault();
 
     let isConfirmed = confirm('Are you sure?');

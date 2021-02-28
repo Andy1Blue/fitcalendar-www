@@ -222,8 +222,8 @@ export const App = () => {
                     <Calendar
                       isAuthorized={authorized}
                       userEmail={userEmail}
-                      todayTraining={(training: any) => getTodayTraining(training)}
-                      year={(year: any) => getCurrentYear(year)}
+                      todayTraining={(training: Training) => getTodayTraining(training)}
+                      year={(year: number) => getCurrentYear(year)}
                       refreshed={(refresh: boolean) => setIsRefreshing(refresh)}
                     />
                   </div>

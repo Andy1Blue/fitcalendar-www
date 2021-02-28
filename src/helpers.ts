@@ -44,7 +44,7 @@ export const hmsToSeconds = (hms: string): number => {
   return seconds;
 };
 
-export const delayAction = (callback: any) => {
+export const delayAction = (callback: Function) => {
   setTimeout(callback, 1000);
 };
 

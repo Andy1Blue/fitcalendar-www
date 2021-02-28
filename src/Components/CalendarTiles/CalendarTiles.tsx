@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './CalendarTiles.scss';
 import DayModal from '../DayModal/DayModal';
 import { isToday } from '../../helpers';
 import { Training } from '../../Types/Training';
-import { ModalContext } from '../../Contexts/ModalContext';
 
 interface CalendarTilesProps {
   className: string;
   userEmail: string;
   month: number;
   year: number;
-  trainings: any;
+  trainings: Training[];
   isRefreshing: (isRefreshing: boolean) => void;
 }
 
@@ -54,7 +53,7 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
     monthElement.appendChild(rectElement);
   };
 
-  const generateTiles = (monthTrainings: any) => {
+  const generateTiles = (monthTrainings: Training[]) => {
     document.querySelector(`.month${month}`).innerHTML = '';
 
     for (let day = 1; day <= daysInMonth(month, year); day++) {

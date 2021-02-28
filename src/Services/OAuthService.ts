@@ -1,10 +1,17 @@
+import { GoogleLoginResponse } from 'react-google-login';
 import http from '../http';
 import { ApiResponse } from '../Types/ApiResponse';
-import { addLog } from './LogsService';
+
+interface GoogleLoginAdditionalFieldResponse {
+  Ca: string;
+  wt: string;
+  xc: string;
+  scope: string;
+}
 
 const token = localStorage.getItem('token');
 
-export const responseGoogle = async (response: any) => {
+export const responseGoogle = async (response: GoogleLoginResponse & GoogleLoginAdditionalFieldResponse) => {
   delete response.accessToken;
   delete response.tokenObj;
   delete response.Ca;
@@ -27,10 +34,10 @@ export const responseGoogle = async (response: any) => {
 };
 
 export const checkToken = async (
-  setIsVerifiedCallback: any,
-  setGiveNameCallback?: any,
-  setPictureCallback?: any,
-  setEmailCallback?: any
+  setIsVerifiedCallback: Function,
+  setGiveNameCallback?: Function,
+  setPictureCallback?: Function,
+  setEmailCallback?: Function
 ) => {
   try {
     const response: ApiResponse = await verifyToken({ token });

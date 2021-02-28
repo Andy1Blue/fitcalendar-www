@@ -10,9 +10,9 @@ import { Training } from '../../Types/Training';
 interface CalendarProps {
   isAuthorized: boolean;
   userEmail: string;
-  todayTraining: any;
-  year: any;
-  refreshed: any;
+  todayTraining: Function;
+  year: Function;
+  refreshed: Function;
 }
 
 const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: CalendarProps) => {
@@ -37,7 +37,7 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: C
   useEffect(() => {
     if (isAuthorized === true) {
       const fetchTranings = async () => {
-        let response: any = await getUserTrainings();
+        let response = await getUserTrainings();
 
         if (response?.data) {
           setTrainings(response.data);
