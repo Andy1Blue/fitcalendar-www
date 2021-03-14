@@ -69,6 +69,7 @@ interface TokenBodyData {
 
 export const verifyToken = (tokenBodyData: TokenBodyData) => {
   return http.post('/oauth', tokenBodyData).catch(() => {
+    alert("Can't authenticate user!\nAre you sure that's your email is allowed?\nTry to relog or contact with administrator.");
     throw new Error("Can't authenticate user");
   });
 };
