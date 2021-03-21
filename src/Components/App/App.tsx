@@ -114,6 +114,7 @@ export const App = () => {
 
   const logout = () => {
     localStorage.setItem('token', '');
+    localStorage.removeItem('token');
     setAuthorized(false);
     isAuthorized(false);
 
