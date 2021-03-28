@@ -11,6 +11,7 @@ import { checkToken } from '../../Services/OAuthService';
 import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
 import UserPage from '../UserPage/UserPage';
+import UserCompare from '../UserCompare/UserCompare';
 import TodayCard from '../TodayCard/TodayCard';
 import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
 import SummaryStatisticCard from '../SummaryStatisticCard/SummaryStatisticCard';
@@ -237,6 +238,9 @@ export const App = () => {
                     theLargestAmountOfDistances={theLargestAmountOfDistances}
                     theLargestAmountOfCalories={theLargestAmountOfCalories}
                   />
+                </Route>
+                <Route exact path="/user-compare">
+                <UserCompare userEmail={userEmail} />
                 </Route>
               </div>
             </Router>

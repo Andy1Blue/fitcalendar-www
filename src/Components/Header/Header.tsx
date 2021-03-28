@@ -23,8 +23,14 @@ const Header = ({ children, userName, userLogoUrl }: HeaderProps) => {
         <Link className="header__menuItem--desktop" to="/user">
           Hello <img src={userLogoUrl} alt="user logo" className="header__userLogo" /> {userName}!
         </Link>
+        <Link className="header__menuItem--desktop" to="/user-compare">
+          &#128202; Compare
+        </Link>
         <Link className="header__menuItem--mobile" to="/user">
           <img src={userLogoUrl} alt="user logo" className="header__userLogo" />
+        </Link>
+        <Link className="header__menuItem--mobile" to="/user-compare">
+          &#128202;
         </Link>
         <div className="header__menuItem">{children}</div>
       </div>

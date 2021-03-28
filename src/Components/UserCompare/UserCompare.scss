@@ -1,0 +1,128 @@
+.userCompare {
+  padding: 5px;
+  animation: showAnimation 0.4s;
+  width: 100%;
+
+  .userCompare__formInputContainer {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    flex-direction: row;
+
+    .input__email {
+      font-family: inherit;
+      font-size: 13px;
+      border-radius: 10px;
+      outline: none;
+      border: 1px solid #ffffff;
+      width: 200px;
+      height: 40px;
+      background-color: #17151e;
+      border-color: 1px;
+      color: #ffffff;
+      padding: 10px;
+      margin: 0 5px;
+    }
+
+    .input__year {
+      font-family: inherit;
+      font-size: 13px;
+      border-radius: 10px;
+      outline: none;
+      border: 1px solid #ffffff;
+      width: 100px;
+      height: 40px;
+      background-color: #17151e;
+      border-color: 1px;
+      color: #ffffff;
+      padding: 10px;
+      margin: 0 5px;
+    }
+
+    .input__button {
+      width: 100px;
+      margin: 3px;
+      background-color: #6e2364;
+      height: 30px;
+      border: 0.1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 50px;
+      font-size: 14px;
+    }
+  }
+
+  .userCompare__dataContainer {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    flex-direction: row;
+
+    .userCompare__table {
+      border-collapse: collapse;
+      margin: 25px 0;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+      thead tr {
+        background-color: #6e2364;
+        color: #ffffff;
+        text-align: left;
+      }
+
+      th,
+      .userCompare__table--icon,
+      .userCompare__table--name,
+      .userCompare__table--value,
+      .userCompare__table--date,
+      .userCompare__table--sport {
+        padding: 8px 15px;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .userCompare__table--label {
+        padding: 8px 15px;
+        white-space: nowrap;
+        text-align: left;
+        background-color: #292635;
+        font-weight: bold;
+      }
+
+      .userCompare__table--name {
+        max-width: 80px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .userCompare__table--sport {
+        max-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      tbody {
+        tr:nth-of-type(even):hover,
+        tr:hover {
+          background-color: #4a475c;
+        }
+
+        tr:nth-of-type(even) {
+          background-color: #3d3a4e;
+        }
+
+        tr:last-of-type {
+          border-bottom: 2px solid #3d3a4e;
+        }
+
+        tr.userCompare__table--activeRow {
+          font-weight: bold;
+          color: #3d3a4e;
+        }
+      }
+    }
+  }
+}
+
+@import './UserCompare-mobile.scss';
