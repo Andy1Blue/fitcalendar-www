@@ -18,7 +18,7 @@ export const getUserYearCompare = async ({ userOneEmail, userTwoEmail, year }: u
 export const getUserMonthCompare = async ({ userOneEmail, userTwoEmail, year, month }: userCompareProps) => {
   try {
     const response = await getMonth(userOneEmail, userTwoEmail, year, month, { headers: { token } });
-    console.log(response);
+
     return response;
   } catch (e) {
     throw new Error("Can't get user month compare");
