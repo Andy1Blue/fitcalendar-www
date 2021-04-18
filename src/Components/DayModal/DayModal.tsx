@@ -20,7 +20,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
   const [loaded, setLoaded] = useState({ isLoading: false, loadingText: null });
   const [isTrainingDay, setIsTrainingDay] = useState(false);
   const [time, setTime] = useInput(secondsToHms(training?.duration_sec) || '00:00:00');
-  const [sport, setSport] = useInput(training?.sport || Sport.Other);
+  const [sport, setSport] = useState(training?.sport || Sport.Other);
   const [description, setDescription] = useInput(training?.description || '');
   const [distance, setDistance] = useInput(training?.distance_km || 0);
   const [calories, setCalories] = useInput(training?.calories_kcal || 0);
@@ -154,6 +154,25 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   }, [training]);
 
+  function toggleList() {
+    // TODO: use ref
+    document.getElementById('div__dropdownSport').classList.toggle('show__dropdownSportContent');
+  }
+
+  const filterFunction = (inputValue: string) => {
+    // TODO: use ref
+    const dropdownSport = document.getElementById('div__dropdownSport');
+    const dropdownSportItems = dropdownSport.getElementsByTagName('a');
+    for (let i = 0; i < dropdownSportItems.length; i++) {
+      const txtValue = dropdownSportItems[i].textContent || dropdownSportItems[i].innerText;
+      if (txtValue.toUpperCase().indexOf(inputValue.toUpperCase()) > -1) {
+        dropdownSportItems[i].style.display = '';
+      } else {
+        dropdownSportItems[i].style.display = 'none';
+      }
+    }
+  };
+
   return (
     <div className="dayModal">
       <div className="dayModal__container">
@@ -186,13 +205,38 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <span>
                     <span className="icon">&#127941;</span> Sport
                   </span>
-                  <select className="input__select" value={sport} onChange={setSport} name="sports" id="sports">
-                    {sportsInput.map((sport: Sport, index: number) => (
-                      <option key={index} value={sport}>
-                        {sportIconMapping[sport]} {sport}
-                      </option>
-                    ))}
-                  </select>
+
+                  <div className="input__dropdownSportContainer">
+                    <input
+                      type="text"
+                      placeholder="Search.."
+                      id="input__dropdownSport"
+                      onChange={(event: any) => {
+                        // TODO: change any
+                        filterFunction(event.target.value);
+                        setSport(event.target.value);
+                      }}
+                      onFocus={toggleList}
+                      value={sport}
+                    />
+                    <div id="div__dropdownSport" className="input__dropdownSportContent">
+                      {sportsInput.map((sport: Sport, index: number) => (
+                        <a
+                          key={index}
+                          onClick={() => {
+                            setSport(sport);
+                            // TODO: change any
+                            // TODO: use ref
+                            const dropdownSportInput: any = document.getElementById('input__dropdownSport');
+                            dropdownSportInput.value = `${sportIconMapping[sport]} ${sport}`;
+                            toggleList();
+                          }}
+                        >
+                          {sportIconMapping[sport]} {sport}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
