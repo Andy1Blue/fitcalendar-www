@@ -19,6 +19,7 @@ interface DayModalProps {
 const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDate }: DayModalProps) => {
   const [loaded, setLoaded] = useState({ isLoading: false, loadingText: null });
   const [isTrainingDay, setIsTrainingDay] = useState(false);
+  const [isAdditionalInputs, setIsAdditionalInputs] = useState(false);
   const [time, setTime] = useInput(secondsToHms(training?.duration_sec) || '00:00:00');
   const [sport, setSport] = useState(training?.sport || Sport.Other);
   const [description, setDescription] = useInput(training?.description || '');
@@ -159,6 +160,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     document.getElementById('div__dropdownSport').classList.toggle('show__dropdownSportContent');
   }
 
+  function toggleAdditional() {
+    setIsAdditionalInputs(!isAdditionalInputs);
+  }
+
   const filterFunction = (inputValue: string) => {
     // TODO: use ref
     const dropdownSport = document.getElementById('div__dropdownSport');
@@ -255,47 +260,91 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   </div>
                 </div>
 
-                <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                    <span>
-                      <span className="icon">&#128640;</span> Max speed (kmh)
-                    </span>
-                    <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
-                  </div>
-
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                    <span>
-                      <span className="icon">&#128640;</span> Avg speed (kmh)
-                    </span>
-                    <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
-                  </div>
+                <div className="dayModal__additional">
+                  <span className="dayModal__additionalText" onClick={toggleAdditional}>
+                    {isAdditionalInputs ? 'Hide' : 'Show'} additional inputs
+                  </span>
                 </div>
 
-                <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                    <span>
-                      <span className="icon">&#128147;</span> Max heart rate (bpm)
-                    </span>
-                    <input
-                      className="input__number"
-                      min="0"
-                      type="number"
-                      value={maxHeartRate}
-                      onChange={setMaxHeartRate}
-                    />
+                <div
+                  className={`dayModal__additional ${
+                    isAdditionalInputs ? 'dayModal__additional--show' : 'dayModal__additional--hide'
+                  }`}
+                >
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128640;</span> Max speed (kmh)
+                      </span>
+                      <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128640;</span> Avg speed (kmh)
+                      </span>
+                      <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
+                    </div>
                   </div>
 
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                    <span>
-                      <span className="icon">&#128147;</span> Avg heart rate (bpm)
-                    </span>
-                    <input
-                      className="input__number"
-                      min="0"
-                      type="number"
-                      value={avgHeartRate}
-                      onChange={setAvgHeartRate}
-                    />
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128147;</span> Max heart rate (bpm)
+                      </span>
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={maxHeartRate}
+                        onChange={setMaxHeartRate}
+                      />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128147;</span> Avg heart rate (bpm)
+                      </span>
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={avgHeartRate}
+                        onChange={setAvgHeartRate}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128099;</span> Steps
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128167;</span> Hydration
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128314;</span> Max altitude
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128315;</span> Min altitude
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
                   </div>
                 </div>
 

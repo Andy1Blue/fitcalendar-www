@@ -23,6 +23,27 @@
     -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.75);
 
+    .dayModal__additionalText {
+      text-decoration: underline;
+      padding: 20px;
+    }
+
+    .dayModal__additional {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      &--show {
+        display: flex;
+        animation: showAnimation 0.4s;
+      }
+
+      &--hide {
+        display: none;
+        animation: showAnimation 0.4s;
+      }
+    }
+
     .dayModal__content {
       display: flex;
       flex-direction: column;
@@ -64,6 +85,10 @@
 
         span {
           font-size: 14px;
+        }
+
+        .input__inactive {
+          background-color: #2e2e2e !important;
         }
 
         .input__number,
