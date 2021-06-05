@@ -24,11 +24,21 @@ export const enum Sport {
   Bike = 'Bike',
   Walk = 'Walk',
   Hiking = 'Hiking',
+  Soccer = 'Soccer',
+  Basketball = 'Basketball',
+  Tennis = 'Tennis',
+  Golf = 'Golf',
+  Volleyball = 'Volleyball',
+  Badminton = 'Badminton',
+  Swimming = 'Swimming',
+  Table_Tennis = 'Table Tennis',
+  Skiing = 'Skiing',
+  Roller_Skating = 'Roller Skating',
   Other = 'Other',
 }
 
 export interface Training {
-  _id: string,
+  _id: string;
   userEmail: string;
   sport: Sport;
   created_date: string;
