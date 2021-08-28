@@ -29,12 +29,13 @@ const CalendarTiles = ({ className, userEmail, month, year, trainings, isRefresh
 
   const addTile = (day: number, month: number, year: number, training: Training | null, parsedDate: string) => {
     const innerDay = day >= 10 ? day : `0${day}`;
+    const sportName = training?.sport || '';
     const rectElement = document.createElement('div');
     rectElement.className = 'day';
     rectElement.innerHTML = innerDay.toString();
 
     rectElement.setAttribute('date', parsedDate);
-    rectElement.setAttribute('description', parsedDate);
+    rectElement.setAttribute('description', `${parsedDate} ${sportName}`);
 
     if (isToday(parsedDate)) {
       rectElement.classList.add('today');
