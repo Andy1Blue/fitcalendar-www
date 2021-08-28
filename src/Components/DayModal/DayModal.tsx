@@ -199,11 +199,20 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
           {!loaded.isLoading && (
             <>
               <div className="dayModal__form">
+              <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                   <span>
                     <span className="icon">&#128336;</span> Duration (hh:mm:ss)
                   </span>
                   <input className="input__time" type="time" step="1" value={time} onChange={setTime} />
+                </div>
+
+                <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                  <span>
+                    <span className="icon">&#128336;</span> Duration - move (hh:mm:ss)
+                  </span>
+                  <input className="input__time" type="time" step="1" value={time} onChange={setTime} disabled/>
+                </div>
                 </div>
 
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
@@ -290,6 +299,22 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
+                        <span className="icon">&#128640;</span> Max pace (min/km)
+                      </span>
+                      <input className="input__number" min="0" type="number" disabled/>
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128640;</span> Avg pace (min/km)
+                      </span>
+                      <input className="input__number" min="0" type="number" disabled />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
                         <span className="icon">&#128147;</span> Max heart rate (bpm)
                       </span>
                       <input
@@ -334,19 +359,60 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128314;</span> Max altitude
+                        <span className="icon">&#128314;</span> Max elevation
                       </span>
                       <input className="input__number input__inactive" min="0" type="number" disabled />
                     </div>
 
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128315;</span> Min altitude
+                        <span className="icon">&#128315;</span> Min elevation
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128314;</span> Training Effect - aerobic
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128315;</span> Training Effect - anaerobic
+                      </span>
+                      <input className="input__number input__inactive" min="0" type="number" disabled />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128314;</span> VO<small>2</small>MAX
                       </span>
                       <input className="input__number input__inactive" min="0" type="number" disabled />
                     </div>
                   </div>
                 </div>
+
+                <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#127773;</span> Feeling (0 - bad, 10 - good)
+                      </span>
+                      <input className="input__number input__inactive" min="0" max="10" type="number" disabled />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128170;</span> Effort (0 - low, 10 - high)
+                      </span>
+                      <input className="input__number input__inactive" min="0" max="10" type="number" disabled />
+                    </div>
+                  </div>
 
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                   <span>
