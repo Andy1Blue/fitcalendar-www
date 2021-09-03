@@ -19,6 +19,10 @@ export interface PostBodyData {
   speedAvgKmh?: number;
   speedMaxKmh?: number;
   points?: Points[] | null;
+  effort?: number;
+  feeling?: number;
+  steps?: number;
+  hydrationMl?: number;
 }
 
 const token = localStorage.getItem('token');
