@@ -11,6 +11,7 @@ export interface PostBodyData {
   startTime: string;
   endTime: string;
   durationSec: number;
+  durationMoveSec?: number;
   distanceKm?: number;
   caloriesKcal?: number;
   description?: string;
@@ -23,6 +24,16 @@ export interface PostBodyData {
   feeling?: number;
   steps?: number;
   hydrationMl?: number;
+  elevationMaxM?: number;
+  elevationMinM?: number;
+  elevationGainM?: number;
+  trainingEffectAerobic?: number;
+  trainingEffectAnaerobic?: number;
+  vo2max?: number;
+  paceMaxMinKm?: number;
+  paceAvgMinKm?: number;
+  cadenceMaxSpm?: number;
+  cadenceAvgSpm?: number;
 }
 
 const token = localStorage.getItem('token');
