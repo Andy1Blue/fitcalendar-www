@@ -10,6 +10,7 @@ A project that allows you to track the progress of workouts. Data are presented 
 ## Screenshots
 
 ![Fitcalendar screenshot mainpage](https://github.com/Andy1Blue/fitcalendar-www/blob/main/screenshots/main_page.png?raw=true)
+
 ## Technologies and libraries
 
 Libraries and technologies used in the project:
@@ -20,23 +21,23 @@ Libraries and technologies used in the project:
 ## Installation
 
 ```bash
-$ cp .env.example .env && npm install
+cp .env.example .env && npm install
 ```
 
 ## Running the app
 
 ```bash
-$ npm run build
+npm run build
 ```
 
 ## Docker
 
-```
-$ docker-compose -f docker-compose.yml up -d --build
+```bash
+docker-compose -f docker-compose.yml up -d --build
 ```
 
 ## Cypress test
 
 ```bash
-$ npm run test
+npm run test
 ```
