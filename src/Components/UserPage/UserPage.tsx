@@ -122,7 +122,7 @@ const UserPage = ({
     <div className="userPage">
       <div>
         <button className="input__button" onClick={downloadCsvFile}>
-          Download CSV
+          Export data
         </button>
       </div>
       <table className="userPage__table">
