@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { secondsToHms } from '../../helpers';
-import { sportIconMapping } from '../../SportsConfig/Input';
+import { sportIconMapping, statisticIconMapping } from '../../SportsConfig/Input';
 import { Training } from '../../Types/Training';
 import { actualMonth, actualYear } from '../../helpers';
 import './UserPage.scss';
 import { useState } from 'react';
+import { Statistic } from '../../Types/Statistic';
 
 interface UserPageProps {
   sumTrainingInYear?: Training | any;
@@ -26,75 +27,81 @@ const UserPage = ({
 
   const userStatistics = [
     { icon: 'label', name: 'Yearly summary' },
-    { icon: '💪', name: 'Trainings', value: sumTrainingInYear?.count, date: currentYear, sport: '-' },
     {
-      icon: '🕐',
-      name: 'Duration',
+      icon: statisticIconMapping[Statistic.Trainings],
+      name: Statistic.Trainings,
+      value: sumTrainingInYear?.count,
+      date: currentYear,
+      sport: '-',
+    },
+    {
+      icon: statisticIconMapping[Statistic.Duration],
+      name: Statistic.Duration,
       value: secondsToHms(sumTrainingInYear[0].duration_sec),
       date: currentYear,
       sport: '-',
     },
     {
-      icon: '👣',
-      name: 'Distance',
+      icon: statisticIconMapping[Statistic.Distance],
+      name: Statistic.Distance,
       value: `${Math.round(sumTrainingInYear[0].distance_km)} km`,
       date: currentYear,
       sport: '-',
     },
     {
-      icon: '🔥',
-      name: 'Calories burn',
+      icon: statisticIconMapping[Statistic.Calories],
+      name: Statistic.Calories,
       value: `${Math.round(sumTrainingInYear[0].calories_kcal)} kcal`,
       date: currentYear,
       sport: '-',
     },
     { icon: 'label', name: 'Monthly summary' },
     {
-      icon: '💪',
-      name: 'Trainings',
+      icon: statisticIconMapping[Statistic.Trainings],
+      name: Statistic.Trainings,
       value: sumTrainingInMonth?.count,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
-      icon: '🕐',
-      name: 'Duration',
+      icon: statisticIconMapping[Statistic.Duration],
+      name: Statistic.Duration,
       value: secondsToHms(sumTrainingInMonth[0].duration_sec),
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
-      icon: '👣',
-      name: 'Distance',
+      icon: statisticIconMapping[Statistic.Distance],
+      name: Statistic.Distance,
       value: `${Math.round(sumTrainingInMonth[0].distance_km)} km`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     {
-      icon: '🔥',
-      name: 'Calories burn',
+      icon: statisticIconMapping[Statistic.Calories],
+      name: Statistic.Calories,
       value: `${Math.round(sumTrainingInMonth[0].calories_kcal)} kcal`,
       date: `${currentYear}-${currentMonth}`,
       sport: '-',
     },
     { icon: 'label', name: 'Records' },
     {
-      icon: '🕐',
-      name: 'Duration',
+      icon: statisticIconMapping[Statistic.Duration],
+      name: Statistic.Duration,
       value: secondsToHms(theLargestAmountOfTimes?.duration_sec),
       date: theLargestAmountOfTimes?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfTimes?.sport]} ${theLargestAmountOfTimes?.sport}`,
     },
     {
-      icon: '👣',
-      name: 'Distance',
+      icon: statisticIconMapping[Statistic.Distance],
+      name: Statistic.Distance,
       value: `${theLargestAmountOfDistances?.distance_km} km`,
       date: theLargestAmountOfDistances?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfDistances?.sport]} ${theLargestAmountOfDistances?.sport}`,
     },
     {
-      icon: '🔥',
-      name: 'Calories burn',
+      icon: statisticIconMapping[Statistic.Calories],
+      name: Statistic.Calories,
       value: `${theLargestAmountOfCalories?.calories_kcal} kcal`,
       date: theLargestAmountOfCalories?.start_time,
       sport: `${sportIconMapping[theLargestAmountOfCalories?.sport]} ${theLargestAmountOfCalories?.sport}`,

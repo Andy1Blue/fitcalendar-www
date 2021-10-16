@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { secondsToHms } from '../../helpers';
+import { statisticIconMapping } from '../../SportsConfig/Input';
+import { Statistic } from '../../Types/Statistic';
 import './SummaryStatisticCard.scss';
 
 interface SummaryStatisticCardProps {
@@ -11,7 +13,13 @@ interface SummaryStatisticCardProps {
   sumCalories: number;
 }
 
-const SummaryStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, sumCalories }: SummaryStatisticCardProps) => {
+const SummaryStatisticCard = ({
+  label,
+  sumWorkouts,
+  sumDuration,
+  sumDistance,
+  sumCalories,
+}: SummaryStatisticCardProps) => {
   useEffect(() => {}, [sumWorkouts]);
 
   return (
@@ -21,19 +29,19 @@ const SummaryStatisticCard = ({ label, sumWorkouts, sumDuration, sumDistance, su
           <div className="statisticCard__header">{label}</div>
           <div className="statisticCard__contentDetails">
             <span>
-              <span className="icon">💪</span> {sumWorkouts} workouts
+              <span className="icon">{statisticIconMapping[Statistic.Trainings]}</span> {sumWorkouts} workouts
             </span>
 
             <span>
-              <span className="icon">🕐</span> {secondsToHms(sumDuration)}
+              <span className="icon">{statisticIconMapping[Statistic.Duration]}</span> {secondsToHms(sumDuration)}
             </span>
 
             <span>
-              <span className="icon">👣</span> {Math.round(sumDistance)} km
+              <span className="icon">{statisticIconMapping[Statistic.Distance]}</span> {Math.round(sumDistance)} km
             </span>
 
             <span>
-              <span className="icon">🔥</span> {Math.round(sumCalories)} kcal
+              <span className="icon">{statisticIconMapping[Statistic.Calories]}</span> {Math.round(sumCalories)} kcal
             </span>
           </div>
         </div>

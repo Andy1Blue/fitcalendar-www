@@ -1,4 +1,5 @@
 import { Sport } from '../Types/Training';
+import { Statistic } from '../Types/Statistic';
 
 export const sportsInput: Sport[] = [
   Sport.Spinning,
@@ -40,4 +41,11 @@ export const sportIconMapping = {
   [Sport.Skiing]: '⛷',
   [Sport.Roller_Skating]: '⚫',
   [Sport.Other]: '⚪',
+};
+
+export const statisticIconMapping = {
+  [Statistic.Trainings]: '💪',
+  [Statistic.Duration]: '🕐',
+  [Statistic.Distance]: '👣',
+  [Statistic.Calories]: '🔥',
 };
