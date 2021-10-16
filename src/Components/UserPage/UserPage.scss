@@ -3,6 +3,17 @@
   animation: showAnimation 0.4s;
   width: 100%;
 
+  .input__button {
+    width: 200px;
+    margin: 3px;
+    background-color: #6e2364;
+    height: 30px;
+    border: 0.1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 14px;
+  }
+
   .userPage__table {
     border-collapse: collapse;
     margin: 25px 0;

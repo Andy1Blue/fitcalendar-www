@@ -49,6 +49,7 @@ export interface Training {
   start_time?: string;
   end_time?: string;
   duration_sec?: number;
+  duration_move_sec?: number;
   distance_km?: number;
   calories_kcal?: number;
   heart_rate_avg_bpm?: number;
@@ -56,4 +57,18 @@ export interface Training {
   speed_avg_kmh?: number;
   speed_max_kmh?: number;
   points?: Points[];
+  effort?: number;
+  feeling?: number;
+  steps?: number;
+  hydration_ml?: number;
+  elevation_max_m?: number;
+  elevation_min_m?: number;
+  elevation_gain_m?: number;
+  training_effect_aerobic?: number;
+  training_effect_anaerobic?: number;
+  vo2max?: number;
+  pace_max_min_km?: number;
+  pace_avg_min_km?: number;
+  cadence_max_spm?: number;
+  cadence_avg_spm?: number;
 }

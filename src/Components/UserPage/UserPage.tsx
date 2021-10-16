@@ -6,6 +6,8 @@ import { actualMonth, actualYear } from '../../helpers';
 import './UserPage.scss';
 import { useState } from 'react';
 import { Statistic } from '../../Types/Statistic';
+import { generateCsvContent } from '../../Services/ReportService';
+import * as dayjs from 'dayjs';
 
 interface UserPageProps {
   sumTrainingInYear?: Training | any;
@@ -108,8 +110,28 @@ const UserPage = ({
     },
   ];
 
+  const downloadCsvFile = async () => {
+    let response = await generateCsvContent({});
+
+    if (response?.data) {
+      const csv = response.data;
+
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+      hiddenElement.target = '_blank';
+
+      hiddenElement.download = `fitcalendar${dayjs().format('HHmmDDMMYYYY')}.csv`;
+      hiddenElement.click();
+    }
+  };
+
   return (
     <div className="userPage">
+      <div>
+        <button className="input__button" onClick={downloadCsvFile}>
+          Export data
+        </button>
+      </div>
       <table className="userPage__table">
         <thead>
           <tr>
