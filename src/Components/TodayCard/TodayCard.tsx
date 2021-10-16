@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import './TodayCard.scss';
 import { secondsToHms, todayDate } from '../../helpers';
 import { Training } from '../../Types/Training';
-import { sportIconMapping } from '../../SportsConfig/Input';
+import { sportIconMapping, statisticIconMapping } from '../../SportsConfig/Input';
+import { Statistic } from '../../Types/Statistic';
 
 interface TodayCardProps {
   training: Training;
@@ -20,27 +21,27 @@ const TodayCard = ({ training }: TodayCardProps) => {
   const detailsToShow = [
     {
       value: secondsToHms(training?.duration_sec),
-      icon: '🕐',
+      icon: statisticIconMapping[Statistic.Duration],
       unit: 'min',
     },
     {
       value: training?.distance_km,
-      icon: '👣',
+      icon: statisticIconMapping[Statistic.Distance],
       unit: 'km',
     },
     {
       value: training?.calories_kcal,
-      icon: '🔥',
+      icon: statisticIconMapping[Statistic.Trainings],
       unit: 'kcal',
     },
     {
       value: training?.speed_avg_kmh,
-      icon: '🚀',
+      icon: statisticIconMapping[Statistic.SpeedAvg],
       unit: 'kmh',
     },
     {
       value: training?.heart_rate_avg_bpm,
-      icon: '💓',
+      icon: statisticIconMapping[Statistic.HeartRateAvg],
       unit: 'bpm',
     },
   ];

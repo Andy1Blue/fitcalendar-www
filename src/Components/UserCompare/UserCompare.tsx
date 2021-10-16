@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Spinner from '../Loader/Spinner';
 import { secondsToHms } from '../../helpers';
 import { actualMonth, actualYear } from '../../helpers';
+import { statisticIconMapping } from '../../SportsConfig/Input';
+import { Statistic } from '../../Types/Statistic';
 
 interface UserCompareProps {
   userEmail: string;
@@ -55,32 +57,32 @@ const UserCompare = ({ userEmail }: UserCompareProps) => {
     setUserStatistics([
       { icon: 'label', name: 'Yearly summary' },
       {
-        icon: '💪',
-        name: 'Trainings',
+        icon: statisticIconMapping[Statistic.Trainings],
+        name: Statistic.Trainings,
         userOnevalue: yearData[0].count,
         userTwovalue: yearData[1].count,
 
         date: year,
       },
       {
-        icon: '🕐',
-        name: 'Duration',
+        icon: statisticIconMapping[Statistic.Duration],
+        name: Statistic.Duration,
         userOnevalue: secondsToHms(yearData[0].stats.duration_sec),
         userTwovalue: secondsToHms(yearData[1].stats.duration_sec),
         date: year,
         sport: '-',
       },
       {
-        icon: '👣',
-        name: 'Distance',
+        icon: statisticIconMapping[Statistic.Distance],
+        name: Statistic.Distance,
         userOnevalue: `${Math.round(yearData[0].stats.distance_km)} km`,
         userTwovalue: `${Math.round(yearData[1].stats.distance_km)} km`,
         date: year,
         sport: '-',
       },
       {
-        icon: '🔥',
-        name: 'Calories burn',
+        icon: statisticIconMapping[Statistic.Calories],
+        name: Statistic.Calories,
         userOnevalue: `${Math.round(yearData[0].stats.calories_kcal)} kcal`,
         userTwovalue: `${Math.round(yearData[1].stats.calories_kcal)} kcal`,
         date: year,
@@ -88,32 +90,32 @@ const UserCompare = ({ userEmail }: UserCompareProps) => {
       },
       { icon: 'label', name: 'Monthly summary' },
       {
-        icon: '💪',
-        name: 'Trainings',
+        icon: statisticIconMapping[Statistic.Trainings],
+        name: Statistic.Trainings,
         userOnevalue: monthData[0].count,
         userTwovalue: monthData[1].count,
 
         date: `${year}-${month}`,
       },
       {
-        icon: '🕐',
-        name: 'Duration',
+        icon: statisticIconMapping[Statistic.Duration],
+        name: Statistic.Duration,
         userOnevalue: secondsToHms(monthData[0].stats.duration_sec),
         userTwovalue: secondsToHms(monthData[1].stats.duration_sec),
         date: `${year}-${month}`,
         sport: '-',
       },
       {
-        icon: '👣',
-        name: 'Distance',
+        icon: statisticIconMapping[Statistic.Distance],
+        name: Statistic.Distance,
         userOnevalue: `${Math.round(monthData[0].stats.distance_km)} km`,
         userTwovalue: `${Math.round(monthData[1].stats.distance_km)} km`,
         date: `${year}-${month}`,
         sport: '-',
       },
       {
-        icon: '🔥',
-        name: 'Calories burn',
+        icon: statisticIconMapping[Statistic.Calories],
+        name: Statistic.Calories,
         userOnevalue: `${Math.round(monthData[0].stats.calories_kcal)} kcal`,
         userTwovalue: `${Math.round(monthData[1].stats.calories_kcal)} kcal`,
         date: `${year}-${month}`,

@@ -48,4 +48,8 @@ export const statisticIconMapping = {
   [Statistic.Duration]: '🕐',
   [Statistic.Distance]: '👣',
   [Statistic.Calories]: '🔥',
+  [Statistic.HeartRateAvg]: '💓',
+  [Statistic.SpeedAvg]: '🚀',
+  [Statistic.SumTrainingsInMonth]: '💪',
+  [Statistic.SumTrainingsInYear]: '💪',
 };

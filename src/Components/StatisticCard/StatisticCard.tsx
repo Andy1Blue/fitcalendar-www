@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { secondsToHms } from '../../helpers';
+import { statisticIconMapping } from '../../SportsConfig/Input';
+import { Statistic } from '../../Types/Statistic';
 import { Training } from '../../Types/Training';
 import './StatisticCard.scss';
-
-export const enum StatisticTypes {
-  Time = 'Time',
-  Distance = 'Distance',
-  Calories = 'Calories',
-  SumTrainingsInYear = 'SumTrainingsInYear',
-  SumTrainingsInMonth = 'SumTrainingsInMonth',
-}
-
 interface StatisticCardProps {
-  type: StatisticTypes;
+  type: Statistic;
   data: Training | any;
 }
 
@@ -22,39 +15,39 @@ const StatisticCard = ({ type, data }: StatisticCardProps) => {
 
   const StatisticTypesMapping = [
     {
-      type: StatisticTypes.Time,
-      icon: '🕐',
+      type: Statistic.Duration,
+      icon: statisticIconMapping[Statistic.Duration],
       title: 'The biggest duration',
       statValue: secondsToHms(data?.duration_sec),
       unit: '',
       startTime: data?.start_time,
     },
     {
-      type: StatisticTypes.Distance,
-      icon: '👣',
+      type: Statistic.Distance,
+      icon: statisticIconMapping[Statistic.Distance],
       title: 'The biggest distance',
       unit: 'km',
       statValue: data?.distance_km,
       startTime: data?.start_time,
     },
     {
-      type: StatisticTypes.Calories,
-      icon: '🔥',
+      type: Statistic.Calories,
+      icon: statisticIconMapping[Statistic.Calories],
       title: 'The biggest calories burn',
       unit: 'kcal',
       statValue: data?.calories_kcal,
       startTime: data?.start_time,
     },
     {
-      type: StatisticTypes.SumTrainingsInYear,
-      icon: '💪',
+      type: Statistic.SumTrainingsInYear,
+      icon: statisticIconMapping[Statistic.Trainings],
       title: 'Trainings in this year',
       statValue: data?.count,
       startTime: '',
     },
     {
-      type: StatisticTypes.SumTrainingsInMonth,
-      icon: '💪',
+      type: Statistic.SumTrainingsInMonth,
+      icon: statisticIconMapping[Statistic.Trainings],
       title: 'Trainings in this month',
       statValue: data?.count,
       startTime: '',

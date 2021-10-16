@@ -3,4 +3,8 @@ export const enum Statistic {
   Duration = 'Duration',
   Distance = 'Distance',
   Calories = 'Calories',
+  HeartRateAvg = 'Avg Heart Rate',
+  SpeedAvg = 'Avg Speed',
+  SumTrainingsInYear = 'SumTrainingsInYear',
+  SumTrainingsInMonth = 'SumTrainingsInMonth',
 }
