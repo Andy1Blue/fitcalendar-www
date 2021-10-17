@@ -50,6 +50,21 @@ export const statisticIconMapping = {
   [Statistic.Calories]: '🔥',
   [Statistic.HeartRateAvg]: '💓',
   [Statistic.SpeedAvg]: '🚀',
+  [Statistic.SpeedMax]: '🚀',
   [Statistic.SumTrainingsInMonth]: '💪',
   [Statistic.SumTrainingsInYear]: '💪',
 };
+
+// TODO
+export const statisticMapping = {
+  [Statistic.Trainings]: {
+    name: Statistic.Trainings,
+    icon: statisticIconMapping[Statistic.Trainings],
+    unit: 'workouts'
+  },
+  [Statistic.Duration]: {
+    name: Statistic.Duration,
+    icon: statisticIconMapping[Statistic.Duration],
+    unit: 'min'
+  }
+}

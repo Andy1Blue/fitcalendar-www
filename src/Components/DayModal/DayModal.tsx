@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { useInput } from '../../Hooks/useInput';
 import './DayModal.scss';
 import { Source, Sport, Training } from '../../Types/Training';
-import { sportsInput, sportIconMapping } from '../../SportsConfig/Input';
+import { sportsInput, sportIconMapping, statisticIconMapping } from '../../SportsConfig/Input';
 import { delayAction, hmsToSeconds, secondsToHms } from '../../helpers';
 import { addUserTraining, updateUserTraining, deleteUserTraining, PostBodyData } from '../../Services/TrainingsService';
 import Spinner from '../Loader/Spinner';
+import { Statistic } from '../../Types/Statistic';
 
 interface DayModalProps {
   userEmail: string;
@@ -301,14 +302,14 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                 <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                     <span>
-                      <span className="icon">&#128099;</span> Distance (km)
+                      <span className="icon">{statisticIconMapping[Statistic.Distance]}</span> {Statistic.Distance} (km)
                     </span>
                     <input className="input__number" min="0" type="number" value={distance} onChange={setDistance} />
                   </div>
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                     <span>
-                      <span className="icon">&#128293;</span> Calories (kcal)
+                      <span className="icon">{statisticIconMapping[Statistic.Calories]}</span> {Statistic.Calories} (kcal)
                     </span>
                     <input className="input__number" min="0" type="number" value={calories} onChange={setCalories} />
                   </div>
@@ -328,14 +329,14 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128640;</span> Max speed (kmh)
+                        <span className="icon">{statisticIconMapping[Statistic.SpeedMax]}</span> {Statistic.SpeedMax} (kmh)
                       </span>
                       <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
                     </div>
 
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128640;</span> Avg speed (kmh)
+                        <span className="icon">{statisticIconMapping[Statistic.SpeedAvg]}</span> {Statistic.SpeedAvg} (kmh)
                       </span>
                       <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
                     </div>
