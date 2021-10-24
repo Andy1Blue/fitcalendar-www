@@ -13,7 +13,7 @@ import Calendar from '../Calendar/Calendar';
 import UserPage from '../UserPage/UserPage';
 import UserCompare from '../UserCompare/UserCompare';
 import TodayCard from '../TodayCard/TodayCard';
-import StatisticCard, { StatisticTypes } from '../StatisticCard/StatisticCard';
+import StatisticCard from '../StatisticCard/StatisticCard';
 import SummaryStatisticCard from '../SummaryStatisticCard/SummaryStatisticCard';
 import { Training } from '../../Types/Training';
 import {
@@ -26,6 +26,7 @@ import {
 import { actualMonth, actualYear } from '../../helpers';
 import Spinner from '../Loader/Spinner';
 import { addLog } from '../../Services/LogsService';
+import { Statistic } from '../../Types/Statistic';
 
 export const App = () => {
   const [authorized, setAuthorized] = useState(false);
@@ -208,15 +209,15 @@ export const App = () => {
                     )}
 
                     {theLargestAmountOfTimes !== null && (
-                      <StatisticCard type={StatisticTypes.Time} data={theLargestAmountOfTimes} />
+                      <StatisticCard type={Statistic.Duration} data={theLargestAmountOfTimes} />
                     )}
 
                     {theLargestAmountOfDistances !== null && (
-                      <StatisticCard type={StatisticTypes.Distance} data={theLargestAmountOfDistances} />
+                      <StatisticCard type={Statistic.Distance} data={theLargestAmountOfDistances} />
                     )}
 
                     {theLargestAmountOfCalories !== null && (
-                      <StatisticCard type={StatisticTypes.Calories} data={theLargestAmountOfCalories} />
+                      <StatisticCard type={Statistic.Calories} data={theLargestAmountOfCalories} />
                     )}
                   </div>
 
