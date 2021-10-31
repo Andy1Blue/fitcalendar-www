@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Statistic } from '../../Types/Statistic';
 import { generateCsvContent } from '../../Services/ReportService';
 import * as dayjs from 'dayjs';
-
+import Spinner from '../Loader/Spinner';
 interface UserPageProps {
   sumTrainingInYear?: Training | any;
   sumTrainingInMonth?: Training | any;
@@ -26,6 +26,7 @@ const UserPage = ({
 }: UserPageProps) => {
   const [currentYear] = useState(actualYear);
   const [currentMonth] = useState(actualMonth);
+  const [showModal, setShowModal] = useState(false);
 
   const userStatistics = [
     { icon: 'label', name: 'Yearly summary' },
@@ -110,6 +111,26 @@ const UserPage = ({
     },
   ];
 
+  const closeDayModalButton = () => {
+    setShowModal(false);
+  };
+
+  const ShowModal = () => (
+    <div className="modal">
+      <div className="modal__container">
+        <button type="submit" className="modal__close" onClick={closeDayModalButton}>
+          X
+        </button>
+        <div className="modal__content">
+          <span className="modal__container--center">
+            <Spinner />
+            <span>Your download will start in a few seconds...</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
   const downloadCsvFile = async () => {
     let response = await generateCsvContent({});
 
@@ -122,6 +143,8 @@ const UserPage = ({
 
       hiddenElement.download = `fitcalendar${dayjs().format('HHmmDDMMYYYY')}.csv`;
       hiddenElement.click();
+
+      setShowModal(true);
     }
   };
 
@@ -131,6 +154,7 @@ const UserPage = ({
         <button className="input__button" onClick={downloadCsvFile}>
           Export data
         </button>
+        {showModal && <ShowModal />}
       </div>
       <table className="userPage__table">
         <thead>
