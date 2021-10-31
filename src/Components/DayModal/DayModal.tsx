@@ -273,14 +273,28 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                     <span>
                       <span className="icon">&#128336;</span> Duration (hh:mm:ss)
                     </span>
-                    <input className="input__time" type="time" step="1" value={time} onChange={setTime} />
+                    <input
+                      className="input__time"
+                      type="time"
+                      step="1"
+                      pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                      value={time}
+                      onChange={setTime}
+                    />
                   </div>
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                     <span>
                       <span className="icon">&#128336;</span> Duration - move (hh:mm:ss)
                     </span>
-                    <input className="input__time" type="time" step="1" value={timeMove} onChange={setTimeMove} />
+                    <input
+                      className="input__time"
+                      type="time"
+                      step="1"
+                      pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                      value={timeMove}
+                      onChange={setTimeMove}
+                    />
                   </div>
                 </div>
 
