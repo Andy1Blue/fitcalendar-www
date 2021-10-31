@@ -36,7 +36,7 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: C
 
   useEffect(() => {
     if (isAuthorized === true) {
-      const fetchTranings = async () => {
+      const fetchTrainings = async () => {
         let response = await getUserTrainings();
 
         if (response?.data) {
@@ -53,7 +53,7 @@ const Calendar = ({ isAuthorized, userEmail, todayTraining, year, refreshed }: C
         }
       };
 
-      fetchTranings();
+      fetchTrainings();
     }
   }, [isAuthorized, isRefreshing]);
 
