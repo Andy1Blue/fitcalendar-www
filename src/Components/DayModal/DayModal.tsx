@@ -240,11 +240,11 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   };
 
-  const handleChange = (event?: any) => {
+  const handleChange = (event: any, set: any) => {
     event.preventDefault();
     const value = event?.target?.value.replace(',', '.');
 
-    setDistance(value);
+    set(value);
   };
 
   return (
@@ -345,7 +345,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       className="input__number"
                       type="number"
                       value={distance}
-                      onChange={(event) => handleChange(event)}
+                      onChange={(event) => handleChange(event, setDistance)}
                       onClick={(event) => handleClick(event, setDistance)}
                       onBlur={(event) => handleBlur(event, setDistance)}
                     />
@@ -361,7 +361,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       min="0"
                       type="number"
                       value={calories}
-                      onChange={(event) => handleChange(event)}
+                      onChange={(event) => handleChange(event, setCalories)}
                       onClick={(event) => handleClick(event, setCalories)}
                       onBlur={(event) => handleBlur(event, setCalories)}
                     />
@@ -390,7 +390,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={maxSpeed}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setMaxSpeed)}
                         onClick={(event) => handleClick(event, setMaxSpeed)}
                         onBlur={(event) => handleBlur(event, setMaxSpeed)}
                       />
@@ -406,7 +406,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={avgSpeed}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setAvgSpeed)}
                         onClick={(event) => handleClick(event, setAvgSpeed)}
                         onBlur={(event) => handleBlur(event, setAvgSpeed)}
                       />
@@ -423,7 +423,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={paceMaxMinKm}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setPaceMaxMinKm)}
                         onClick={(event) => handleClick(event, setPaceMaxMinKm)}
                         onBlur={(event) => handleBlur(event, setPaceMaxMinKm)}
                       />
@@ -438,7 +438,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={paceAvgMinKm}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setPaceAvgMinKm)}
                         onClick={(event) => handleClick(event, setPaceAvgMinKm)}
                         onBlur={(event) => handleBlur(event, setPaceAvgMinKm)}
                       />
@@ -455,7 +455,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={cadenceMaxSpm}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setCadenceMaxSpm)}
                         onClick={(event) => handleClick(event, setCadenceMaxSpm)}
                         onBlur={(event) => handleBlur(event, setCadenceMaxSpm)}
                       />
@@ -470,7 +470,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={cadenceAvgSpm}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setCadenceAvgSpm)}
                         onClick={(event) => handleClick(event, setCadenceAvgSpm)}
                         onBlur={(event) => handleBlur(event, setCadenceAvgSpm)}
                       />
@@ -487,7 +487,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={maxHeartRate}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setMaxHeartRate)}
                         onClick={(event) => handleClick(event, setMaxHeartRate)}
                         onBlur={(event) => handleBlur(event, setMaxHeartRate)}
                       />
@@ -502,7 +502,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={avgHeartRate}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setAvgHeartRate)}
                         onClick={(event) => handleClick(event, setAvgHeartRate)}
                         onBlur={(event) => handleBlur(event, setAvgHeartRate)}
                       />
@@ -519,7 +519,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={steps}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setSteps)}
                         onClick={(event) => handleClick(event, setSteps)}
                         onBlur={(event) => handleBlur(event, setSteps)}
                       />
@@ -534,7 +534,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={hydration}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setHydration)}
                         onClick={(event) => handleClick(event, setHydration)}
                         onBlur={(event) => handleBlur(event, setHydration)}
                       />
@@ -551,7 +551,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={elevationMaxM}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setElevationMaxM)}
                         onClick={(event) => handleClick(event, setElevationMaxM)}
                         onBlur={(event) => handleBlur(event, setElevationMaxM)}
                       />
@@ -566,7 +566,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={elevationMinM}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setElevationMinM)}
                         onClick={(event) => handleClick(event, setElevationMinM)}
                         onBlur={(event) => handleBlur(event, setElevationMinM)}
                       />
@@ -583,7 +583,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={elevationGainM}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setElevationGainM)}
                         onClick={(event) => handleClick(event, setElevationGainM)}
                         onBlur={(event) => handleBlur(event, setElevationGainM)}
                       />
@@ -600,7 +600,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={trainingEffectAerobic}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setTrainingEffectAerobic)}
                         onClick={(event) => handleClick(event, setTrainingEffectAerobic)}
                         onBlur={(event) => handleBlur(event, setTrainingEffectAerobic)}
                       />
@@ -615,7 +615,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={trainingEffectAnaerobic}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setTrainingEffectAnaerobic)}
                         onClick={(event) => handleClick(event, setTrainingEffectAnaerobic)}
                         onBlur={(event) => handleBlur(event, setTrainingEffectAnaerobic)}
                       />
@@ -632,7 +632,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={vo2max}
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleChange(event, setVo2max)}
                         onClick={(event) => handleClick(event, setVo2max)}
                         onBlur={(event) => handleBlur(event, setVo2max)}
                       />
@@ -651,7 +651,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       max="10"
                       type="number"
                       value={feeling}
-                      onChange={(event) => handleChange(event)}
+                      onChange={(event) => handleChange(event, setFeeling)}
                       onClick={(event) => handleClick(event, setFeeling)}
                       onBlur={(event) => handleBlur(event, setFeeling)}
                     />
@@ -667,7 +667,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       max="10"
                       type="number"
                       value={effort}
-                      onChange={(event) => handleChange(event)}
+                      onChange={(event) => handleChange(event, setEffort)}
                       onClick={(event) => handleClick(event, setEffort)}
                       onBlur={(event) => handleBlur(event, setEffort)}
                     />
