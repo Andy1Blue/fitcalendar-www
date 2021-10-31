@@ -2,6 +2,12 @@
   .userCompare {
     padding: 3px;
 
+    .userCompare__formInputContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
     .userCompare__dataContainer {
       .userCompare__table {
         margin: 10px 0;
