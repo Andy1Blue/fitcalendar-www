@@ -232,11 +232,11 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   };
 
-  const handleBlur = (event?: any) => {
+  const handleBlur = (event: any, set: any) => {
     event.preventDefault();
 
     if (event?.target?.value == '') {
-      setDistance(0);
+      set(0);
     }
   };
 
@@ -347,7 +347,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       value={distance}
                       onChange={(event) => handleChange(event)}
                       onClick={(event) => handleClick(event, setDistance)}
-                      onBlur={(event) => handleBlur(event)}
+                      onBlur={(event) => handleBlur(event, setDistance)}
                     />
                   </div>
 
@@ -363,7 +363,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       value={calories}
                       onChange={(event) => handleChange(event)}
                       onClick={(event) => handleClick(event, setCalories)}
-                      onBlur={(event) => handleBlur(event)}
+                      onBlur={(event) => handleBlur(event, setCalories)}
                     />
                   </div>
                 </div>
@@ -392,7 +392,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={maxSpeed}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setMaxSpeed)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setMaxSpeed)}
                       />
                     </div>
 
@@ -408,7 +408,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={avgSpeed}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setAvgSpeed)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setAvgSpeed)}
                       />
                     </div>
                   </div>
@@ -425,7 +425,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={paceMaxMinKm}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setPaceMaxMinKm)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setPaceMaxMinKm)}
                       />
                     </div>
 
@@ -440,7 +440,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={paceAvgMinKm}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setPaceAvgMinKm)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setPaceAvgMinKm)}
                       />
                     </div>
                   </div>
@@ -457,7 +457,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={cadenceMaxSpm}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setCadenceMaxSpm)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setCadenceMaxSpm)}
                       />
                     </div>
 
@@ -472,7 +472,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={cadenceAvgSpm}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setCadenceAvgSpm)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setCadenceAvgSpm)}
                       />
                     </div>
                   </div>
@@ -489,7 +489,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={maxHeartRate}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setMaxHeartRate)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setMaxHeartRate)}
                       />
                     </div>
 
@@ -504,7 +504,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={avgHeartRate}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setAvgHeartRate)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setAvgHeartRate)}
                       />
                     </div>
                   </div>
@@ -521,7 +521,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={steps}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setSteps)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setSteps)}
                       />
                     </div>
 
@@ -536,7 +536,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={hydration}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setHydration)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setHydration)}
                       />
                     </div>
                   </div>
@@ -553,7 +553,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={elevationMaxM}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setElevationMaxM)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setElevationMaxM)}
                       />
                     </div>
 
@@ -568,7 +568,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={elevationMinM}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setElevationMinM)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setElevationMinM)}
                       />
                     </div>
                   </div>
@@ -585,7 +585,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={elevationGainM}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setElevationGainM)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setElevationGainM)}
                       />
                     </div>
                   </div>
@@ -602,7 +602,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={trainingEffectAerobic}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setTrainingEffectAerobic)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setTrainingEffectAerobic)}
                       />
                     </div>
 
@@ -617,7 +617,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={trainingEffectAnaerobic}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setTrainingEffectAnaerobic)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setTrainingEffectAnaerobic)}
                       />
                     </div>
                   </div>
@@ -634,7 +634,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         value={vo2max}
                         onChange={(event) => handleChange(event)}
                         onClick={(event) => handleClick(event, setVo2max)}
-                        onBlur={(event) => handleBlur(event)}
+                        onBlur={(event) => handleBlur(event, setVo2max)}
                       />
                     </div>
                   </div>
@@ -653,7 +653,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       value={feeling}
                       onChange={(event) => handleChange(event)}
                       onClick={(event) => handleClick(event, setFeeling)}
-                      onBlur={(event) => handleBlur(event)}
+                      onBlur={(event) => handleBlur(event, setFeeling)}
                     />
                   </div>
 
@@ -669,7 +669,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       value={effort}
                       onChange={(event) => handleChange(event)}
                       onClick={(event) => handleClick(event, setEffort)}
-                      onBlur={(event) => handleBlur(event)}
+                      onBlur={(event) => handleBlur(event, setEffort)}
                     />
                   </div>
                 </div>
