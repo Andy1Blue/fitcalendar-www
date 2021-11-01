@@ -14,7 +14,7 @@ export interface PostBodyData {
   durationMoveSec?: number;
   distanceKm?: number;
   caloriesKcal?: number;
-  description?: string;
+  description?: string | null;
   heartRateAvgBpm?: number;
   heartRateMaxBpm?: number;
   speedAvgKmh?: number;

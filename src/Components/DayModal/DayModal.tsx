@@ -60,7 +60,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
       durationMoveSec: hmsToSeconds(timeMove),
       distanceKm: distance,
       caloriesKcal: calories,
-      description: description,
+      description,
       heartRateAvgBpm: avgHeartRate,
       heartRateMaxBpm: maxHeartRate,
       speedAvgKmh: avgSpeed,
