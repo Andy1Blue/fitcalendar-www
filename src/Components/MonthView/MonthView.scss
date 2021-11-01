@@ -1,0 +1,138 @@
+.calendarTiles {
+  .today {
+    color: #fff !important;
+    border-bottom: 5px solid #c03e86;
+  }
+
+  .workout {
+    color: #fff !important;
+    background-color: #de49ba !important;
+  }
+
+  .day {
+    animation: showAnimation 0.4s;
+    background-color: #6e2364;
+    font-family: 'Open Sans', sans-serif;
+    height: 21px;
+    width: 21px;
+    margin: 4px;
+    float: left;
+    cursor: pointer;
+    color: #7c838c;
+    font-size: 8px;
+    padding: 0px 0px 7px 7px;
+    -webkit-box-shadow: inset 1px 1px 5px 1px rgba(60, 16, 54, 0.2);
+    box-shadow: inset 1px 1px 5px 1px rgba(60, 16, 54, 0.2);
+
+    &:hover:after {
+      z-index: 999;
+      content: attr(description);
+      position: absolute;
+      text-align: center;
+      width: 150px;
+      margin: 30px -80px;
+      padding: 5px;
+      font-size: 12px;
+      border: 1px solid black;
+      background: white;
+      color: black;
+    }
+  }
+}
+
+.monthView__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .monthView__headerTitle {
+    min-width: 200px;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .monthView__actualMonth {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 3vh;
+    padding: 0;
+    transform: rotate(180deg);
+    color: #e2e2e2;
+  }
+
+  .monthView__subtractMonth {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 2vh;
+    transform: rotate(180deg);
+    color: #e2e2e2;
+  }
+
+  .monthView__addMonth {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 2vh;
+    color: #e2e2e2;
+  }
+
+  .button--gray {
+    color: #7c838c !important;
+    cursor: auto;
+  }
+}
+
+.monthView__table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  thead tr {
+    background-color: #6e2364;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  th {
+    padding: 8px 15px;
+    white-space: nowrap;
+    text-align: center;
+    width: 33%;
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+    }
+
+    text-align: center;
+    tr:nth-of-type(even):hover,
+    tr:hover {
+      background-color: #4a475c;
+    }
+
+    tr:nth-of-type(even) {
+      background-color: #3d3a4e;
+    }
+
+    tr:last-of-type {
+      border-bottom: 2px solid #3d3a4e;
+    }
+
+    tr.userPage__table--activeRow {
+      font-weight: bold;
+      color: #3d3a4e;
+    }
+
+    td {
+      padding: 8px 15px;
+      text-align: center;
+    }
+  }
+}
+
+@import './MonthView-mobile.scss';
