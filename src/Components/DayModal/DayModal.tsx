@@ -501,10 +501,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={cadenceMaxSpm}
-                        onChange={(event) => handleChange(event, setCadenceMaxSpm)}
-                        onClick={(event) => handleClick(event, setCadenceMaxSpm)}
-                        onBlur={(event) => handleBlur(event, setCadenceMaxSpm)}
+                        value={paceMaxMinKm}
+                        onChange={(event) => handleChange(event, setPaceMaxMinKm)}
+                        onClick={(event) => handleClick(event, setPaceMaxMinKm)}
+                        onBlur={(event) => handleBlur(event, setPaceMaxMinKm)}
                       />
                     </div>
                   </div>
@@ -533,10 +533,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={avgHeartRate}
-                        onChange={(event) => handleChange(event, setAvgHeartRate)}
-                        onClick={(event) => handleClick(event, setAvgHeartRate)}
-                        onBlur={(event) => handleBlur(event, setAvgHeartRate)}
+                        value={cadenceMaxSpm}
+                        onChange={(event) => handleChange(event, setCadenceMaxSpm)}
+                        onClick={(event) => handleClick(event, setCadenceMaxSpm)}
+                        onBlur={(event) => handleBlur(event, setCadenceMaxSpm)}
                       />
                     </div>
                   </div>
@@ -597,10 +597,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={elevationGainM}
-                        onChange={(event) => handleChange(event, setElevationGainM)}
-                        onClick={(event) => handleClick(event, setElevationGainM)}
-                        onBlur={(event) => handleBlur(event, setElevationGainM)}
+                        value={elevationMaxM}
+                        onChange={(event) => handleChange(event, setElevationMaxM)}
+                        onClick={(event) => handleClick(event, setElevationMaxM)}
+                        onBlur={(event) => handleBlur(event, setElevationMaxM)}
                       />
                     </div>
                   </div>
