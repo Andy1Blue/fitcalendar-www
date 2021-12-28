@@ -608,6 +608,23 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
+                        <span className="icon">&#128315;</span> Elevation Gain (m)
+                      </span>
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={elevationGainM}
+                        onChange={(event) => handleChange(event, setElevationGainM)}
+                        onClick={(event) => handleClick(event, setElevationGainM)}
+                        onBlur={(event) => handleBlur(event, setElevationGainM)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
                         <span className="icon">&#128200;</span> VO<small>2</small>MAX
                       </span>
                       <input
