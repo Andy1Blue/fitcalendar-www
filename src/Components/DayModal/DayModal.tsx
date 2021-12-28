@@ -309,9 +309,66 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                     <span>
-                      <span className="icon">{statisticIconMapping[Statistic.Calories]}</span> {Statistic.Calories} (kcal)
+                      <span className="icon">{statisticIconMapping[Statistic.Calories]}</span> {Statistic.Calories}{' '}
+                      (kcal)
                     </span>
                     <input className="input__number" min="0" type="number" value={calories} onChange={setCalories} />
+                  </div>
+                </div>
+
+                <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                    <span>
+                      <span className="icon">&#128147;</span> Avg heart rate (bpm)
+                    </span>
+                    <input
+                      className="input__number"
+                      min="0"
+                      type="number"
+                      value={avgHeartRate}
+                      onChange={setAvgHeartRate}
+                    />
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                    <span>
+                      <span className="icon">&#128147;</span> Max heart rate (bpm)
+                    </span>
+                    <input
+                      className="input__number"
+                      min="0"
+                      type="number"
+                      value={maxHeartRate}
+                      onChange={setMaxHeartRate}
+                    />
+                  </div>
+                </div>
+
+                <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                    <span>
+                      <span className="icon">&#127919;</span> Training Effect - anaerobic
+                    </span>
+                    <input
+                      className="input__number"
+                      min="0"
+                      type="number"
+                      value={trainingEffectAnaerobic}
+                      onChange={setTrainingEffectAnaerobic}
+                    />
+                  </div>
+
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                    <span>
+                      <span className="icon">&#127919;</span> Training Effect - aerobic
+                    </span>
+                    <input
+                      className="input__number"
+                      min="0"
+                      type="number"
+                      value={trainingEffectAerobic}
+                      onChange={setTrainingEffectAerobic}
+                    />
                   </div>
                 </div>
 
@@ -329,33 +386,22 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">{statisticIconMapping[Statistic.SpeedMax]}</span> {Statistic.SpeedMax} (kmh)
+                        <span className="icon">{statisticIconMapping[Statistic.SpeedAvg]}</span> {Statistic.SpeedAvg}{' '}
+                        (kmh)
                       </span>
-                      <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
+                      <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
                     </div>
 
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">{statisticIconMapping[Statistic.SpeedAvg]}</span> {Statistic.SpeedAvg} (kmh)
+                        <span className="icon">{statisticIconMapping[Statistic.SpeedMax]}</span> {Statistic.SpeedMax}{' '}
+                        (kmh)
                       </span>
-                      <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
+                      <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
                     </div>
                   </div>
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
-                        <span className="icon">&#9201;</span> Max pace (min/km)
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
-                        value={paceMaxMinKm}
-                        onChange={setPaceMaxMinKm}
-                      />
-                    </div>
-
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
                         <span className="icon">&#9201;</span> Avg pace (min/km)
@@ -368,22 +414,22 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         onChange={setPaceAvgMinKm}
                       />
                     </div>
-                  </div>
 
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#127939;</span> Max cadence (spm)
+                        <span className="icon">&#9201;</span> Max pace (min/km)
                       </span>
                       <input
                         className="input__number"
                         min="0"
                         type="number"
-                        value={cadenceMaxSpm}
-                        onChange={setCadenceMaxSpm}
+                        value={paceMaxMinKm}
+                        onChange={setPaceMaxMinKm}
                       />
                     </div>
+                  </div>
 
+                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
                         <span className="icon">&#127939;</span> Avg cadence (spm)
@@ -396,32 +442,17 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         onChange={setCadenceAvgSpm}
                       />
                     </div>
-                  </div>
 
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128147;</span> Max heart rate (bpm)
+                        <span className="icon">&#127939;</span> Max cadence (spm)
                       </span>
                       <input
                         className="input__number"
                         min="0"
                         type="number"
-                        value={maxHeartRate}
-                        onChange={setMaxHeartRate}
-                      />
-                    </div>
-
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
-                        <span className="icon">&#128147;</span> Avg heart rate (bpm)
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
-                        value={avgHeartRate}
-                        onChange={setAvgHeartRate}
+                        value={cadenceMaxSpm}
+                        onChange={setCadenceMaxSpm}
                       />
                     </div>
                   </div>
@@ -451,19 +482,6 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                       <span>
-                        <span className="icon">&#128314;</span> Max elevation (m)
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
-                        value={elevationMaxM}
-                        onChange={setElevationMaxM}
-                      />
-                    </div>
-
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
                         <span className="icon">&#128315;</span> Min elevation (m)
                       </span>
                       <input
@@ -472,6 +490,19 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         type="number"
                         value={elevationMinM}
                         onChange={setElevationMinM}
+                      />
+                    </div>
+
+                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
+                      <span>
+                        <span className="icon">&#128314;</span> Max elevation (m)
+                      </span>
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={elevationMaxM}
+                        onChange={setElevationMaxM}
                       />
                     </div>
                   </div>
@@ -487,34 +518,6 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         type="number"
                         value={elevationGainM}
                         onChange={setElevationGainM}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
-                        <span className="icon">&#127919;</span> Training Effect - aerobic
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
-                        value={trainingEffectAerobic}
-                        onChange={setTrainingEffectAerobic}
-                      />
-                    </div>
-
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
-                        <span className="icon">&#127919;</span> Training Effect - anaerobic
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
-                        value={trainingEffectAnaerobic}
-                        onChange={setTrainingEffectAnaerobic}
                       />
                     </div>
                   </div>
