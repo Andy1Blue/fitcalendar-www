@@ -42,6 +42,8 @@
       &--show {
         display: flex;
         animation: showAnimation 0.4s;
+        border: 1px solid #26232f;
+        margin: -32px 0 0;
       }
 
       &--hide {

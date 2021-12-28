@@ -2,12 +2,12 @@
   padding: 5px;
   animation: showAnimation 0.4s;
 
-  .calendar__switchYear {
+  .calendar__header {
     display: flex;
     flex-direction: row;
     justify-content: center;
 
-    .calendar__year {
+    .calendar__headerTitle {
       margin-top: 5px;
       color: #e2e2e2;
     }
@@ -40,6 +40,23 @@
       font-size: 2vh;
       margin-bottom: 12px;
       color: #e2e2e2;
+    }
+  }
+
+  .calendar__switchTypeView {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+
+    .switchTypeView__button {
+      width: 90px;
+      margin: 3px;
+      background-color: #6e2364;
+      height: 20px;
+      border: 0.1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 50px;
+      font-size: 12px;
     }
   }
 

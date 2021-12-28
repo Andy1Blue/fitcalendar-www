@@ -60,7 +60,7 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
       durationMoveSec: hmsToSeconds(timeMove),
       distanceKm: distance,
       caloriesKcal: calories,
-      description: description,
+      description,
       heartRateAvgBpm: avgHeartRate,
       heartRateMaxBpm: maxHeartRate,
       speedAvgKmh: avgSpeed,
@@ -224,6 +224,29 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
     }
   };
 
+  const handleClick = (event: any, set: any) => {
+    event.preventDefault();
+
+    if (event?.target?.value == 0) {
+      set('');
+    }
+  };
+
+  const handleBlur = (event: any, set: any) => {
+    event.preventDefault();
+
+    if (event?.target?.value == '') {
+      set(0);
+    }
+  };
+
+  const handleChange = (event: any, set: any) => {
+    event.preventDefault();
+    const value = event?.target?.value.replace(',', '.');
+
+    set(value);
+  };
+
   return (
     <div className="dayModal">
       <div className="dayModal__container">
@@ -250,14 +273,28 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                     <span>
                       <span className="icon">&#128336;</span> Duration (hh:mm:ss)
                     </span>
-                    <input className="input__time" type="time" step="1" value={time} onChange={setTime} />
+                    <input
+                      className="input__time"
+                      type="time"
+                      step="1"
+                      pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                      value={time}
+                      onChange={setTime}
+                    />
                   </div>
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
                     <span>
                       <span className="icon">&#128336;</span> Duration - move (hh:mm:ss)
                     </span>
-                    <input className="input__time" type="time" step="1" value={timeMove} onChange={setTimeMove} />
+                    <input
+                      className="input__time"
+                      type="time"
+                      step="1"
+                      pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                      value={timeMove}
+                      onChange={setTimeMove}
+                    />
                   </div>
                 </div>
 
@@ -304,7 +341,14 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                     <span>
                       <span className="icon">{statisticIconMapping[Statistic.Distance]}</span> {Statistic.Distance} (km)
                     </span>
-                    <input className="input__number" min="0" type="number" value={distance} onChange={setDistance} />
+                    <input
+                      className="input__number"
+                      type="number"
+                      value={distance}
+                      onChange={(event) => handleChange(event, setDistance)}
+                      onClick={(event) => handleClick(event, setDistance)}
+                      onBlur={(event) => handleBlur(event, setDistance)}
+                    />
                   </div>
 
                   <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
@@ -312,7 +356,15 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       <span className="icon">{statisticIconMapping[Statistic.Calories]}</span> {Statistic.Calories}{' '}
                       (kcal)
                     </span>
-                    <input className="input__number" min="0" type="number" value={calories} onChange={setCalories} />
+                    <input
+                      className="input__number"
+                      min="0"
+                      type="number"
+                      value={calories}
+                      onChange={(event) => handleChange(event, setCalories)}
+                      onClick={(event) => handleClick(event, setCalories)}
+                      onBlur={(event) => handleBlur(event, setCalories)}
+                    />
                   </div>
                 </div>
 
@@ -326,7 +378,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       min="0"
                       type="number"
                       value={avgHeartRate}
-                      onChange={setAvgHeartRate}
+                      onChange={(event) => handleChange(event, setAvgHeartRate)}
+                      onClick={(event) => handleClick(event, setAvgHeartRate)}
+                      onBlur={(event) => handleBlur(event, setAvgHeartRate)}
                     />
                   </div>
 
@@ -339,7 +393,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       min="0"
                       type="number"
                       value={maxHeartRate}
-                      onChange={setMaxHeartRate}
+                      onChange={(event) => handleChange(event, setMaxHeartRate)}
+                      onClick={(event) => handleClick(event, setMaxHeartRate)}
+                      onBlur={(event) => handleBlur(event, setMaxHeartRate)}
                     />
                   </div>
                 </div>
@@ -354,7 +410,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       min="0"
                       type="number"
                       value={trainingEffectAnaerobic}
-                      onChange={setTrainingEffectAnaerobic}
+                      onChange={(event) => handleChange(event, setTrainingEffectAnaerobic)}
+                      onClick={(event) => handleClick(event, setTrainingEffectAnaerobic)}
+                      onBlur={(event) => handleBlur(event, setTrainingEffectAnaerobic)}
                     />
                   </div>
 
@@ -367,7 +425,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       min="0"
                       type="number"
                       value={trainingEffectAerobic}
-                      onChange={setTrainingEffectAerobic}
+                      onChange={(event) => handleChange(event, setTrainingEffectAerobic)}
+                      onClick={(event) => handleClick(event, setTrainingEffectAerobic)}
+                      onBlur={(event) => handleBlur(event, setTrainingEffectAerobic)}
                     />
                   </div>
                 </div>
@@ -389,7 +449,15 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         <span className="icon">{statisticIconMapping[Statistic.SpeedAvg]}</span> {Statistic.SpeedAvg}{' '}
                         (kmh)
                       </span>
-                      <input className="input__number" min="0" type="number" value={avgSpeed} onChange={setAvgSpeed} />
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={avgSpeed}
+                        onChange={(event) => handleChange(event, setAvgSpeed)}
+                        onClick={(event) => handleClick(event, setAvgSpeed)}
+                        onBlur={(event) => handleBlur(event, setAvgSpeed)}
+                      />
                     </div>
 
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
@@ -397,7 +465,15 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         <span className="icon">{statisticIconMapping[Statistic.SpeedMax]}</span> {Statistic.SpeedMax}{' '}
                         (kmh)
                       </span>
-                      <input className="input__number" min="0" type="number" value={maxSpeed} onChange={setMaxSpeed} />
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={maxSpeed}
+                        onChange={(event) => handleChange(event, setMaxSpeed)}
+                        onClick={(event) => handleClick(event, setMaxSpeed)}
+                        onBlur={(event) => handleBlur(event, setMaxSpeed)}
+                      />
                     </div>
                   </div>
 
@@ -411,7 +487,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={paceAvgMinKm}
-                        onChange={setPaceAvgMinKm}
+                        onChange={(event) => handleChange(event, setPaceAvgMinKm)}
+                        onClick={(event) => handleClick(event, setPaceAvgMinKm)}
+                        onBlur={(event) => handleBlur(event, setPaceAvgMinKm)}
                       />
                     </div>
 
@@ -423,8 +501,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={paceMaxMinKm}
-                        onChange={setPaceMaxMinKm}
+                        value={cadenceMaxSpm}
+                        onChange={(event) => handleChange(event, setCadenceMaxSpm)}
+                        onClick={(event) => handleClick(event, setCadenceMaxSpm)}
+                        onBlur={(event) => handleBlur(event, setCadenceMaxSpm)}
                       />
                     </div>
                   </div>
@@ -439,7 +519,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={cadenceAvgSpm}
-                        onChange={setCadenceAvgSpm}
+                        onChange={(event) => handleChange(event, setCadenceAvgSpm)}
+                        onClick={(event) => handleClick(event, setCadenceAvgSpm)}
+                        onBlur={(event) => handleBlur(event, setCadenceAvgSpm)}
                       />
                     </div>
 
@@ -451,8 +533,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={cadenceMaxSpm}
-                        onChange={setCadenceMaxSpm}
+                        value={avgHeartRate}
+                        onChange={(event) => handleChange(event, setAvgHeartRate)}
+                        onClick={(event) => handleClick(event, setAvgHeartRate)}
+                        onBlur={(event) => handleBlur(event, setAvgHeartRate)}
                       />
                     </div>
                   </div>
@@ -462,7 +546,15 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       <span>
                         <span className="icon">&#128099;</span> Steps
                       </span>
-                      <input className="input__number" min="0" type="number" value={steps} onChange={setSteps} />
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={steps}
+                        onChange={(event) => handleChange(event, setSteps)}
+                        onClick={(event) => handleClick(event, setSteps)}
+                        onBlur={(event) => handleBlur(event, setSteps)}
+                      />
                     </div>
 
                     <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
@@ -474,7 +566,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={hydration}
-                        onChange={setHydration}
+                        onChange={(event) => handleChange(event, setHydration)}
+                        onClick={(event) => handleClick(event, setHydration)}
+                        onBlur={(event) => handleBlur(event, setHydration)}
                       />
                     </div>
                   </div>
@@ -489,7 +583,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         min="0"
                         type="number"
                         value={elevationMinM}
-                        onChange={setElevationMinM}
+                        onChange={(event) => handleChange(event, setElevationMinM)}
+                        onClick={(event) => handleClick(event, setElevationMinM)}
+                        onBlur={(event) => handleBlur(event, setElevationMinM)}
                       />
                     </div>
 
@@ -501,23 +597,10 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                         className="input__number"
                         min="0"
                         type="number"
-                        value={elevationMaxM}
-                        onChange={setElevationMaxM}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="dayModal__formInputContainer dayModal__formInputContainer--row dayModal__formInputContainer--center">
-                    <div className="dayModal__formInputContainer dayModal__formInputContainer--column">
-                      <span>
-                        <span className="icon">&#127956;</span> Elevation gain (m)
-                      </span>
-                      <input
-                        className="input__number"
-                        min="0"
-                        type="number"
                         value={elevationGainM}
-                        onChange={setElevationGainM}
+                        onChange={(event) => handleChange(event, setElevationGainM)}
+                        onClick={(event) => handleClick(event, setElevationGainM)}
+                        onBlur={(event) => handleBlur(event, setElevationGainM)}
                       />
                     </div>
                   </div>
@@ -527,7 +610,15 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       <span>
                         <span className="icon">&#128200;</span> VO<small>2</small>MAX
                       </span>
-                      <input className="input__number" min="0" type="number" value={vo2max} onChange={setVo2max} />
+                      <input
+                        className="input__number"
+                        min="0"
+                        type="number"
+                        value={vo2max}
+                        onChange={(event) => handleChange(event, setVo2max)}
+                        onClick={(event) => handleClick(event, setVo2max)}
+                        onBlur={(event) => handleBlur(event, setVo2max)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -543,7 +634,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       max="10"
                       type="number"
                       value={feeling}
-                      onChange={setFeeling}
+                      onChange={(event) => handleChange(event, setFeeling)}
+                      onClick={(event) => handleClick(event, setFeeling)}
+                      onBlur={(event) => handleBlur(event, setFeeling)}
                     />
                   </div>
 
@@ -557,7 +650,9 @@ const DayModal = ({ userEmail, isDayModalVisible, isPosted, training, trainingDa
                       max="10"
                       type="number"
                       value={effort}
-                      onChange={setEffort}
+                      onChange={(event) => handleChange(event, setEffort)}
+                      onClick={(event) => handleClick(event, setEffort)}
+                      onBlur={(event) => handleBlur(event, setEffort)}
                     />
                   </div>
                 </div>

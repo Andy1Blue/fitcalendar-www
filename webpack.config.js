@@ -29,8 +29,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    inline: true,
-    contentBase: join(__dirname, 'build'),
+    static: join(__dirname, 'build'),
     compress: true,
     port: 3000,
   },

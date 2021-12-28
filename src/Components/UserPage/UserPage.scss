@@ -79,6 +79,56 @@
       }
     }
   }
+
+  .modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: visibility 1s;
+    overflow: auto;
+
+    .modal__container {
+      animation: showAnimation 0.4s;
+      border-radius: 10px;
+      margin: 10px auto;
+      background-color: #17151e;
+      padding: 20px;
+      border: 0 none;
+      width: 50%;
+      -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.75);
+
+      &--center {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .modal__close {
+      color: #aaa;
+      float: right;
+      font-size: 19px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+
+      &:hover,
+      &:focus {
+        color: rgb(153, 153, 153);
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 @import './UserPage-mobile.scss';
